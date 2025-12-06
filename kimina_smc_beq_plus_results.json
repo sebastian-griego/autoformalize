@@ -1,0 +1,20 @@
+{
+  "records": [
+    {
+      "index": 0,
+      "id": "Artin|exercise_6_8_1",
+      "nl_statement": "Prove that two elements $a, b$ of a group generate the same subgroup as $b a b^2, b a b^3$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 2)} := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 1)} := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 2)} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 2)} := by sorry",
+      "ground_truth": "theorem exercise_6_8_1 {G : Type*} [Group G]\n  (a b : G) : closure ({a, b} : Set G) = Subgroup.closure {b*a*b^2, b*a*b^3} :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    }
+  ],
+  "equivalent": 0,
+  "total": 1
+}

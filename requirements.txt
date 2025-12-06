@@ -1,0 +1,7 @@
+genlm-control
+lean-interact
+datasets
+transformers
+torch
+vllm
+accelerate
