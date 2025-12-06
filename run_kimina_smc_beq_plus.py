@@ -33,6 +33,8 @@ back_model = AutoModelForCausalLM.from_pretrained(
 )
 back_model.eval()
 
+_kimina_llm: PromptedLLM | None = None
+
 
 def clean_candidate_output(text: str) -> str:
     """Strip to the final theorem block so Lean code can be embedded safely."""
@@ -65,17 +67,20 @@ def build_prompt(nl_statement: str, theorem_name: str) -> tuple[str, list[dict]]
 
 
 def make_kimina_llm(messages: list[dict]) -> PromptedLLM:
-    llm = PromptedLLM.from_name(
-        MODEL_NAME,
-        temperature=0.2,
-    )
-    tokenizer = llm.model.tokenizer
-    llm.prompt_ids = tokenizer.apply_chat_template(
+    global _kimina_llm  # noqa: PLW0603 - cache for reuse across dataset loop
+    if _kimina_llm is None:
+        _kimina_llm = PromptedLLM.from_name(
+            MODEL_NAME,
+            temperature=0.2,
+        )
+
+    tokenizer = _kimina_llm.model.tokenizer
+    _kimina_llm.prompt_ids = tokenizer.apply_chat_template(
         messages,
         tokenize=True,
         add_generation_prompt=True,
     )
-    return llm
+    return _kimina_llm
 
 
 class LeanWellTypedPotential(Potential):
