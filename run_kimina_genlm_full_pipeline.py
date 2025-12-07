@@ -423,7 +423,7 @@ async def run_sampler(
     max_tokens: int,
     ess_threshold: float = 0.5,
 ) -> Any:
-    sampler = AWRS(unit_potential, condition)
+    sampler = AWRS(unit_potential, condition, proper_weights=False)
     try:
         return await sampler.smc(
             n_particles=n_particles,
