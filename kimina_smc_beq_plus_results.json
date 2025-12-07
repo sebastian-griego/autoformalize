@@ -5,16 +5,1353 @@
       "id": "Artin|exercise_6_8_1",
       "nl_statement": "Prove that two elements $a, b$ of a group generate the same subgroup as $b a b^2, b a b^3$.",
       "smc_posterior": {
-        "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 2)} := by sorry": 0.0,
-        "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 1)} := by sorry": 0.0
+        "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 m n, x = b * a * b ^ m \u2228 x = b * a * b ^ n} =\n    closure {x | \u2203 m n, x = a * b * a ^ m \u2228 x = a * b * a ^ n} := by sorry": 0.0
       },
-      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 2)} := by sorry",
-      "kimina_smc_best_clean": "theorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 2)} := by sorry",
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 m n, x = b * a * b ^ m \u2228 x = b * a * b ^ n} =\n    closure {x | \u2203 m n, x = a * b * a ^ m \u2228 x = a * b * a ^ n} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_0 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 m n, x = b * a * b ^ m \u2228 x = b * a * b ^ n} =\n    closure {x | \u2203 m n, x = a * b * a ^ m \u2228 x = a * b * a ^ n} := by sorry",
       "ground_truth": "theorem exercise_6_8_1 {G : Type*} [Group G]\n  (a b : G) : closure ({a, b} : Set G) = Subgroup.closure {b*a*b^2, b*a*b^3} :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 1,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 0.0,
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 2,
+      "id": "Munkres|exercise_27_4",
+      "nl_statement": "Show that a connected metric space having more than one point is uncountable.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_2\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_2\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_2\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry",
+      "ground_truth": "theorem exercise_27_4\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 3,
+      "id": "Pugh|exercise_2_126",
+      "nl_statement": "Suppose that $E$ is an uncountable subset of $\\mathbb{R}$. Prove that there exists a point $p \\in \\mathbb{R}$ at which $E$ condenses.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_3\n  (E : Set \u211d)\n  (hE : \u00ac Set.Countable E) :\n  \u2203 p, ClusterPt p (\ud835\udcdf E) :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_3\n  (E : Set \u211d)\n  (hE : \u00ac Set.Countable E) :\n  \u2203 p, ClusterPt p (\ud835\udcdf E) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_3\n  (E : Set \u211d)\n  (hE : \u00ac Set.Countable E) :\n  \u2203 p, ClusterPt p (\ud835\udcdf E) :=\nsorry",
+      "ground_truth": "theorem exercise_2_126 {E : Set \u211d}\n  (hE : \u00ac Set.Countable E) : \u2203 (p : \u211d), ClusterPt p (\ud835\udcdf E) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 4,
+      "id": "Dummit-Foote|exercise_1_1_3",
+      "nl_statement": "Prove that the addition of residue classes $\\mathbb{Z}/n\\mathbb{Z}$ is associative.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_4 (n : \u2115) (hn : n \u2260 0) :\n    \u2200 a b c : \u2124, (a + b) % n + c % n = a % n + (b + c) % n := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_4 (n : \u2115) (hn : n \u2260 0) :\n    \u2200 a b c : \u2124, (a + b) % n + c % n = a % n + (b + c) % n := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_4 (n : \u2115) (hn : n \u2260 0) :\n    \u2200 a b c : \u2124, (a + b) % n + c % n = a % n + (b + c) % n := by sorry",
+      "ground_truth": "theorem exercise_1_1_3 (n : \u2115) : \n  \u2200 (x y z : ZMod n), (x + y) + z = x + (y + z) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 5,
+      "id": "Pugh|exercise_3_63b",
+      "nl_statement": "Prove that $\\sum 1/k(\\log(k))^p$ diverges when $p \\leq 1$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Real Filter Function\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_5 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / (k * (log k) ^ p)) := by sorry": 0.0,
+        "import Mathlib\n\nopen Real Filter Function\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_5 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / k * (log k) ^ p) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Real Filter Function\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_5 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / (k * (log k) ^ p)) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_5 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / (k * (log k) ^ p)) := by sorry",
+      "ground_truth": "theorem exercise_3_63b (p : \u211d) (f : \u2115 \u2192 \u211d) (hp : p \u2264 1)\n  (h : f = \u03bb (k : \u2115) => (1 : \u211d) / (k * (log k) ^ p)) :\n  \u00ac \u2203 l, Tendsto f atTop (\ud835\udcdd l) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 6,
+      "id": "Dummit-Foote|exercise_9_4_11",
+      "nl_statement": "Prove that $x^2+y^2-1$ is irreducible in $\\mathbb{Q}[x,y]$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_6 : Irreducible (X ^ 2 + Y ^ 2 - 1 : MvPolynomial (Fin 2) \u211a) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_6 : Irreducible (X ^ 2 + Y ^ 2 - 1 : MvPolynomial (Fin 2) \u211a) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_6 : Irreducible (X ^ 2 + Y ^ 2 - 1 : MvPolynomial (Fin 2) \u211a) := by sorry",
+      "ground_truth": "theorem exercise_9_4_11 :\n  Irreducible ((MvPolynomial.X 0)^2 + (MvPolynomial.X 1)^2 - 1 : MvPolynomial (Fin 2) \u211a) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 7,
+      "id": "Putnam|exercise_2000_a2",
+      "nl_statement": "Prove that there exist infinitely many integers $n$ such that $n, n+1, n+2$ are each the sum of the squares of two integers.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_7 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_7 :\n    {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2}.Infinite := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_7 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_7 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 8,
+      "id": "Artin|exercise_3_5_6",
+      "nl_statement": "Let $V$ be a vector space which is spanned by a countably infinite set. Prove that every linearly independent subset of $V$ is finite or countably infinite.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 Finite T \u2228 Countable T := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 T.Finite \u2228 T.Countable := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 Finite T \u2228 Countable T := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 Finite T \u2228 Countable T := by sorry",
+      "ground_truth": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = \u22a4) {\u03b9 : Type*} (R : \u03b9 \u2192 V)\n  (hR : LinearIndependent K R) : Countable \u03b9 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 9,
+      "id": "Putnam|exercise_2000_a2",
+      "nl_statement": "Prove that there exist infinitely many integers $n$ such that $n, n+1, n+2$ are each the sum of the squares of two integers.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_9 :\n    \u2200 N : \u2115, \u2203 n : \u2124, n > N \u2227 \u2203 a b c d e f : \u2124,\n      n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_9 :\n    \u2200 N : \u2115, \u2203 n : \u2124, n > N \u2227 \u2203 a b c d e f : \u2124,\n      n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_9 :\n    \u2200 N : \u2115, \u2203 n : \u2124, n > N \u2227 \u2203 a b c d e f : \u2124,\n      n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2 := by sorry",
+      "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 10,
+      "id": "Munkres|exercise_27_4",
+      "nl_statement": "Show that a connected metric space having more than one point is uncountable.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_10 {X : Type*} [MetricSpace X] [ConnectedSpace X]\n  (hX : \u2203 x y : X, x \u2260 y) : \u00ac Countable (univ : Set X) := by sorry": 0.0,
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_10 {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_10 {X : Type*} [MetricSpace X] [ConnectedSpace X]\n  (hX : \u2203 x y : X, x \u2260 y) : \u00ac Countable (univ : Set X) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_10 {X : Type*} [MetricSpace X] [ConnectedSpace X]\n  (hX : \u2203 x y : X, x \u2260 y) : \u00ac Countable (univ : Set X) := by sorry",
+      "ground_truth": "theorem exercise_27_4\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 11,
+      "id": "Dummit-Foote|exercise_9_4_2b",
+      "nl_statement": "Prove that $x^6+30x^5-15x^3 + 6x-120$ is irreducible in $\\mathbb{Z}[x]$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Polynomial\n\ntheorem autoformalized_theorem_11 : Irreducible (X ^ 6 + 30 * X ^ 5 - 15 * X ^ 3 + 6 * X - 120 : Polynomial \u2124) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Polynomial\n\ntheorem autoformalized_theorem_11 : Irreducible (X ^ 6 + 30 * X ^ 5 - 15 * X ^ 3 + 6 * X - 120 : Polynomial \u2124) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_11 : Irreducible (X ^ 6 + 30 * X ^ 5 - 15 * X ^ 3 + 6 * X - 120 : Polynomial \u2124) := by sorry",
+      "ground_truth": "theorem exercise_9_4_2b : Irreducible\n  (X^6 + 30*X^5 - 15*X^3 + 6*X - 120 : Polynomial \u2124) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 12,
+      "id": "Herstein|exercise_2_1_27",
+      "nl_statement": "If $G$ is a finite group, prove that there is an integer $m > 0$ such that $a^m = e$ for all $a \\in G$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_12 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_12 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_12 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry",
+      "ground_truth": "theorem exercise_2_1_27 {G : Type*} [Group G]\n  [Fintype G] : \u2203 (m : \u2115), m > 0 \u2227 \u2200 (a : G), a ^ m = 1 :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 13,
+      "id": "Ireland-Rosen|exercise_3_1",
+      "nl_statement": "Show that there are infinitely many primes congruent to $-1$ modulo 6 .",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_13 : Set.Infinite {p : \u2115 | p.Prime \u2227 p + 1 \u2261 0 [MOD 6]} := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_13 : Set.Infinite {p : \u2115 | p.Prime \u2227 p + 1 \u2261 0 [MOD 6]} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_13 : Set.Infinite {p : \u2115 | p.Prime \u2227 p + 1 \u2261 0 [MOD 6]} := by sorry",
+      "ground_truth": "theorem exercise_3_1 : Infinite {p : Nat.Primes // p \u2261 -1 [ZMOD 6]} :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 14,
+      "id": "Dummit-Foote|exercise_1_1_3",
+      "nl_statement": "Prove that the addition of residue classes $\\mathbb{Z}/n\\mathbb{Z}$ is associative.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_14 (n : \u2115) (a b c : \u2124) : (a + b) + c \u2261 a + (b + c) [ZMOD n] := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_14 (n : \u2115) (a b c : \u2124) : (a + b) + c \u2261 a + (b + c) [ZMOD n] := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_14 (n : \u2115) (a b c : \u2124) : (a + b) + c \u2261 a + (b + c) [ZMOD n] := by sorry",
+      "ground_truth": "theorem exercise_1_1_3 (n : \u2115) : \n  \u2200 (x y z : ZMod n), (x + y) + z = x + (y + z) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 15,
+      "id": "Munkres|exercise_17_4",
+      "nl_statement": "Show that if $U$ is open in $X$ and $A$ is closed in $X$, then $U-A$ is open in $X$, and $A-U$ is closed in $X$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_15 {X : Type*} [TopologicalSpace X] (U A : Set X) (hU : IsOpen U) (hA : IsClosed A) : IsOpen (U \\ A) \u2227 IsClosed (A \\ U) := by sorry": 0.0,
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 {X : Type*} [TopologicalSpace X]\n  (U A : Set X) (hU : IsOpen U) (hA : IsClosed A) :\n  IsOpen (U \\ A) \u2227 IsClosed (A \\ U) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_15 {X : Type*} [TopologicalSpace X] (U A : Set X) (hU : IsOpen U) (hA : IsClosed A) : IsOpen (U \\ A) \u2227 IsClosed (A \\ U) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_15 {X : Type*} [TopologicalSpace X] (U A : Set X) (hU : IsOpen U) (hA : IsClosed A) : IsOpen (U \\ A) \u2227 IsClosed (A \\ U) := by sorry",
+      "ground_truth": "theorem exercise_17_4 {X : Type*} [TopologicalSpace X]\n  (U A : Set X) (hU : IsOpen U) (hA : IsClosed A) :\n  IsOpen (U \\ A) \u2227 IsClosed (A \\ U) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 16,
+      "id": "Munkres|exercise_21_8",
+      "nl_statement": "Let $X$ be a topological space and let $Y$ be a metric space. Let $f_{n}: X \\rightarrow Y$ be a sequence of continuous functions. Let $x_{n}$ be a sequence of points of $X$ converging to $x$. Show that if the sequence $\\left(f_{n}\\right)$ converges uniformly to $f$, then $\\left(f_{n}\\left(x_{n}\\right)\\right)$ converges to $f(x)$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16\n  (X : Type*) [TopologicalSpace X]\n  (Y : Type*) [MetricSpace Y]\n  (f : \u2115 \u2192 X \u2192 Y)\n  (x : \u2115 \u2192 X)\n  (h\u2081 : \u2200 n, Continuous (f n))\n  (h\u2082 : \u2203 x\u2080, Tendsto x atTop (\ud835\udcdd x\u2080))\n  (h\u2083 : \u2203 f\u2080, Tendsto (\u03bb n => f n x\u2080) atTop (\ud835\udcdd (f\u2080 x\u2080)))\n  : Tendsto (\u03bb n => f n (x n)) atTop (\ud835\udcdd (f\u2080 x\u2080)) :=\nsorry": 0.0,
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16\n  {X : Type*} [TopologicalSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : \u2115 \u2192 X \u2192 Y)\n  (x : \u2115 \u2192 X)\n  (h\u2081 : \u2200 n, Continuous (f n))\n  (h\u2082 : \u2203 x\u2080, Tendsto x atTop (\ud835\udcdd x\u2080))\n  (h\u2083 : \u2203 f\u2080, Tendsto (\u03bb n => f n) atTop (\ud835\udcdd f\u2080))\n  : Tendsto (\u03bb n => f n (x n)) atTop (\ud835\udcdd (f\u2080 x\u2080)) :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16\n  (X : Type*) [TopologicalSpace X]\n  (Y : Type*) [MetricSpace Y]\n  (f : \u2115 \u2192 X \u2192 Y)\n  (x : \u2115 \u2192 X)\n  (h\u2081 : \u2200 n, Continuous (f n))\n  (h\u2082 : \u2203 x\u2080, Tendsto x atTop (\ud835\udcdd x\u2080))\n  (h\u2083 : \u2203 f\u2080, Tendsto (\u03bb n => f n x\u2080) atTop (\ud835\udcdd (f\u2080 x\u2080)))\n  : Tendsto (\u03bb n => f n (x n)) atTop (\ud835\udcdd (f\u2080 x\u2080)) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_16\n  (X : Type*) [TopologicalSpace X]\n  (Y : Type*) [MetricSpace Y]\n  (f : \u2115 \u2192 X \u2192 Y)\n  (x : \u2115 \u2192 X)\n  (h\u2081 : \u2200 n, Continuous (f n))\n  (h\u2082 : \u2203 x\u2080, Tendsto x atTop (\ud835\udcdd x\u2080))\n  (h\u2083 : \u2203 f\u2080, Tendsto (\u03bb n => f n x\u2080) atTop (\ud835\udcdd (f\u2080 x\u2080)))\n  : Tendsto (\u03bb n => f n (x n)) atTop (\ud835\udcdd (f\u2080 x\u2080)) :=\nsorry",
+      "ground_truth": "theorem exercise_21_8\n  {X : Type*} [TopologicalSpace X] {Y : Type*} [MetricSpace Y]\n  {f : \u2115 \u2192 X \u2192 Y} {x : \u2115 \u2192 X}\n  (hf : \u2200 n, Continuous (f n))\n  (x\u2080 : X)\n  (hx : Tendsto x atTop (\ud835\udcdd x\u2080))\n  (f\u2080 : X \u2192 Y)\n  (hh : TendstoUniformly f f\u2080 atTop) :\n  Tendsto (\u03bb n => f n (x n)) atTop (\ud835\udcdd (f\u2080 x\u2080)) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 17,
+      "id": "Dummit-Foote|exercise_3_2_11",
+      "nl_statement": "Let $H \\leq K \\leq G$. Prove that $|G: H|=|G: K| \\cdot|K: H|$ (do not assume $G$ is finite).",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_17 {G : Type*} [Group G] {H K : Subgroup G} (hHK : H \u2264 K) :\n    H.index = K.index * H.relindex K := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_17 {G : Type*} [Group G] {H K : Subgroup G} (hHK : H \u2264 K) :\n    H.index = K.index * H.relindex K := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_17 {G : Type*} [Group G] {H K : Subgroup G} (hHK : H \u2264 K) :\n    H.index = K.index * H.relindex K := by sorry",
+      "ground_truth": "theorem exercise_3_2_11 {G : Type*} [Group G] {H K : Subgroup G}\n  (hHK : H \u2264 K) :\n  H.index = K.index * H.relindex K :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 18,
+      "id": "Putnam|exercise_2010_a4",
+      "nl_statement": "Prove that for each positive integer $n$, the number $10^{10^{10^n}}+10^{10^n}+10^n-1$ is not prime.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (hn : n > 0) :\n    \u00ac Nat.Prime (10^10^10^n + 10^10^n + 10^n - 1) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (hn : n > 0) :\n    \u00ac Nat.Prime (10^10^10^n + 10^10^n + 10^n - 1) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_18 (n : \u2115) (hn : n > 0) :\n    \u00ac Nat.Prime (10^10^10^n + 10^10^n + 10^n - 1) := by sorry",
+      "ground_truth": "theorem exercise_2010_a4 (n : \u2115) (hn : n > 0) :\n  \u00ac Nat.Prime (10^10^10^n + 10^10^n + 10^n - 1) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 19,
+      "id": "Putnam|exercise_1998_a3",
+      "nl_statement": "Let $f$ be a real function on the real line with continuous third derivative. Prove that there exists a point $a$ such that\n$f(a) \\cdot f^{\\prime}(a) \\cdot f^{\\prime \\prime}(a) \\cdot f^{\\prime \\prime \\prime}(a) \\geq 0$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_19 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_19 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_19 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry",
+      "ground_truth": "theorem exercise_1998_a3 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n  \u2203 a : \u211d, (f a) * (deriv f a) * (iteratedDeriv 2 f a) * (iteratedDeriv 3 f a) \u2265 0 :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 20,
+      "id": "Dummit-Foote|exercise_9_4_2d",
+      "nl_statement": "Prove that $\\frac{(x+2)^p-2^p}{x}$, where $p$ is an odd prime, is irreducible in $\\mathbb{Z}[x]$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_20 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_20 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_20 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+      "ground_truth": "theorem exercise_9_4_2d {p : \u2115} (hp : p.Prime \u2227 p > 2)\n  {f : Polynomial \u2124} (hf : f = (X + 2)^p):\n  Irreducible (\u2211 n in (f.support \\ {0}), (f.coeff n : Polynomial \u2124) * X ^ (n-1) :\n  Polynomial \u2124) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 21,
+      "id": "Pugh|exercise_2_41",
+      "nl_statement": "Let $\\|\\cdot\\|$ be any norm on $\\mathbb{R}^{m}$ and let $B=\\left\\{x \\in \\mathbb{R}^{m}:\\|x\\| \\leq 1\\right\\}$. Prove that $B$ is compact.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 (m : \u2115) (B : Set (EuclideanSpace \u211d (Fin m)))\n  (hB : B = {x | \u2016x\u2016 \u2264 1}) :\n  IsCompact B := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 (m : \u2115) (B : Set (EuclideanSpace \u211d (Fin m)))\n  (hB : B = {x | \u2016x\u2016 \u2264 1}) :\n  IsCompact B := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_21 (m : \u2115) (B : Set (EuclideanSpace \u211d (Fin m)))\n  (hB : B = {x | \u2016x\u2016 \u2264 1}) :\n  IsCompact B := by sorry",
+      "ground_truth": "theorem exercise_2_41 (m : \u2115) [NormedSpace \u211d ((Fin m) \u2192 \u211d)] :\n  IsCompact (Metric.closedBall (0 : EuclideanSpace \u211d (Fin m)) 1) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 22,
+      "id": "Rudin|exercise_4_2a",
+      "nl_statement": "If $f$ is a continuous mapping of a metric space $X$ into a metric space $Y$, prove that $f(\\overline{E}) \\subset \\overline{f(E)}$ for every set $E \\subset X$. ($\\overline{E}$ denotes the closure of $E$).",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_22\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h\u2081 : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_22\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h\u2081 : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_22\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h\u2081 : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry",
+      "ground_truth": "theorem exercise_4_2a\n  {\u03b1 : Type} [MetricSpace \u03b1]\n  {\u03b2 : Type} [MetricSpace \u03b2]\n  (f : \u03b1 \u2192 \u03b2)\n  (h\u2081 : Continuous f)\n  : \u2200 (x : Set \u03b1), f '' (closure x) \u2286 closure (f '' x) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 23,
+      "id": "Rudin|exercise_3_20",
+      "nl_statement": "Suppose $\\left\\{p_{n}\\right\\}$ is a Cauchy sequence in a metric space $X$, and some sequence $\\left\\{p_{n l}\\right\\}$ converges to a point $p \\in X$. Prove that the full sequence $\\left\\{p_{n}\\right\\}$ converges to $p$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (h' : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by\n  sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (h' : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by\n  sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_23\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (h' : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by\n  sorry",
+      "ground_truth": "theorem exercise_3_20 {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X) (l : \u2115+) (r : X)\n  (hp : CauchySeq p)\n  (hpl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 24,
+      "id": "Rudin|exercise_5_15",
+      "nl_statement": "Suppose $a \\in R^{1}, f$ is a twice-differentiable real function on $(a, \\infty)$, and $M_{0}, M_{1}, M_{2}$ are the least upper bounds of $|f(x)|,\\left|f^{\\prime}(x)\\right|,\\left|f^{\\prime \\prime}(x)\\right|$, respectively, on $(a, \\infty)$. Prove that $M_{1}^{2} \\leq 4 M_{0} M_{2} .$",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_24\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup {abs (f x) | x \u2208 Set.Ioi a})\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup {abs (deriv f x) | x \u2208 Set.Ioi a})\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup {abs (deriv (deriv f) x) | x \u2208 Set.Ioi a}) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry": 0.0,
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_24\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0 \u2192 x = a \u2228 x = b)\n  (h\u2087 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1 \u2192 x = a \u2228 x = b)\n  (h\u2088 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2 \u2192 x = a \u2228 x = b)\n  (h\u2089 : b > a) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_24\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup {abs (f x) | x \u2208 Set.Ioi a})\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup {abs (deriv f x) | x \u2208 Set.Ioi a})\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup {abs (deriv (deriv f) x) | x \u2208 Set.Ioi a}) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_24\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup {abs (f x) | x \u2208 Set.Ioi a})\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup {abs (deriv f x) | x \u2208 Set.Ioi a})\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup {abs (deriv (deriv f) x) | x \u2208 Set.Ioi a}) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+      "ground_truth": "theorem exercise_5_15 {f : \u211d \u2192 \u211d} (a M0 M1 M2 : \u211d)\n  (hf' : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf'' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (hM0 : M0 = sSup {(|f x|) | x \u2208 (Set.Ioi a)})\n  (hM1 : M1 = sSup {(|deriv f x|) | x \u2208 (Set.Ioi a)})\n  (hM2 : M2 = sSup {(|deriv (deriv f) x|) | x \u2208 (Set.Ioi a)}) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 25,
+      "id": "Dummit-Foote|exercise_7_1_11",
+      "nl_statement": "Prove that if $R$ is an integral domain and $x^{2}=1$ for some $x \\in R$ then $x=\\pm 1$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_25 {R : Type*} [Ring R] [IsDomain R] (x : R) (hx : x ^ 2 = 1) : x = 1 \u2228 x = -1 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_25 {R : Type*} [Ring R] [IsDomain R] (x : R) (hx : x ^ 2 = 1) : x = 1 \u2228 x = -1 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_25 {R : Type*} [Ring R] [IsDomain R] (x : R) (hx : x ^ 2 = 1) : x = 1 \u2228 x = -1 := by sorry",
+      "ground_truth": "theorem exercise_7_1_11 {R : Type*} [CommRing R] [IsDomain R]\n  {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 26,
+      "id": "Dummit-Foote|exercise_8_3_4",
+      "nl_statement": "Prove that if an integer is the sum of two rational squares, then it is the sum of two integer squares.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_26 {a : \u2124} (ha : \u2203 q1 q2 : \u211a, a = q1^2 + q2^2) :\n    \u2203 m1 m2 : \u2124, a = m1^2 + m2^2 := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_26 {a : \u2124} {r s : \u211a} (h : a = r^2 + s^2) :\n    \u2203 m n : \u2124, a = m^2 + n^2 := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_26 {a : \u2124} (ha : \u2203 q1 q2 : \u211a, a = q1^2 + q2^2) :\n    \u2203 m n : \u2124, a = m^2 + n^2 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_26 {a : \u2124} (ha : \u2203 q1 q2 : \u211a, a = q1^2 + q2^2) :\n    \u2203 m1 m2 : \u2124, a = m1^2 + m2^2 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_26 {a : \u2124} (ha : \u2203 q1 q2 : \u211a, a = q1^2 + q2^2) :\n    \u2203 m1 m2 : \u2124, a = m1^2 + m2^2 := by sorry",
+      "ground_truth": "theorem exercise_8_3_4 {n : \u2124} {r s : \u211a}\n  (h : r^2 + s^2 = n) :\n  \u2203 a b : \u2124, a^2 + b^2 = n :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 27,
+      "id": "Munkres|exercise_30_13",
+      "nl_statement": "Show that if $X$ has a countable dense subset, every collection of disjoint open sets in $X$ is countable.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_27 {X : Type*} [TopologicalSpace X]\n  (h : \u2203 (s : Set X), Countable s \u2227 Dense s) (U : Set (Set X))\n  (hU : \u2200 (a b : Set X), a \u2208 U \u2192 b \u2208 U \u2192 a \u2260 b \u2192 a \u2229 b = \u2205) :\n  Countable U := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_27 (X : Type*) [TopologicalSpace X] (h : \u2203 (s : Set X), Countable s \u2227 Dense s)\n    (U : Set (Set X)) (hU : \u2200 (a b : Set X), a \u2208 U \u2192 b \u2208 U \u2192 a \u2260 b \u2192 a \u2229 b = \u2205) :\n    Countable U := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_27 {X : Type*} [TopologicalSpace X]\n  (h : \u2203 (s : Set X), Countable s \u2227 Dense s) (U : Set (Set X))\n  (hU : \u2200 (a b : Set X), a \u2208 U \u2192 b \u2208 U \u2192 a \u2260 b \u2192 a \u2229 b = \u2205) :\n  Countable U := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_27 {X : Type*} [TopologicalSpace X]\n  (h : \u2203 (s : Set X), Countable s \u2227 Dense s) (U : Set (Set X))\n  (hU : \u2200 (a b : Set X), a \u2208 U \u2192 b \u2208 U \u2192 a \u2260 b \u2192 a \u2229 b = \u2205) :\n  Countable U := by sorry",
+      "ground_truth": "theorem exercise_30_13 {X : Type*} [TopologicalSpace X]\n  (h : \u2203 (s : Set X), Countable s \u2227 Dense s) (U : Set (Set X))\n  (hU : \u2200 (x y : Set X), x \u2208 U \u2192 y \u2208 U \u2192 x \u2260 y \u2192 x \u2229 y = \u2205)\n  (hUopen : \u2200 (u : Set X), u \u2208 U \u2192 IsOpen u) :\n  Countable U :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 28,
+      "id": "Herstein|exercise_2_4_36",
+      "nl_statement": "If $a > 1$ is an integer, show that $n \\mid \\varphi(a^n - 1)$, where $\\phi$ is the Euler $\\varphi$-function.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_28 {a n : \u2115} (ha : a > 1) (hn : 0 < n) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_28 (a n : \u2115) (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_28 {a n : \u2115} (h : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_28 {a n : \u2115} (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_28 {a n : \u2115} (ha : a > 1) (hn : 0 < n) :\n    n \u2223 (a ^ n - 1).totient := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_28 {a n : \u2115} (ha : a > 1) (hn : 0 < n) :\n    n \u2223 (a ^ n - 1).totient := by sorry",
+      "ground_truth": "theorem exercise_2_4_36 {a n : \u2115} (h : a > 1) :\n  n \u2223 (a ^ n - 1).totient :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 29,
+      "id": "Rudin|exercise_1_2",
+      "nl_statement": "Prove that there is no rational number whose square is $12$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_29 : \u00ac\u2203 (x : \u211a), x^2 = 12 := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_29 : \u00ac \u2203 (x : \u211a), x^2 = 12 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_29 : \u00ac\u2203 (x : \u211a), x^2 = 12 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_29 : \u00ac\u2203 (x : \u211a), x^2 = 12 := by sorry",
+      "ground_truth": "theorem exercise_1_2 : \u00ac \u2203 (x : \u211a), ( x ^ 2 = 12 ) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 30,
+      "id": "Putnam|exercise_2000_a2",
+      "nl_statement": "Prove that there exist infinitely many integers $n$ such that $n, n+1, n+2$ are each the sum of the squares of two integers.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Nat\n\ntheorem autoformalized_theorem_30 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Nat\n\ntheorem autoformalized_theorem_30 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_30 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 31,
+      "id": "Shakarchi|exercise_3_3",
+      "nl_statement": "Show that $ \\int_{-\\infty}^{\\infty} \\frac{\\cos x}{x^2 + a^2} dx = \\pi \\frac{e^{-a}}{a}$ for $a > 0$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_31 (a : \u211d) (ha : a > 0) :\n    Tendsto (\u03bb y => \u222b x in -y..y, Real.cos x / (x ^ 2 + a ^ 2)) atTop (\ud835\udcdd (Real.pi * (Real.exp (-a) / a))) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_31 (a : \u211d) (ha : a > 0) :\n    Tendsto (\u03bb y => \u222b x in -y..y, Real.cos x / (x ^ 2 + a ^ 2)) atTop (\ud835\udcdd (Real.pi * (Real.exp (-a) / a))) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_31 (a : \u211d) (ha : a > 0) :\n    Tendsto (\u03bb y => \u222b x in -y..y, Real.cos x / (x ^ 2 + a ^ 2)) atTop (\ud835\udcdd (Real.pi * (Real.exp (-a) / a))) := by sorry",
+      "ground_truth": "theorem exercise_3_3 (a : \u211d) (ha : 0 < a) :\n    Tendsto (\u03bb y => \u222b x in -y..y, Real.cos x / (x ^ 2 + a ^ 2))\n    atTop (\ud835\udcdd (Real.pi * (Real.exp (-a) / a))) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 32,
+      "id": "Artin|exercise_6_8_1",
+      "nl_statement": "Prove that two elements $a, b$ of a group generate the same subgroup as $b a b^2, b a b^3$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_32 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 1)} := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_32 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 1)} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_32 {G : Type*} [Group G] (a b : G) :\n    closure {x | \u2203 n, x = b * a * b ^ n} = closure {x | \u2203 n, x = b * a * b ^ (n + 1)} := by sorry",
+      "ground_truth": "theorem exercise_6_8_1 {G : Type*} [Group G]\n  (a b : G) : closure ({a, b} : Set G) = Subgroup.closure {b*a*b^2, b*a*b^3} :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 33,
+      "id": "Dummit-Foote|exercise_7_1_11",
+      "nl_statement": "Prove that if $R$ is an integral domain and $x^{2}=1$ for some $x \\in R$ then $x=\\pm 1$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_33 {R : Type*} [Ring R] [IsDomain R] {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_33 {R : Type*} [Ring R] [IsDomain R] {x : R} (hx : x ^ 2 = 1) : x = 1 \u2228 x = -1 := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_33 {R : Type*} [Ring R] [IsDomain R] (x : R) (hx : x^2 = 1) : x = 1 \u2228 x = -1 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_33 {R : Type*} [Ring R] [IsDomain R] {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_33 {R : Type*} [Ring R] [IsDomain R] {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 := by sorry",
+      "ground_truth": "theorem exercise_7_1_11 {R : Type*} [CommRing R] [IsDomain R]\n  {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 34,
+      "id": "Herstein|exercise_2_1_27",
+      "nl_statement": "If $G$ is a finite group, prove that there is an integer $m > 0$ such that $a^m = e$ for all $a \\in G$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_34 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_34 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_34 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry",
+      "ground_truth": "theorem exercise_2_1_27 {G : Type*} [Group G]\n  [Fintype G] : \u2203 (m : \u2115), m > 0 \u2227 \u2200 (a : G), a ^ m = 1 :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 35,
+      "id": "Rudin|exercise_3_22",
+      "nl_statement": "Suppose $X$ is a nonempty complete metric space, and $\\left\\{G_{n}\\right\\}$ is a sequence of dense open sets of $X$. Prove Baire's theorem, namely, that $\\bigcap_{1}^{\\infty} G_{n}$ is not empty.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_35\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_35\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_35\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+      "ground_truth": "theorem exercise_3_22 (X : Type*) [MetricSpace X] [CompleteSpace X] [Nonempty X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 36,
+      "id": "Shakarchi|exercise_3_22",
+      "nl_statement": "Show that there is no holomorphic function $f$ in the unit disc $D$ that extends continuously to $\\partial D$ such that $f(z) = 1/z$ for $z \\in \\partial D$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_36 :\n  \u00ac \u2203 f : \u2102 \u2192 \u2102, DifferentiableOn \u2102 f (ball 0 1) \u2227 ContinuousOn f (closure (ball 0 1)) \u2227 \u2200 z \u2208 (sphere (0 : \u2102) 1), f z = 1 / z := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_36 :\n  \u00ac \u2203 f : \u2102 \u2192 \u2102, DifferentiableOn \u2102 f (ball 0 1) \u2227 ContinuousOn f (closure (ball 0 1)) \u2227 \u2200 z \u2208 (sphere (0 : \u2102) 1), f z = 1 / z := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_36 :\n  \u00ac \u2203 f : \u2102 \u2192 \u2102, DifferentiableOn \u2102 f (ball 0 1) \u2227 ContinuousOn f (closure (ball 0 1)) \u2227 \u2200 z \u2208 (sphere (0 : \u2102) 1), f z = 1 / z := by sorry",
+      "ground_truth": "theorem exercise_3_22 (D : Set \u2102) (hD : D = ball 0 1) (f : \u2102 \u2192 \u2102)\n    (hf : DifferentiableOn \u2102 f D) (hfc : ContinuousOn f (closure D)) :\n    \u00ac \u2200 z \u2208 (sphere (0 : \u2102) 1), f z = 1 / z :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 37,
+      "id": "Dummit-Foote|exercise_1_6_17",
+      "nl_statement": "Let $G$ be any group. Prove that the map from $G$ to itself defined by $g \\mapsto g^{-1}$ is a homomorphism if and only if $G$ is abelian.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_37 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x, f x = x\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x :=\nsorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_37 {G : Type*} [Group G] :\n    \u2203 f : G \u2192 G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_37 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x, f x = x\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_37 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x, f x = x\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x :=\nsorry",
+      "ground_truth": "theorem exercise_1_6_17 {G : Type*} [Group G] (f : G \u2192 G)\n  (hf : f = \u03bb g => g\u207b\u00b9) :\n  (\u2200 x y : G, f x * f y = f (x*y)) \u2194 \u2200 x y : G, x*y = y*x :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 38,
+      "id": "Rudin|exercise_1_11a",
+      "nl_statement": "If $z$ is a complex number, prove that there exists an $r\\geq 0$ and a complex number $w$ with $| w | = 1$ such that $z = rw$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_38 (z : \u2102) :\n  \u2203 r : \u211d, r \u2265 0 \u2227 \u2203 w : \u2102, \u2016w\u2016 = 1 \u2227 z = r * w := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_38 (z : \u2102) :\n  \u2203 r : \u211d, r \u2265 0 \u2227 \u2203 w : \u2102, \u2016w\u2016 = 1 \u2227 z = r * w := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_38 (z : \u2102) :\n  \u2203 r : \u211d, r \u2265 0 \u2227 \u2203 w : \u2102, \u2016w\u2016 = 1 \u2227 z = r * w := by sorry",
+      "ground_truth": "theorem exercise_1_11a (z : \u2102) :\n  \u2203 (r : \u211d) (w : \u2102), r \u2265 0 \u2227 abs w = 1 \u2227 z = r * w :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 39,
+      "id": "Rudin|exercise_3_22",
+      "nl_statement": "Suppose $X$ is a nonempty complete metric space, and $\\left\\{G_{n}\\right\\}$ is a sequence of dense open sets of $X$. Prove Baire's theorem, namely, that $\\bigcap_{1}^{\\infty} G_{n}$ is not empty.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_39\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_39\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_39\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+      "ground_truth": "theorem exercise_3_22 (X : Type*) [MetricSpace X] [CompleteSpace X] [Nonempty X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 40,
+      "id": "Munkres|exercise_23_2",
+      "nl_statement": "Let $\\left\\{A_{n}\\right\\}$ be a sequence of connected subspaces of $X$, such that $A_{n} \\cap A_{n+1} \\neq \\varnothing$ for all $n$. Show that $\\bigcup A_{n}$ is connected.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_40 {X : Type*} [TopologicalSpace X]\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X}\n  (hA : \u2200 n, IsConnected (A n))\n  (hA' : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_40 {X : Type*} [TopologicalSpace X]\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X}\n  (hA : \u2200 n, IsConnected (A n))\n  (hA' : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_40 {X : Type*} [TopologicalSpace X]\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X}\n  (hA : \u2200 n, IsConnected (A n))\n  (hA' : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) := by sorry",
+      "ground_truth": "theorem exercise_23_2 {X : Type*}\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X} (hA : \u2200 n, IsConnected (A n))\n  (hAn : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 41,
+      "id": "Munkres|exercise_23_9",
+      "nl_statement": "Let $A$ be a proper subset of $X$, and let $B$ be a proper subset of $Y$. If $X$ and $Y$ are connected, show that $(X \\times Y)-(A \\times B)$ is connected.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_41 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  (A : Set X) (B : Set Y) (hA : A \u2282 univ) (hB : B \u2282 univ)\n  (hX : IsConnected univ) (hY : IsConnected univ) :\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \u2227\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B} \u2227\n  IsConnected ({p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \\ {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B}) := by sorry": 0.0,
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_41 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  (A : Set X) (B : Set Y) (hA : A \u2282 univ) (hB : B \u2282 univ)\n  (hX : IsConnected univ) (hY : IsConnected univ) :\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \u2227\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B} \u2192\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \\ {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B} := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_41 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  (A : Set X) (B : Set Y) (hA : A \u2282 univ) (hB : B \u2282 univ)\n  (hX : IsConnected univ) (hY : IsConnected univ) :\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \u2227\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B} \u2227\n  IsConnected ({p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \\ {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B}) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_41 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  (A : Set X) (B : Set Y) (hA : A \u2282 univ) (hB : B \u2282 univ)\n  (hX : IsConnected univ) (hY : IsConnected univ) :\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \u2227\n  IsConnected {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B} \u2227\n  IsConnected ({p : X \u00d7 Y | p.1 \u2208 univ \u2227 p.2 \u2208 univ} \\ {p : X \u00d7 Y | p.1 \u2208 A \u2227 p.2 \u2208 B}) := by sorry",
+      "ground_truth": "theorem exercise_23_9 {X Y : Type*}\n  [TopologicalSpace X] [TopologicalSpace Y]\n  (A\u2081 A\u2082 : Set X)\n  (B\u2081 B\u2082 : Set Y)\n  (hA : A\u2081 \u2282 A\u2082)\n  (hB : B\u2081 \u2282 B\u2082)\n  (hA : IsConnected A\u2082)\n  (hB : IsConnected B\u2082) :\n  IsConnected ({x | \u2203 a b, x = (a, b) \u2227 a \u2208 A\u2082 \u2227 b \u2208 B\u2082} \\\n      {x | \u2203 a b, x = (a, b) \u2227 a \u2208 A\u2081 \u2227 b \u2208 B\u2081}) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 42,
+      "id": "Herstein|exercise_5_2_20",
+      "nl_statement": "Let $V$ be a vector space over an infinite field $F$. Show that $V$ cannot be the set-theoretic union of a finite number of proper subspaces of $V$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_42 {F V : Type*} [Infinite F] [Field F]\n  [AddCommGroup V] [Module F V] {\u03b9 : Type*} [Fintype \u03b9] (h : \u2200 i : \u03b9, \u2203 U : Submodule F V, U \u2260 \u22a4 \u2227 U \u2260 \u22a5) :\n  (\u22c2 i : \u03b9, (i : Submodule F V)) \u2260 \u22a4 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_42 {F V : Type*} [Infinite F] [Field F]\n  [AddCommGroup V] [Module F V] {\u03b9 : Type*} [Fintype \u03b9] (h : \u2200 i : \u03b9, \u2203 U : Submodule F V, U \u2260 \u22a4 \u2227 U \u2260 \u22a5) :\n  (\u22c2 i : \u03b9, (i : Submodule F V)) \u2260 \u22a4 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_42 {F V : Type*} [Infinite F] [Field F]\n  [AddCommGroup V] [Module F V] {\u03b9 : Type*} [Fintype \u03b9] (h : \u2200 i : \u03b9, \u2203 U : Submodule F V, U \u2260 \u22a4 \u2227 U \u2260 \u22a5) :\n  (\u22c2 i : \u03b9, (i : Submodule F V)) \u2260 \u22a4 := by sorry",
+      "ground_truth": "theorem exercise_5_2_20 {F V \u03b9: Type*} [Infinite F] [Field F]\n  [AddCommGroup V] [Module F V] [Finite \u03b9] {u : \u03b9 \u2192 Submodule F V}\n  (hu : \u2200 i : \u03b9, u i \u2260 \u22a4) :\n  (\u22c3 i : \u03b9, (u i : Set V)) \u2260 \u22a4 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 43,
+      "id": "Munkres|exercise_27_4",
+      "nl_statement": "Show that a connected metric space having more than one point is uncountable.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_43\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_43\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_43\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry",
+      "ground_truth": "theorem exercise_27_4\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 44,
+      "id": "Ireland-Rosen|exercise_4_5",
+      "nl_statement": "Consider a prime $p$ of the form $4 t+3$. Show that $a$ is a primitive root modulo $p$ iff $-a$ has order $(p-1) / 2$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_44 (p t a : \u2115) (hp : p.Prime) (hpt : p = 4 * t + 3) (ha : a \u2260 0) :\n    IsPrimitiveRoot a p \u2194 ((-a) ^ ((p - 1) / 2) = 1 \u2227 \u2200 (k : \u2115), (k < (p - 1) / 2 \u2192 (-a) ^ k \u2260 1)) := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_44 (p t : \u2115) (hp : p.Prime) (hpt : p = 4 * t + 3) (a : ZMod p) :\n    IsPrimitiveRoot a p \u2194 ((-a) ^ ((p - 1) / 2) = 1 \u2227 \u2200 (k : \u2115), k < (p - 1) / 2 \u2192 (-a) ^ k \u2260 1) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_44 (p t a : \u2115) (hp : p.Prime) (hpt : p = 4 * t + 3) (ha : a \u2260 0) :\n    IsPrimitiveRoot a p \u2194 ((-a) ^ ((p - 1) / 2) = 1 \u2227 \u2200 (k : \u2115), (k < (p - 1) / 2 \u2192 (-a) ^ k \u2260 1)) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_44 (p t a : \u2115) (hp : p.Prime) (hpt : p = 4 * t + 3) (ha : a \u2260 0) :\n    IsPrimitiveRoot a p \u2194 ((-a) ^ ((p - 1) / 2) = 1 \u2227 \u2200 (k : \u2115), (k < (p - 1) / 2 \u2192 (-a) ^ k \u2260 1)) := by sorry",
+      "ground_truth": "theorem exercise_4_5 {p t : \u2115} (hp0 : p.Prime) (hp1 : p = 4*t + 3)\n  (a : ZMod p) :\n  IsPrimitiveRoot a p \u2194 ((-a) ^ ((p-1)/2) = 1 \u2227 \u2200 (k : \u2115), (0 < k \u2227 k < (p-1)/2) \u2192 (-a)^k \u2260 1) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 45,
+      "id": "Rudin|exercise_3_20",
+      "nl_statement": "Suppose $\\left\\{p_{n}\\right\\}$ is a Cauchy sequence in a metric space $X$, and some sequence $\\left\\{p_{n l}\\right\\}$ converges to a point $p \\in X$. Prove that the full sequence $\\left\\{p_{n}\\right\\}$ converges to $p$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_45\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_45\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_45\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by\nsorry",
+      "ground_truth": "theorem exercise_3_20 {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X) (l : \u2115+) (r : X)\n  (hp : CauchySeq p)\n  (hpl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 46,
+      "id": "Munkres|exercise_32_2b",
+      "nl_statement": "Show that if $\\prod X_\\alpha$ is regular, then so is $X_\\alpha$. Assume that each $X_\\alpha$ is nonempty.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_46\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_46\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_46\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+      "ground_truth": "theorem exercise_32_2b\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 47,
+      "id": "Munkres|exercise_25_4",
+      "nl_statement": "Let $X$ be locally path connected. Show that every connected open set in $X$ is path connected.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_47 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U) (hcU : IsConnected U) :\n  IsPathConnected U := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_47 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U) (hcU : IsConnected U) :\n  IsPathConnected U := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_47 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U) (hcU : IsConnected U) :\n  IsPathConnected U := by sorry",
+      "ground_truth": "theorem exercise_25_4 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U)\n  (hcU : IsConnected U) : IsPathConnected U :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 48,
+      "id": "Herstein|exercise_2_4_36",
+      "nl_statement": "If $a > 1$ is an integer, show that $n \\mid \\varphi(a^n - 1)$, where $\\phi$ is the Euler $\\varphi$-function.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_48 (a n : \u2115) (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_48 {a n : \u2115} (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_48 {a n : \u2115} (ha : a > 1) (hn : 0 < n) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_48 (a n : \u2115) (ha : a > 1) (hn : n > 0) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_48 (a n : \u2115) (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_48 (a n : \u2115) (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry",
+      "ground_truth": "theorem exercise_2_4_36 {a n : \u2115} (h : a > 1) :\n  n \u2223 (a ^ n - 1).totient :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 49,
+      "id": "Herstein|exercise_5_5_2",
+      "nl_statement": "Prove that $x^3 - 3x - 1$ is irreducible over $\\mathbb{Q}$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_49 : Irreducible (X ^ 3 - 3 * X - 1 : Polynomial \u211a) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_49 : Irreducible (X ^ 3 - 3 * X - 1 : Polynomial \u211a) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_49 : Irreducible (X ^ 3 - 3 * X - 1 : Polynomial \u211a) := by sorry",
+      "ground_truth": "theorem exercise_5_5_2 : Irreducible (X^3 - 3*X - 1 : Polynomial \u211a) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 50,
+      "id": "Artin|exercise_2_2_9",
+      "nl_statement": "Let $H$ be the subgroup generated by two elements $a, b$ of a group $G$. Prove that if $a b=b a$, then $H$ is an abelian group.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_50 {G : Type*} [Group G] (a b : G) (h : a * b = b * a) :\n    \u2200 x y : closure {x | x = a \u2228 x = b}, x * y = y * x := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_50 {G : Type*} [Group G] {a b : G} (h : a * b = b * a) :\n    \u2200 x y : closure {x | x = a \u2228 x = b}, x * y = y * x := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_50 {G : Type*} [Group G] (a b : G) (h : a * b = b * a) :\n    \u2200 x y : closure {x | x = a \u2228 x = b}, x * y = y * x := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_50 {G : Type*} [Group G] (a b : G) (h : a * b = b * a) :\n    \u2200 x y : closure {x | x = a \u2228 x = b}, x * y = y * x := by sorry",
+      "ground_truth": "theorem exercise_2_2_9 {G : Type*} [Group G] {a b : G}\n  (h : a * b = b * a) :\n  \u2200 x y : closure {x | x = a \u2228 x = b}, x*y = y*x :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 51,
+      "id": "Rudin|exercise_2_27a",
+      "nl_statement": "Suppose $E\\subset\\mathbb{R}^k$ is uncountable, and let $P$ be the set of condensation points of $E$. Prove that $P$ is perfect.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_51 (k : \u2115) (E P : Set (EuclideanSpace \u211d (Fin k)))\n  (hE : E.Nonempty \u2227 \u00ac Set.Countable E)\n  (hP : P = {x | \u2200 U \u2208 \ud835\udcdd x, (P \u2229 E).Nonempty \u2227 \u00ac Set.Countable (P \u2229 E)}) :\n  IsClosed P \u2227 P = {x | ClusterPt x (\ud835\udcdf P)} := by sorry": 0.0,
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_51 {k : \u2115} (E P : Set (EuclideanSpace \u211d (Fin k)))\n  (hE : E.Nonempty \u2227 \u00ac Set.Countable E)\n  (hP : P = {x | \u2200 U \u2208 \ud835\udcdd x, (P \u2229 E).Nonempty \u2227 \u00ac Set.Countable (P \u2229 E)}) :\n  IsClosed P \u2227 P = {x | ClusterPt x (\ud835\udcdf P)} := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_51 (k : \u2115) (E P : Set (EuclideanSpace \u211d (Fin k)))\n  (hE : E.Nonempty \u2227 \u00ac Set.Countable E)\n  (hP : P = {x | \u2200 U \u2208 \ud835\udcdd x, (P \u2229 E).Nonempty \u2227 \u00ac Set.Countable (P \u2229 E)}) :\n  IsClosed P \u2227 P = {x | ClusterPt x (\ud835\udcdf P)} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_51 (k : \u2115) (E P : Set (EuclideanSpace \u211d (Fin k)))\n  (hE : E.Nonempty \u2227 \u00ac Set.Countable E)\n  (hP : P = {x | \u2200 U \u2208 \ud835\udcdd x, (P \u2229 E).Nonempty \u2227 \u00ac Set.Countable (P \u2229 E)}) :\n  IsClosed P \u2227 P = {x | ClusterPt x (\ud835\udcdf P)} := by sorry",
+      "ground_truth": "theorem exercise_2_27a (k : \u2115) (E P : Set (EuclideanSpace \u211d (Fin k)))\n  (hE : \u00ac Set.Countable E)\n  (hP : P = {x | \u2200 U \u2208 \ud835\udcdd x, \u00ac Set.Countable (U \u2229 E)}) :\n  Perfect P :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 52,
+      "id": "Rudin|exercise_1_13",
+      "nl_statement": "If $x, y$ are complex, prove that $||x|-|y|| \\leq |x-y|$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_52 (x y : \u2102) : |(\u2016x\u2016 : \u211d) - \u2016y\u2016| \u2264 \u2016x - y\u2016 := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_52 (x y : \u2102) : Complex.abs (Complex.abs x - Complex.abs y) \u2264 Complex.abs (x - y) := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_52 (x y : \u2102) : \u2016Complex.abs x - Complex.abs y\u2016 \u2264 Complex.abs (x - y) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_52 (x y : \u2102) : |(\u2016x\u2016 : \u211d) - \u2016y\u2016| \u2264 \u2016x - y\u2016 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_52 (x y : \u2102) : |(\u2016x\u2016 : \u211d) - \u2016y\u2016| \u2264 \u2016x - y\u2016 := by sorry",
+      "ground_truth": "theorem exercise_1_13 (x y : \u2102) :\n  |(abs x) - (abs y)| \u2264 abs (x - y) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 53,
+      "id": "Munkres|exercise_26_11",
+      "nl_statement": "Let $X$ be a compact Hausdorff space. Let $\\mathcal{A}$ be a collection of closed connected subsets of $X$ that is simply ordered by proper inclusion. Then $Y=\\bigcap_{A \\in \\mathcal{A}} A$ is connected.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_53\n  {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]\n  (A : Set (Set X)) (hA : \u2200 (a b : Set X), a \u2208 A \u2192 b \u2208 A \u2192 a \u2286 b \u2228 b \u2286 a)\n  (hA' : \u2200 a \u2208 A, IsClosed a) (hA'' : \u2200 a \u2208 A, IsConnected a) :\n  IsConnected (\u22c2\u2080 A) := by sorry": 0.0,
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_53 {X : Type*} [TopologicalSpace X]\n  [CompactSpace X] [T2Space X] (A : Set (Set X))\n  (hA : \u2200 a b, a \u2208 A \u2192 b \u2208 A \u2192 a \u2286 b \u2228 b \u2286 a)\n  (hA' : \u2200 a, a \u2208 A \u2192 IsClosed a)\n  (hA'' : \u2200 a, a \u2208 A \u2192 IsConnected a) :\n  IsConnected (\u22c2\u2080 A) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_53\n  {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]\n  (A : Set (Set X)) (hA : \u2200 (a b : Set X), a \u2208 A \u2192 b \u2208 A \u2192 a \u2286 b \u2228 b \u2286 a)\n  (hA' : \u2200 a \u2208 A, IsClosed a) (hA'' : \u2200 a \u2208 A, IsConnected a) :\n  IsConnected (\u22c2\u2080 A) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_53\n  {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]\n  (A : Set (Set X)) (hA : \u2200 (a b : Set X), a \u2208 A \u2192 b \u2208 A \u2192 a \u2286 b \u2228 b \u2286 a)\n  (hA' : \u2200 a \u2208 A, IsClosed a) (hA'' : \u2200 a \u2208 A, IsConnected a) :\n  IsConnected (\u22c2\u2080 A) := by sorry",
+      "ground_truth": "theorem exercise_26_11\n  {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]\n  (A : Set (Set X)) (hA : \u2200 (a b : Set X), a \u2208 A \u2192 b \u2208 A \u2192 a \u2286 b \u2228 b \u2286 a)\n  (hA' : \u2200 a \u2208 A, IsClosed a) (hA'' : \u2200 a \u2208 A, IsConnected a) :\n  IsConnected (\u22c2\u2080 A) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 54,
+      "id": "Putnam|exercise_1998_a3",
+      "nl_statement": "Let $f$ be a real function on the real line with continuous third derivative. Prove that there exists a point $a$ such that\n$f(a) \\cdot f^{\\prime}(a) \\cdot f^{\\prime \\prime}(a) \\cdot f^{\\prime \\prime \\prime}(a) \\geq 0$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_54 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_54 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_54 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry",
+      "ground_truth": "theorem exercise_1998_a3 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n  \u2203 a : \u211d, (f a) * (deriv f a) * (iteratedDeriv 2 f a) * (iteratedDeriv 3 f a) \u2265 0 :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 55,
+      "id": "Dummit-Foote|exercise_2_4_4",
+      "nl_statement": "Prove that if $H$ is a subgroup of $G$ then $H$ is generated by the set $H-\\{1\\}$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_55 {G : Type*} [Group G] (H : Subgroup G) :\n    closure (H \\ {1}) = \u22a4 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_55 {G : Type*} [Group G] (H : Subgroup G) :\n    closure (H \\ {1}) = \u22a4 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_55 {G : Type*} [Group G] (H : Subgroup G) :\n    closure (H \\ {1}) = \u22a4 := by sorry",
+      "ground_truth": "theorem exercise_2_4_4 {G : Type*} [Group G] (H : Subgroup G) :\n  closure ((H : Set G) \\ {1}) = H :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 56,
+      "id": "Shakarchi|exercise_1_19b",
+      "nl_statement": "Prove that the power series $\\sum z^n/n^2$ converges at every point of the unit circle.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_56 (z : \u2102) (hz : abs z = 1) :\n  \u2203 y, Tendsto (\u03bb n => \u2211 i in range n, z ^ i / (i ^ 2)) atTop (\ud835\udcdd y) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_56 (z : \u2102) (hz : abs z = 1) :\n  \u2203 y, Tendsto (\u03bb n => \u2211 i in range n, z ^ i / (i ^ 2)) atTop (\ud835\udcdd y) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_56 (z : \u2102) (hz : abs z = 1) :\n  \u2203 y, Tendsto (\u03bb n => \u2211 i in range n, z ^ i / (i ^ 2)) atTop (\ud835\udcdd y) := by sorry",
+      "ground_truth": "theorem exercise_1_19b (z : \u2102) (hz : abs z = 1) (s : \u2115 \u2192 \u2102)\n    (h : s = (\u03bb n => \u2211 i in (range n), z ^ (i + 1) / (i + 1) ^ 2)) :\n    \u2203 y, Tendsto s atTop (\ud835\udcdd y) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 57,
+      "id": "Axler|exercise_4_4",
+      "nl_statement": "Suppose $p \\in \\mathcal{P}(\\mathbf{C})$ has degree $m$. Prove that $p$ has $m$ distinct roots if and only if $p$ and its derivative $p^{\\prime}$ have no roots in common.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_57 {p : Polynomial \u2102} (hp : p.degree = m) :\n    (\u2203 s : Finset \u2102, s.card = m \u2227 \u2200 x \u2208 s, p.eval x = 0) \u2194\n    (\u2200 x : \u2102, p.derivative.eval x = 0 \u2192 p.eval x \u2260 0) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_57 {p : Polynomial \u2102} (hp : p.degree = m) :\n    (\u2203 s : Finset \u2102, s.card = m \u2227 \u2200 x \u2208 s, p.eval x = 0) \u2194\n    (\u2200 x : \u2102, p.derivative.eval x = 0 \u2192 p.eval x \u2260 0) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_57 {p : Polynomial \u2102} (hp : p.degree = m) :\n    (\u2203 s : Finset \u2102, s.card = m \u2227 \u2200 x \u2208 s, p.eval x = 0) \u2194\n    (\u2200 x : \u2102, p.derivative.eval x = 0 \u2192 p.eval x \u2260 0) := by sorry",
+      "ground_truth": "theorem exercise_4_4 (p : Polynomial \u2102) :\n  p.degree = @card (rootSet p \u2102) (rootSetFintype p \u2102) \u2194\n  Disjoint\n  (@card (rootSet (derivative p) \u2102) (rootSetFintype (derivative p) \u2102))\n  (@card (rootSet p \u2102) (rootSetFintype p \u2102)) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 58,
+      "id": "Rudin|exercise_3_6a",
+      "nl_statement": "Prove that $\\lim_{n \\rightarrow \\infty} \\sum_{i<n} a_i = \\infty$, where $a_i = \\sqrt{i + 1} -\\sqrt{i}$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_58\n  (a : \u2115 \u2192 \u211d)\n  (h\u2080 : \u2200 i, a i = Real.sqrt (i + 1) - Real.sqrt i) :\n  Tendsto (\u03bb n => \u2211 i in range n, a i) atTop atTop := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_58\n  (a : \u2115 \u2192 \u211d)\n  (h\u2080 : \u2200 i, a i = Real.sqrt (i + 1) - Real.sqrt i) :\n  Tendsto (\u03bb n => \u2211 i in range n, a i) atTop atTop := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_58\n  (a : \u2115 \u2192 \u211d)\n  (h\u2080 : \u2200 i, a i = Real.sqrt (i + 1) - Real.sqrt i) :\n  Tendsto (\u03bb n => \u2211 i in range n, a i) atTop atTop := by sorry",
+      "ground_truth": "noncomputable def g (n : \u2115) : \u211d := sqrt (n + 1) - sqrt n\n\ntheorem exercise_3_6a\n: Tendsto (\u03bb (n : \u2115) => (\u2211 i in range n, g i)) atTop atTop :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 59,
+      "id": "Dummit-Foote|exercise_4_4_6a",
+      "nl_statement": "Prove that characteristic subgroups are normal.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_59 (G : Type*) [Group G] (H : Subgroup G) [Characteristic H] :\n    Normal H := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_59 (G : Type*) [Group G] (H : Subgroup G) [Characteristic H] : Normal H := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_59 (G : Type*) [Group G] (H : Subgroup G) [Characteristic H] :\n    Normal H := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_59 (G : Type*) [Group G] (H : Subgroup G) [Characteristic H] :\n    Normal H := by sorry",
+      "ground_truth": "theorem exercise_4_4_6a {G : Type*} [Group G] (H : Subgroup G)\n  [Characteristic H] : Normal H  :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 60,
+      "id": "Ireland-Rosen|exercise_1_27",
+      "nl_statement": "For all odd $n$ show that $8 \\mid n^{2}-1$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_60 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_60 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_60 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+      "ground_truth": "theorem exercise_1_27 {n : \u2115} (hn : Odd n) : 8 \u2223 (n^2 - 1) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 61,
+      "id": "Munkres|exercise_27_4",
+      "nl_statement": "Show that a connected metric space having more than one point is uncountable.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_61 {X : Type*} [MetricSpace X] [ConnectedSpace X]\n  (hX : \u2203 x y : X, x \u2260 y) : \u00ac Countable (univ : Set X) := by sorry": 0.0,
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_61\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_61 {X : Type*} [MetricSpace X] [ConnectedSpace X]\n  (hX : \u2203 x y : X, x \u2260 y) : \u00ac Countable (univ : Set X) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_61 {X : Type*} [MetricSpace X] [ConnectedSpace X]\n  (hX : \u2203 x y : X, x \u2260 y) : \u00ac Countable (univ : Set X) := by sorry",
+      "ground_truth": "theorem exercise_27_4\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : \u2203 x y : X, x \u2260 y) :\n  \u00ac Countable (univ : Set X) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 62,
+      "id": "Rudin|exercise_1_11a",
+      "nl_statement": "If $z$ is a complex number, prove that there exists an $r\\geq 0$ and a complex number $w$ with $| w | = 1$ such that $z = rw$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_62 (z : \u2102) :\n  \u2203 r : \u211d, r \u2265 0 \u2227 \u2203 w : \u2102, \u2016w\u2016 = 1 \u2227 z = r * w := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_62 (z : \u2102) :\n  \u2203 r : \u211d, r \u2265 0 \u2227 \u2203 w : \u2102, \u2016w\u2016 = 1 \u2227 z = r * w := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_62 (z : \u2102) :\n  \u2203 r : \u211d, r \u2265 0 \u2227 \u2203 w : \u2102, \u2016w\u2016 = 1 \u2227 z = r * w := by sorry",
+      "ground_truth": "theorem exercise_1_11a (z : \u2102) :\n  \u2203 (r : \u211d) (w : \u2102), r \u2265 0 \u2227 abs w = 1 \u2227 z = r * w :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 63,
+      "id": "Ireland-Rosen|exercise_3_14",
+      "nl_statement": "Let $p$ and $q$ be distinct odd primes such that $p-1$ divides $q-1$. If $(n, p q)=1$, show that $n^{q-1} \\equiv 1(p q)$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_63 {p q n : \u2115} (hp : Odd p \u2227 Nat.Prime p) (hq : Odd q \u2227 Nat.Prime q)\n    (hne : p \u2260 q) (hdiv : (p - 1) \u2223 (q - 1)) (hn : Nat.Coprime n (p * q)) :\n    n ^ (q - 1) \u2261 1 [MOD p * q] := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_63 {p q n : \u2115} (hp : Odd p \u2227 Nat.Prime p) (hq : Odd q \u2227 Nat.Prime q) (hne : p \u2260 q) (hdiv : (p - 1) \u2223 (q - 1)) (hn : Nat.Coprime n (p * q)) : n ^ (q - 1) \u2261 1 [MOD p * q] := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_63 (p q n : \u2115) (hp : Odd p \u2227 Nat.Prime p) (hq : Odd q \u2227 Nat.Prime q)\n    (hne : p \u2260 q) (hdiv : (p - 1) \u2223 (q - 1)) (hn : Nat.Coprime n (p * q)) :\n    n ^ (q - 1) \u2261 1 [MOD p * q] := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_63 {p q n : \u2115} (hp : Odd p \u2227 Nat.Prime p) (hq : Odd q \u2227 Nat.Prime q)\n    (hne : p \u2260 q) (hdiv : p - 1 \u2223 q - 1) (hn : Nat.Coprime n (p * q)) :\n    n ^ (q - 1) \u2261 1 [MOD p * q] := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_63 {p q n : \u2115} (hp : Odd p \u2227 Nat.Prime p) (hq : Odd q \u2227 Nat.Prime q)\n    (hne : p \u2260 q) (hdiv : (p - 1) \u2223 (q - 1)) (hn : Nat.Coprime n (p * q)) :\n    n ^ (q - 1) \u2261 1 [MOD p * q] := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_63 {p q n : \u2115} (hp : Odd p \u2227 Nat.Prime p) (hq : Odd q \u2227 Nat.Prime q)\n    (hne : p \u2260 q) (hdiv : (p - 1) \u2223 (q - 1)) (hn : Nat.Coprime n (p * q)) :\n    n ^ (q - 1) \u2261 1 [MOD p * q] := by sorry",
+      "ground_truth": "theorem exercise_3_14 {p q n : \u2115} (hp0 : p.Prime \u2227 p > 2)\n  (hq0 : q.Prime \u2227 q > 2) (hpq0 : p \u2260 q) (hpq1 : p - 1 \u2223 q - 1)\n  (hn : n.gcd (p*q) = 1) :\n  n^(q-1) \u2261 1 [MOD p*q] :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 64,
+      "id": "Ireland-Rosen|exercise_18_4",
+      "nl_statement": "Show that 1729 is the smallest positive integer expressible as the sum of two different integral cubes in two ways.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_64 : IsLeast {n : \u2115 | \u2203 a b c d : \u2124, a \u2260 b \u2227 a \u2260 c \u2227 a \u2260 d \u2227 b \u2260 c \u2227 b \u2260 d \u2227 c \u2260 d \u2227 n = a^3 + b^3 \u2227 n = c^3 + d^3} 1729 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_64 : IsLeast {n : \u2115 | \u2203 a b c d : \u2124, a \u2260 b \u2227 a \u2260 c \u2227 a \u2260 d \u2227 b \u2260 c \u2227 b \u2260 d \u2227 c \u2260 d \u2227 n = a^3 + b^3 \u2227 n = c^3 + d^3} 1729 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_64 : IsLeast {n : \u2115 | \u2203 a b c d : \u2124, a \u2260 b \u2227 a \u2260 c \u2227 a \u2260 d \u2227 b \u2260 c \u2227 b \u2260 d \u2227 c \u2260 d \u2227 n = a^3 + b^3 \u2227 n = c^3 + d^3} 1729 := by sorry",
+      "ground_truth": "theorem exercise_18_4 : 1729 = sInf (fun (n : \u2115) => \u2203 x y z w : \u2124,\n  x^3 + y^3 = n \u2227 z^3 + w^3 = n \u2227 x \u2260 z \u2227 x \u2260 w \u2227 y \u2260 z \u2227 y \u2260 w) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 65,
+      "id": "Putnam|exercise_1998_a3",
+      "nl_statement": "Let $f$ be a real function on the real line with continuous third derivative. Prove that there exists a point $a$ such that\n$f(a) \\cdot f^{\\prime}(a) \\cdot f^{\\prime \\prime}(a) \\cdot f^{\\prime \\prime \\prime}(a) \\geq 0$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_65 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_65 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_65 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n    \u2203 a, f a * deriv f a * iteratedDeriv 2 f a * iteratedDeriv 3 f a \u2265 0 := by sorry",
+      "ground_truth": "theorem exercise_1998_a3 (f : \u211d \u2192 \u211d) (hf : ContDiff \u211d 3 f) :\n  \u2203 a : \u211d, (f a) * (deriv f a) * (iteratedDeriv 2 f a) * (iteratedDeriv 3 f a) \u2265 0 :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 66,
+      "id": "Herstein|exercise_2_11_6",
+      "nl_statement": "If $P$ is a $p$-Sylow subgroup of $G$ and $P \\triangleleft G$, prove that $P$ is the only $p$-Sylow subgroup of $G$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_66 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_66 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_66 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=\nsorry",
+      "ground_truth": "theorem exercise_2_11_6 {G : Type*} [Group G] {p : \u2115} (hp : Nat.Prime p)\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 67,
+      "id": "Herstein|exercise_2_11_6",
+      "nl_statement": "If $P$ is a $p$-Sylow subgroup of $G$ and $P \\triangleleft G$, prove that $P$ is the only $p$-Sylow subgroup of $G$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_67 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=\nsorry": 0.0,
+        "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_67 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 Q : Sylow p G, P = Q :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_67 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_67 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=\nsorry",
+      "ground_truth": "theorem exercise_2_11_6 {G : Type*} [Group G] {p : \u2115} (hp : Nat.Prime p)\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 68,
+      "id": "Artin|exercise_3_5_6",
+      "nl_statement": "Let $V$ be a vector space which is spanned by a countably infinite set. Prove that every linearly independent subset of $V$ is finite or countably infinite.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_68 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Countable R := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_68 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Set.Finite R \u2228 Set.Countable R := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_68 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Countable R := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_68 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Countable R := by sorry",
+      "ground_truth": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = \u22a4) {\u03b9 : Type*} (R : \u03b9 \u2192 V)\n  (hR : LinearIndependent K R) : Countable \u03b9 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 69,
+      "id": "Dummit-Foote|exercise_9_4_2b",
+      "nl_statement": "Prove that $x^6+30x^5-15x^3 + 6x-120$ is irreducible in $\\mathbb{Z}[x]$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_69 : Irreducible (X^6 + 30*X^5 - 15*X^3 + 6*X - 120 : Polynomial \u2124) :=\nsorry": 0.0,
+        "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_69 : Irreducible (X^6 + 30*X^5 - 15*X^3 + 6*X - 120 : Polynomial \u2124) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_69 : Irreducible (X^6 + 30*X^5 - 15*X^3 + 6*X - 120 : Polynomial \u2124) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_69 : Irreducible (X^6 + 30*X^5 - 15*X^3 + 6*X - 120 : Polynomial \u2124) :=\nsorry",
+      "ground_truth": "theorem exercise_9_4_2b : Irreducible\n  (X^6 + 30*X^5 - 15*X^3 + 6*X - 120 : Polynomial \u2124) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 70,
+      "id": "Artin|exercise_13_4_10",
+      "nl_statement": "Prove that if a prime integer $p$ has the form $2^r+1$, then it actually has the form $2^{2^k}+1$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_70 (p r : \u2115) (hp : p.Prime) (hpr : p = 2 ^ r + 1) :\n    \u2203 k, p = 2 ^ (2 ^ k) + 1 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_70 (p r : \u2115) (hp : p.Prime) (hpr : p = 2 ^ r + 1) :\n    \u2203 k, p = 2 ^ (2 ^ k) + 1 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_70 (p r : \u2115) (hp : p.Prime) (hpr : p = 2 ^ r + 1) :\n    \u2203 k, p = 2 ^ (2 ^ k) + 1 := by sorry",
+      "ground_truth": "theorem exercise_13_4_10\n    {p : \u2115} {hp : Nat.Prime p} (h : \u2203 r : \u2115, p = 2 ^ r + 1) :\n    \u2203 (k : \u2115), p = 2 ^ (2 ^ k) + 1 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 71,
+      "id": "Rudin|exercise_3_20",
+      "nl_statement": "Suppose $\\left\\{p_{n}\\right\\}$ is a Cauchy sequence in a metric space $X$, and some sequence $\\left\\{p_{n l}\\right\\}$ converges to a point $p \\in X$. Prove that the full sequence $\\left\\{p_{n}\\right\\}$ converges to $p$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_71\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_71\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_71\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+      "ground_truth": "theorem exercise_3_20 {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X) (l : \u2115+) (r : X)\n  (hp : CauchySeq p)\n  (hpl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 72,
+      "id": "Munkres|exercise_25_4",
+      "nl_statement": "Let $X$ be locally path connected. Show that every connected open set in $X$ is path connected.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_72 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U) (hcU : IsConnected U) :\n  IsPathConnected U := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_72 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U) (hcU : IsConnected U) :\n  IsPathConnected U := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_72 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U) (hcU : IsConnected U) :\n  IsPathConnected U := by sorry",
+      "ground_truth": "theorem exercise_25_4 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U)\n  (hcU : IsConnected U) : IsPathConnected U :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 73,
+      "id": "Munkres|exercise_32_1",
+      "nl_statement": "Show that a closed subspace of a normal space is normal.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_73 {X : Type*} [NormedAddCommGroup X]\n  [InnerProductSpace \u211d X] [FiniteDimensional \u211d X] (U : Submodule \u211d X)\n  [Closed U] : NormalSpace \u211d U :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_73 {X : Type*} [NormedAddCommGroup X]\n  [InnerProductSpace \u211d X] [FiniteDimensional \u211d X] (U : Submodule \u211d X)\n  [Closed U] : NormalSpace \u211d U :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_73 {X : Type*} [NormedAddCommGroup X]\n  [InnerProductSpace \u211d X] [FiniteDimensional \u211d X] (U : Submodule \u211d X)\n  [Closed U] : NormalSpace \u211d U :=\nsorry",
+      "ground_truth": "theorem exercise_32_1 {X : Type*} [TopologicalSpace X]\n  (hX : NormalSpace X) (A : Set X) (hA : IsClosed A) :\n  NormalSpace {x // x \u2208 A} :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 74,
+      "id": "Artin|exercise_3_5_6",
+      "nl_statement": "Let $V$ be a vector space which is spanned by a countably infinite set. Prove that every linearly independent subset of $V$ is finite or countably infinite.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_74 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_74 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Finite R := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_74 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_74 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R := by sorry",
+      "ground_truth": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = \u22a4) {\u03b9 : Type*} (R : \u03b9 \u2192 V)\n  (hR : LinearIndependent K R) : Countable \u03b9 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 75,
+      "id": "Munkres|exercise_32_1",
+      "nl_statement": "Show that a closed subspace of a normal space is normal.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_75\n  {X : Type*} [NormedAddCommGroup X] [InnerProductSpace \u211d X]\n  [FiniteDimensional \u211d X] (U : Submodule \u211d X) (hU : IsClosed U) :\n  IsNormal U :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_75\n  {X : Type*} [NormedAddCommGroup X] [InnerProductSpace \u211d X]\n  [FiniteDimensional \u211d X] (U : Submodule \u211d X) (hU : IsClosed U) :\n  IsNormal U :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_75\n  {X : Type*} [NormedAddCommGroup X] [InnerProductSpace \u211d X]\n  [FiniteDimensional \u211d X] (U : Submodule \u211d X) (hU : IsClosed U) :\n  IsNormal U :=\nsorry",
+      "ground_truth": "theorem exercise_32_1 {X : Type*} [TopologicalSpace X]\n  (hX : NormalSpace X) (A : Set X) (hA : IsClosed A) :\n  NormalSpace {x // x \u2208 A} :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 76,
+      "id": "Pugh|exercise_2_57",
+      "nl_statement": "Show that if $S$ is connected, it is not true in general that its interior is connected.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_76\n  : \u2203 (X : Type*) (T : TopologicalSpace X) (S : Set X), IsConnected S \u2227 \u00ac IsConnected (interior S) :=\nsorry": 0.0,
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_76 :\n  \u2203 (X : Type*) (_ : TopologicalSpace X) (S : Set X), IsConnected S \u2227 \u00ac IsConnected (interior S) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_76\n  : \u2203 (X : Type*) (T : TopologicalSpace X) (S : Set X), IsConnected S \u2227 \u00ac IsConnected (interior S) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_76\n  : \u2203 (X : Type*) (T : TopologicalSpace X) (S : Set X), IsConnected S \u2227 \u00ac IsConnected (interior S) :=\nsorry",
+      "ground_truth": "theorem exercise_2_57 {X : Type*} [TopologicalSpace X]\n  : \u2203 (S : Set X), IsConnected S \u2227 \u00ac IsConnected (interior S) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 77,
+      "id": "Rudin|exercise_3_3",
+      "nl_statement": "If $s_{1}=\\sqrt{2}$, and $s_{n+1}=\\sqrt{2+\\sqrt{s_{n}}} \\quad(n=1,2,3, \\ldots),$ prove that $\\left\\{s_{n}\\right\\}$ converges, and that $s_{n}<2$ for $n=1,2,3, \\ldots$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_77\n  (s : \u2115 \u2192 \u211d)\n  (h\u2080 : s 1 = Real.sqrt 2)\n  (h\u2081 : \u2200 n \u2265 1, s (n + 1) = Real.sqrt (2 + Real.sqrt (s n))) :\n  \u2203 L, Tendsto s atTop (\ud835\udcdd L) \u2227 \u2200 n \u2265 1, s n < 2 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_77\n  (s : \u2115 \u2192 \u211d)\n  (h\u2080 : s 1 = Real.sqrt 2)\n  (h\u2081 : \u2200 n \u2265 1, s (n + 1) = Real.sqrt (2 + Real.sqrt (s n))) :\n  \u2203 L, Tendsto s atTop (\ud835\udcdd L) \u2227 \u2200 n \u2265 1, s n < 2 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_77\n  (s : \u2115 \u2192 \u211d)\n  (h\u2080 : s 1 = Real.sqrt 2)\n  (h\u2081 : \u2200 n \u2265 1, s (n + 1) = Real.sqrt (2 + Real.sqrt (s n))) :\n  \u2203 L, Tendsto s atTop (\ud835\udcdd L) \u2227 \u2200 n \u2265 1, s n < 2 := by sorry",
+      "ground_truth": "noncomputable def f : \u2115 \u2192 \u211d\n| 0 => sqrt 2\n| (n + 1) => sqrt (2 + sqrt (f n))\n\ntheorem exercise_3_3\n  : \u2203 (x : \u211d), Tendsto f atTop (\ud835\udcdd x) \u2227 \u2200 n, f n < 2 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 78,
+      "id": "Ireland-Rosen|exercise_4_5",
+      "nl_statement": "Consider a prime $p$ of the form $4 t+3$. Show that $a$ is a primitive root modulo $p$ iff $-a$ has order $(p-1) / 2$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_78 (p t a : \u2115) (hp : p.Prime) (hpt : p = 4 * t + 3) (ha : 0 < a) :\n    IsPrimitiveRoot a p \u2194 ((-a : ZMod p) ^ ((p - 1) / 2) = 1 \u2227 \u2200 (k : \u2115), k < (p - 1) / 2 \u2192 (-a : ZMod p) ^ k \u2260 1) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_78 (p t a : \u2115) (hp : p.Prime) (hpt : p = 4 * t + 3) (ha : 0 < a) :\n    IsPrimitiveRoot a p \u2194 ((-a : ZMod p) ^ ((p - 1) / 2) = 1 \u2227 \u2200 (k : \u2115), k < (p - 1) / 2 \u2192 (-a : ZMod p) ^ k \u2260 1) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_78 (p t a : \u2115) (hp : p.Prime) (hpt : p = 4 * t + 3) (ha : 0 < a) :\n    IsPrimitiveRoot a p \u2194 ((-a : ZMod p) ^ ((p - 1) / 2) = 1 \u2227 \u2200 (k : \u2115), k < (p - 1) / 2 \u2192 (-a : ZMod p) ^ k \u2260 1) := by sorry",
+      "ground_truth": "theorem exercise_4_5 {p t : \u2115} (hp0 : p.Prime) (hp1 : p = 4*t + 3)\n  (a : ZMod p) :\n  IsPrimitiveRoot a p \u2194 ((-a) ^ ((p-1)/2) = 1 \u2227 \u2200 (k : \u2115), (0 < k \u2227 k < (p-1)/2) \u2192 (-a)^k \u2260 1) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 79,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_79 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalSpace (T n)) :\n  \u2203! T', IsTopologicalSpace T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  (\u2200 T'', IsTopologicalSpace T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'') := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_79 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalSpace (T n)) :\n  \u2203! T', IsTopologicalSpace T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  (\u2200 T'', IsTopologicalSpace T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'') := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_79 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalSpace (T n)) :\n  \u2203! T', IsTopologicalSpace T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  (\u2200 T'', IsTopologicalSpace T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'') := by sorry",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 80,
+      "id": "Rudin|exercise_5_15",
+      "nl_statement": "Suppose $a \\in R^{1}, f$ is a twice-differentiable real function on $(a, \\infty)$, and $M_{0}, M_{1}, M_{2}$ are the least upper bounds of $|f(x)|,\\left|f^{\\prime}(x)\\right|,\\left|f^{\\prime \\prime}(x)\\right|$, respectively, on $(a, \\infty)$. Prove that $M_{1}^{2} \\leq 4 M_{0} M_{2} .$",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_80\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup { |f x| | x \u2208 Set.Ioi a })\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup { |deriv f x| | x \u2208 Set.Ioi a })\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup { |deriv (deriv f) x| | x \u2208 Set.Ioi a }) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry": 0.0,
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_80\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup { |f x| | x \u2208 Set.Ioi a })\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup { |deriv f x| | x \u2208 Set.Ioi a })\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup { |deriv (deriv f) x| | x \u2208 Set.Ioi a }) :\n  M1^2 \u2264 4 * M0 * M2 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_80\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup { |f x| | x \u2208 Set.Ioi a })\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup { |deriv f x| | x \u2208 Set.Ioi a })\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup { |deriv (deriv f) x| | x \u2208 Set.Ioi a }) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_80\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup { |f x| | x \u2208 Set.Ioi a })\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup { |deriv f x| | x \u2208 Set.Ioi a })\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup { |deriv (deriv f) x| | x \u2208 Set.Ioi a }) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+      "ground_truth": "theorem exercise_5_15 {f : \u211d \u2192 \u211d} (a M0 M1 M2 : \u211d)\n  (hf' : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf'' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (hM0 : M0 = sSup {(|f x|) | x \u2208 (Set.Ioi a)})\n  (hM1 : M1 = sSup {(|deriv f x|) | x \u2208 (Set.Ioi a)})\n  (hM2 : M2 = sSup {(|deriv (deriv f) x|) | x \u2208 (Set.Ioi a)}) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 81,
+      "id": "Rudin|exercise_4_2a",
+      "nl_statement": "If $f$ is a continuous mapping of a metric space $X$ into a metric space $Y$, prove that $f(\\overline{E}) \\subset \\overline{f(E)}$ for every set $E \\subset X$. ($\\overline{E}$ denotes the closure of $E$).",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_81\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h\u2081 : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_81\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h\u2081 : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_81\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h\u2081 : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry",
+      "ground_truth": "theorem exercise_4_2a\n  {\u03b1 : Type} [MetricSpace \u03b1]\n  {\u03b2 : Type} [MetricSpace \u03b2]\n  (f : \u03b1 \u2192 \u03b2)\n  (h\u2081 : Continuous f)\n  : \u2200 (x : Set \u03b1), f '' (closure x) \u2286 closure (f '' x) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 82,
+      "id": "Munkres|exercise_29_10",
+      "nl_statement": "Show that if $X$ is a Hausdorff space that is locally compact at the point $x$, then for each neighborhood $U$ of $x$, there is a neighborhood $V$ of $x$ such that $\\bar{V}$ is compact and $\\bar{V} \\subset U$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_82\n  {X : Type*} [TopologicalSpace X] [T2Space X]\n  (x : X) (hx : \u2203 U : Set X, IsOpen U \u2227 x \u2208 U \u2227 IsCompact U) :\n  \u2200 U : Set X, IsOpen U \u2227 x \u2208 U \u2192 \u2203 V : Set X, IsOpen V \u2227 x \u2208 V \u2227\n  IsCompact (closure V) \u2227 closure V \u2286 U := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_82\n  {X : Type*} [TopologicalSpace X] [T2Space X]\n  (x : X) (hx : \u2203 U : Set X, IsOpen U \u2227 x \u2208 U \u2227 IsCompact U) :\n  \u2200 U : Set X, IsOpen U \u2227 x \u2208 U \u2192 \u2203 V : Set X, IsOpen V \u2227 x \u2208 V \u2227\n  IsCompact (closure V) \u2227 closure V \u2286 U := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_82\n  {X : Type*} [TopologicalSpace X] [T2Space X]\n  (x : X) (hx : \u2203 U : Set X, IsOpen U \u2227 x \u2208 U \u2227 IsCompact U) :\n  \u2200 U : Set X, IsOpen U \u2227 x \u2208 U \u2192 \u2203 V : Set X, IsOpen V \u2227 x \u2208 V \u2227\n  IsCompact (closure V) \u2227 closure V \u2286 U := by sorry",
+      "ground_truth": "theorem exercise_29_10 {X : Type*}\n  [TopologicalSpace X] [T2Space X] (x : X)\n  (hx : \u2203 U : Set X, x \u2208 U \u2227 IsOpen U \u2227 (\u2203 K : Set X, U \u2286 K \u2227 IsCompact K))\n  (U : Set X) (hU : IsOpen U) (hxU : x \u2208 U) :\n  \u2203 (V : Set X), IsOpen V \u2227 x \u2208 V \u2227 IsCompact (closure V) \u2227 closure V \u2286 U :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 83,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_83\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_83\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_83\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 84,
+      "id": "Artin|exercise_11_4_1b",
+      "nl_statement": "Prove that $x^3 + 6x + 12$ is irreducible in $\\mathbb{Q}$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_84 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_84 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_84 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+      "ground_truth": "theorem exercise_11_4_1b :\n  Irreducible (12 + 6 * X + X ^ 3 : Polynomial \u211a) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 85,
+      "id": "Munkres|exercise_19_6a",
+      "nl_statement": "Let $\\mathbf{x}_1, \\mathbf{x}_2, \\ldots$ be a sequence of the points of the product space $\\prod X_\\alpha$.  Show that this sequence converges to the point $\\mathbf{x}$ if and only if the sequence $\\pi_\\alpha(\\mathbf{x}_i)$ converges to $\\pi_\\alpha(\\mathbf{x})$ for each $\\alpha$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_85\n  {n : \u2115}\n  {f : Fin n \u2192 Type*} {x : \u2115 \u2192 \u03a0 i, f i}\n  {y : \u03a0 i, f i}\n  (p : Fin n \u2192 (f i \u2192 \u211d))\n  (h : \u2200 i, p i = \u03bb x => x.1) :\n  Tendsto x atTop (\ud835\udcdd y) \u2194 \u2200 i, Tendsto (\u03bb j => p j (x j)) atTop (\ud835\udcdd (p i y)) :=\nsorry": 0.0,
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_85\n  {n : \u2115}\n  {f : Fin n \u2192 Type*} {x : \u2115 \u2192 \u03a0 i, f i}\n  {y : \u03a0 i, f i}\n  (p : Fin n \u2192 (f i \u2192 \u211d))\n  (h : \u2200 i, p i = \u03bb x => x.1) :\n  Tendsto x atTop (\ud835\udcdd y) \u2194 \u2200 i, Tendsto (\u03bb j => p i (x j)) atTop (\ud835\udcdd (p i y)) :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_85\n  {n : \u2115}\n  {f : Fin n \u2192 Type*} {x : \u2115 \u2192 \u03a0 i, f i}\n  {y : \u03a0 i, f i}\n  (p : Fin n \u2192 (f i \u2192 \u211d))\n  (h : \u2200 i, p i = \u03bb x => x.1) :\n  Tendsto x atTop (\ud835\udcdd y) \u2194 \u2200 i, Tendsto (\u03bb j => p j (x j)) atTop (\ud835\udcdd (p i y)) :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_85\n  {n : \u2115}\n  {f : Fin n \u2192 Type*} {x : \u2115 \u2192 \u03a0 i, f i}\n  {y : \u03a0 i, f i}\n  (p : Fin n \u2192 (f i \u2192 \u211d))\n  (h : \u2200 i, p i = \u03bb x => x.1) :\n  Tendsto x atTop (\ud835\udcdd y) \u2194 \u2200 i, Tendsto (\u03bb j => p j (x j)) atTop (\ud835\udcdd (p i y)) :=\nsorry",
+      "ground_truth": "theorem exercise_19_6a\n  {\u03b9 : Type*}\n  {f : \u03b9 \u2192 Type*} {x : \u2115 \u2192 \u03a0a, f a}\n  (y : \u03a0i, f i)\n  [\u03a0a, TopologicalSpace (f a)] :\n  Tendsto x atTop (\ud835\udcdd y) \u2194 \u2200 i, Tendsto (\u03bb j => (x j) i) atTop (\ud835\udcdd (y i)) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 86,
+      "id": "Munkres|exercise_23_2",
+      "nl_statement": "Let $\\left\\{A_{n}\\right\\}$ be a sequence of connected subspaces of $X$, such that $A_{n} \\cap A_{n+1} \\neq \\varnothing$ for all $n$. Show that $\\bigcup A_{n}$ is connected.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_86 {X : Type*} [TopologicalSpace X]\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X} (hA : \u2200 n, IsConnected (A n))\n  (hA' : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_86 {X : Type*} [TopologicalSpace X]\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X} (hA : \u2200 n, IsConnected (A n))\n  (hA' : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_86 {X : Type*} [TopologicalSpace X]\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X} (hA : \u2200 n, IsConnected (A n))\n  (hA' : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) := by sorry",
+      "ground_truth": "theorem exercise_23_2 {X : Type*}\n  [TopologicalSpace X] {A : \u2115 \u2192 Set X} (hA : \u2200 n, IsConnected (A n))\n  (hAn : \u2200 n, A n \u2229 A (n + 1) \u2260 \u2205) :\n  IsConnected (\u22c3 n, A n) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 87,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_87 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalSpace (T n)) :\n  \u2203! T', IsTopologicalSpace T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalSpace T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_87 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalSpace (T n)) :\n  \u2203! T', IsTopologicalSpace T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalSpace T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_87 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalSpace (T n)) :\n  \u2203! T', IsTopologicalSpace T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalSpace T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' :=\nsorry",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 88,
+      "id": "Ireland-Rosen|exercise_5_37",
+      "nl_statement": "Show that if $a$ is negative then $p \\equiv q(4 a)$ together with $p\\not | a$ imply $(a / p)=(a / q)$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_88 (p q a : \u2115) (h1 : p.Prime) (h2 : q.Prime) (h3 : a < 0)\n    (h4 : p \u2261 q [MOD 4 * a]) (h5 : \u00ac(p \u2223 a)) : (a : ZMod p) ^ ((p - 1) / 2) = (a : ZMod q) ^ ((p - 1) / 2) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_88 (p q a : \u2115) (h1 : p.Prime) (h2 : q.Prime) (h3 : a < 0)\n    (h4 : p \u2261 q [MOD 4 * a]) (h5 : \u00ac(p \u2223 a)) : (a : ZMod p) ^ ((p - 1) / 2) = (a : ZMod q) ^ ((p - 1) / 2) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_88 (p q a : \u2115) (h1 : p.Prime) (h2 : q.Prime) (h3 : a < 0)\n    (h4 : p \u2261 q [MOD 4 * a]) (h5 : \u00ac(p \u2223 a)) : (a : ZMod p) ^ ((p - 1) / 2) = (a : ZMod q) ^ ((p - 1) / 2) := by sorry",
+      "ground_truth": "theorem exercise_5_37 {p q : \u2115} [Fact (p.Prime)] [Fact (q.Prime)] {a : \u2124}\n  (ha : a < 0) (h0 : p \u2261 q [ZMOD 4*a]) (h1 : \u00ac ((p : \u2124) \u2223 a)) :\n  legendreSym p a = legendreSym q a :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 89,
+      "id": "Dummit-Foote|exercise_7_1_15",
+      "nl_statement": "A ring $R$ is called a Boolean ring if $a^{2}=a$ for all $a \\in R$. Prove that every Boolean ring is commutative.",
+      "smc_posterior": {
+        "import Mathlib\n\ndef isBooleanRing (R : Type*) [Ring R] : Prop :=\n  \u2200 a : R, a ^ 2 = a\n\ntheorem autoformalized_theorem_89 (R : Type*) [Ring R] (hR : isBooleanRing R) :\n    CommRing R := by sorry": 0.0,
+        "import Mathlib\n\ndef isBooleanRing (R : Type*) [Ring R] : Prop :=\n  \u2200 a : R, a ^ 2 = a\n\ntheorem autoformalized_theorem_89 {R : Type*} [Ring R] (h : isBooleanRing R) :\n    CommRing R := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ndef isBooleanRing (R : Type*) [Ring R] : Prop :=\n  \u2200 a : R, a ^ 2 = a\n\ntheorem autoformalized_theorem_89 (R : Type*) [Ring R] (hR : isBooleanRing R) :\n    CommRing R := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_89 (R : Type*) [Ring R] (hR : isBooleanRing R) :\n    CommRing R := by sorry",
+      "ground_truth": "theorem exercise_7_1_15 {R : Type*} [Ring R] (hR : \u2200 a : R, a^2 = a) :\n\u2200 a b : R, a*b = b*a :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 90,
+      "id": "Herstein|exercise_2_4_36",
+      "nl_statement": "If $a > 1$ is an integer, show that $n \\mid \\varphi(a^n - 1)$, where $\\phi$ is the Euler $\\varphi$-function.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_90 (a n : \u2115) (h : a > 1) : n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_90 (a n : \u2115) (h : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_90 (a n : \u2115) (ha : 1 < a) (hn : 1 \u2264 n) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_90 (a n : \u2115) (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0,
+        "import Mathlib\n\ntheorem autoformalized_theorem_90 (a n : \u2115) (ha : a > 1) (hn : 0 < n) :\n    n \u2223 (a ^ n - 1).totient := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_90 (a n : \u2115) (h : a > 1) : n \u2223 (a ^ n - 1).totient := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_90 (a n : \u2115) (h : a > 1) : n \u2223 (a ^ n - 1).totient := by sorry",
+      "ground_truth": "theorem exercise_2_4_36 {a n : \u2115} (h : a > 1) :\n  n \u2223 (a ^ n - 1).totient :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 91,
+      "id": "Herstein|exercise_2_1_27",
+      "nl_statement": "If $G$ is a finite group, prove that there is an integer $m > 0$ such that $a^m = e$ for all $a \\in G$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_91 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_91 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_91 {G : Type*} [Group G] [Finite G] :\n    \u2203 m : \u2115, 0 < m \u2227 \u2200 a : G, a ^ m = 1 := by sorry",
+      "ground_truth": "theorem exercise_2_1_27 {G : Type*} [Group G]\n  [Fintype G] : \u2203 (m : \u2115), m > 0 \u2227 \u2200 (a : G), a ^ m = 1 :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 92,
+      "id": "Herstein|exercise_4_6_3",
+      "nl_statement": "Show that there is an infinite number of integers a such that $f(x) = x^7 + 15x^2 - 30x + a$ is irreducible in $Q[x]$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_92 :\n  Infinite {a : \u2124 | Irreducible (X^7 + 15*X^2 - 30*X + (a : Polynomial \u211a) : Polynomial \u211a)} := by sorry": 0.0,
+        "import Mathlib\n\nopen Polynomial\n\ntheorem autoformalized_theorem_92 : Set.Infinite {a : \u2124 | Irreducible (X^7 + 15*X^2 - 30*X + C a : Polynomial \u211a)} := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_92 :\n  Infinite {a : \u2124 | Irreducible (X^7 + 15*X^2 - 30*X + (a : Polynomial \u211a) : Polynomial \u211a)} := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_92 :\n  Infinite {a : \u2124 | Irreducible (X^7 + 15*X^2 - 30*X + (a : Polynomial \u211a) : Polynomial \u211a)} := by sorry",
+      "ground_truth": "theorem exercise_4_6_3 :\n  Infinite {a : \u2124 | Irreducible (X^7 + 15*X^2 - 30*X + (a : Polynomial \u211a) : Polynomial \u211a)} :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 93,
+      "id": "Artin|exercise_6_1_14",
+      "nl_statement": "Let $Z$ be the center of a group $G$. Prove that if $G / Z$ is a cyclic group, then $G$ is abelian and hence $G=Z$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_93 {G : Type*} [Group G] (hG : IsCyclic (G \u29f8 (center G))) :\n    center G = \u22a4 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_93 {G : Type*} [Group G] (hG : IsCyclic (G \u29f8 (center G))) :\n    center G = \u22a4 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_93 {G : Type*} [Group G] (hG : IsCyclic (G \u29f8 (center G))) :\n    center G = \u22a4 := by sorry",
+      "ground_truth": "theorem exercise_6_1_14 (G : Type*) [Group G]\n  (hG : IsCyclic $ G \u29f8 (center G)) :\n  center G = \u22a4  :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 94,
+      "id": "Putnam|exercise_2017_b3",
+      "nl_statement": "Suppose that $f(x)=\\sum_{i=0}^{\\infty} c_{i} x^{i}$ is a power series for which each coefficient $c_{i}$ is 0 or 1 . Show that if $f(2 / 3)=3 / 2$, then $f(1 / 2)$ must be irrational.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_94\n  (f : \u211d \u2192 \u211d)\n  (c : \u2115 \u2192 \u211d)\n  (hf : f = \u03bb x => \u2211' n : \u2115, (c n) * x ^ n)\n  (hc : \u2200 n : \u2115, c n = 0 \u2228 c n = 1)\n  (h : f (2 / 3) = 3 / 2) :\n  Irrational (f (1 / 2)) := by sorry": 0.0,
+        "import Mathlib\n\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_94\n  (f : \u211d \u2192 \u211d)\n  (c : \u2115 \u2192 \u211d)\n  (hf : f = \u03bb x => \u2211' i : \u2115, (c i) * x ^ i)\n  (hc : \u2200 i : \u2115, c i = 0 \u2228 c i = 1)\n  (h : f (2 / 3) = 3 / 2) :\n  Irrational (f (1 / 2)) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_94\n  (f : \u211d \u2192 \u211d)\n  (c : \u2115 \u2192 \u211d)\n  (hf : f = \u03bb x => \u2211' n : \u2115, (c n) * x ^ n)\n  (hc : \u2200 n : \u2115, c n = 0 \u2228 c n = 1)\n  (h : f (2 / 3) = 3 / 2) :\n  Irrational (f (1 / 2)) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_94\n  (f : \u211d \u2192 \u211d)\n  (c : \u2115 \u2192 \u211d)\n  (hf : f = \u03bb x => \u2211' n : \u2115, (c n) * x ^ n)\n  (hc : \u2200 n : \u2115, c n = 0 \u2228 c n = 1)\n  (h : f (2 / 3) = 3 / 2) :\n  Irrational (f (1 / 2)) := by sorry",
+      "ground_truth": "theorem exercise_2017_b3 (f : \u211d \u2192 \u211d) (c : \u2115 \u2192 \u211d)\n  (hf : f = \u03bb x => (\u2211' (i : \u2115), (c i) * x^i))\n  (hc : \u2200 n, c n = 0 \u2228 c n = 1)\n  (hf1 : f (2/3) = 3/2) :\n  Irrational (f (1/2)) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 95,
+      "id": "Herstein|exercise_4_3_25",
+      "nl_statement": "Let $R$ be the ring of $2 \\times 2$ matrices over the real numbers; suppose that $I$ is an ideal of $R$. Show that $I = (0)$ or $I = R$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_95 {R : Type*} [Ring R]\n  [Fintype R] (hR : card R = 4) (I : Ideal R) :\n  I = \u22a5 \u2228 I = \u22a4 :=\nsorry": 0.0,
+        "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_95 {R : Type*} [Ring R]\n  [IsMatrix R (Fin 2) (Fin 2) \u211d] (I : Ideal R) :\n  I = \u22a5 \u2228 I = \u22a4 :=\nsorry": 0.0,
+        "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_95 {R : Type*} [Ring R] [Fintype R]\n  (hR : card R = 4) (I : Ideal R) :\n  I = \u22a5 \u2228 I = \u22a4 :=\nsorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_95 {R : Type*} [Ring R]\n  [Fintype R] (hR : card R = 4) (I : Ideal R) :\n  I = \u22a5 \u2228 I = \u22a4 :=\nsorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_95 {R : Type*} [Ring R]\n  [Fintype R] (hR : card R = 4) (I : Ideal R) :\n  I = \u22a5 \u2228 I = \u22a4 :=\nsorry",
+      "ground_truth": "theorem exercise_4_3_25 (I : Ideal (Matrix (Fin 2) (Fin 2) \u211d)) :\n  I = \u22a5 \u2228 I = \u22a4 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 96,
+      "id": "Shakarchi|exercise_3_9",
+      "nl_statement": "Show that $\\int_0^1 \\log(\\sin \\pi x) dx = - \\log 2$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Real Set\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_96 : \u222b x in (0)..1, log (sin (\u03c0 * x)) = -log 2 := by sorry": 0.0,
+        "import Mathlib\n\nopen Real\n\ntheorem autoformalized_theorem_96 : \u222b x in (0)..1, log (sin (\u03c0 * x)) = -log 2 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Real Set\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_96 : \u222b x in (0)..1, log (sin (\u03c0 * x)) = -log 2 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_96 : \u222b x in (0)..1, log (sin (\u03c0 * x)) = -log 2 := by sorry",
+      "ground_truth": "theorem exercise_3_9 : \u222b x in (0 : \u211d)..(1 : \u211d), Real.log (Real.sin (Real.pi * x)) = - Real.log 2 :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 97,
+      "id": "Pugh|exercise_3_63b",
+      "nl_statement": "Prove that $\\sum 1/k(\\log(k))^p$ diverges when $p \\leq 1$.",
+      "smc_posterior": {
+        "import Mathlib\n\nopen Real Filter Function\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_97 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / (k * (log k) ^ p)) := by sorry": 0.0,
+        "import Mathlib\n\nopen Real Filter Function\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_97 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / k * (log k) ^ p) := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\nopen Real Filter Function\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_97 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / (k * (log k) ^ p)) := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_97 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / (k * (log k) ^ p)) := by sorry",
+      "ground_truth": "theorem exercise_3_63b (p : \u211d) (f : \u2115 \u2192 \u211d) (hp : p \u2264 1)\n  (h : f = \u03bb (k : \u2115) => (1 : \u211d) / (k * (log k) ^ p)) :\n  \u00ac \u2203 l, Tendsto f atTop (\ud835\udcdd l) :=",
+      "kimina_equivalent": false,
+      "beq_error": null
+    },
+    {
+      "index": 98,
+      "id": "Rudin|exercise_1_2",
+      "nl_statement": "Prove that there is no rational number whose square is $12$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_98 : \u00ac \u2203 (x : \u211a), x^2 = 12 := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_98 : \u00ac \u2203 (x : \u211a), x^2 = 12 := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_98 : \u00ac \u2203 (x : \u211a), x^2 = 12 := by sorry",
+      "ground_truth": "theorem exercise_1_2 : \u00ac \u2203 (x : \u211a), ( x ^ 2 = 12 ) :=",
+      "kimina_equivalent": true,
+      "beq_error": null
+    },
+    {
+      "index": 99,
+      "id": "Dummit-Foote|exercise_8_1_12",
+      "nl_statement": "Let $N$ be a positive integer. Let $M$ be an integer relatively prime to $N$ and let $d$ be an integer relatively prime to $\\varphi(N)$, where $\\varphi$ denotes Euler's $\\varphi$-function. Prove that if $M_{1} \\equiv M^{d} \\pmod N$ then $M \\equiv M_{1}^{d^{\\prime}} \\pmod N$ where $d^{\\prime}$ is the inverse of $d \\bmod \\varphi(N)$: $d d^{\\prime} \\equiv 1 \\pmod {\\varphi(N)}$.",
+      "smc_posterior": {
+        "import Mathlib\n\ntheorem autoformalized_theorem_99 (N : \u2115) (hN : N > 0) (M : \u2124) (hM : IsCoprime M N) (d : \u2124) (hd : IsCoprime d (Nat.totient N)) (M1 : \u2124) (hM1 : M1 \u2261 M ^ d [ZMOD N]) :\n    \u2203 d' : \u2124, d * d' \u2261 1 [ZMOD Nat.totient N] \u2227 M \u2261 M1 ^ (d' * d) [ZMOD N] := by sorry": 0.0
+      },
+      "kimina_smc_best": "import Mathlib\n\ntheorem autoformalized_theorem_99 (N : \u2115) (hN : N > 0) (M : \u2124) (hM : IsCoprime M N) (d : \u2124) (hd : IsCoprime d (Nat.totient N)) (M1 : \u2124) (hM1 : M1 \u2261 M ^ d [ZMOD N]) :\n    \u2203 d' : \u2124, d * d' \u2261 1 [ZMOD Nat.totient N] \u2227 M \u2261 M1 ^ (d' * d) [ZMOD N] := by sorry",
+      "kimina_smc_best_clean": "theorem autoformalized_theorem_99 (N : \u2115) (hN : N > 0) (M : \u2124) (hM : IsCoprime M N) (d : \u2124) (hd : IsCoprime d (Nat.totient N)) (M1 : \u2124) (hM1 : M1 \u2261 M ^ d [ZMOD N]) :\n    \u2203 d' : \u2124, d * d' \u2261 1 [ZMOD Nat.totient N] \u2227 M \u2261 M1 ^ (d' * d) [ZMOD N] := by sorry",
+      "ground_truth": "theorem exercise_8_1_12 {N : \u2115} (hN : N > 0) {M M': \u2124} {d : \u2115}\n  (hMN : M.gcd N = 1) (hMd : d.gcd N.totient = 1)\n  (hM' : M' \u2261 M^d [ZMOD N]) :\n  \u2203 d' : \u2115, d' * d \u2261 1 [ZMOD N.totient] \u2227\n  M \u2261 M'^d' [ZMOD N] :=",
       "kimina_equivalent": false,
       "beq_error": null
     }
   ],
-  "equivalent": 0,
-  "total": 1
+  "equivalent": 44,
+  "total": 100
 }
