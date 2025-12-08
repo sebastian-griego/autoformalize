@@ -26,6 +26,10 @@ if PROJECT_ROOT.exists():
 from datasets import load_dataset
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+try:
+    from transformers import BitsAndBytesConfig
+except ImportError:  # pragma: no cover - optional dependency
+    BitsAndBytesConfig = None
 from genlm.backend.llm.hf import AsyncTransformer
 from genlm.control import AWRS, PromptedLLM
 from genlm.control.constant import EndOfSequence
@@ -53,23 +57,46 @@ class ModelConfig:
     max_new_tokens: int = 512
     temperature: float = 0.2
     top_p: float = 0.9
+    load_in_4bit: bool = False
 
 
-def load_hf_causal_lm(model_id: str):
+@dataclass
+class SMCConfig:
+    num_particles: int = N_PARTICLES
+    smc_mode: str = "all"
+    potential_stride: int = 1
+
+
+def load_hf_causal_lm(model_id: str, *, load_in_4bit: bool) -> Tuple[Any, Any]:
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_id,
-        device_map="auto",
-        torch_dtype="auto",
-        trust_remote_code=True,
-    )
+    dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
+    quant_config = None
+    if load_in_4bit and BitsAndBytesConfig is not None:
+        quant_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=dtype,
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_quant_type="nf4",
+        )
+    grad_state = torch.is_grad_enabled()
+    torch.set_grad_enabled(False)
+    try:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            device_map="auto",
+            torch_dtype=dtype,
+            trust_remote_code=True,
+            quantization_config=quant_config,
+        )
+    finally:
+        torch.set_grad_enabled(grad_state)
     model.eval()
     return model, tokenizer
 
 
 def build_models(cfg: ModelConfig) -> Dict[str, Any]:
-    primary_model, primary_tok = load_hf_causal_lm(cfg.primary_model_id)
-    reference_model, reference_tok = load_hf_causal_lm(cfg.reference_model_id)
+    primary_model, primary_tok = load_hf_causal_lm(cfg.primary_model_id, load_in_4bit=cfg.load_in_4bit)
+    reference_model, reference_tok = load_hf_causal_lm(cfg.reference_model_id, load_in_4bit=cfg.load_in_4bit)
     primary_async = AsyncTransformer(primary_model, primary_tok)
     return {
         "primary_model": primary_model,
@@ -213,40 +240,77 @@ class LeanWellTypedPotential(Potential):
         lean_server: AutoLeanServer,
         lean_header: str,
         theorem_name: str,
+        potential_stride: int = 1,
     ):
         super().__init__(vocabulary)
         self.server = lean_server
         self.lean_header = lean_header.strip()
         self.theorem_name = theorem_name
         self._lock = asyncio.Lock()
+        self.potential_stride = max(1, potential_stride)
+        self._score_cache: Dict[bytes, float] = {}
 
     async def prefix(self, context) -> float:
         if not context:
             return 0.0
-        text = self._context_to_text(context)
+        context_bytes = self._context_bytes(context)
+        cached = self._maybe_reuse_score(context, context_bytes)
+        if cached is not None:
+            return cached
+        text = context_bytes.decode("utf-8", errors="ignore")
         if not text.strip():
             return 0.0
         if self._has_noise(text):
             return float("-inf")
         if not self._looks_complete(text):
             return 0.0
-        return await self._check_well_typed(text)
+        score = await self._check_well_typed(text)
+        self._score_cache[context_bytes] = score
+        return score
 
     async def complete(self, context) -> float:
         if not context:
             return 0.0
-        text = self._context_to_text(context)
+        context_bytes = self._context_bytes(context)
+        cached = self._maybe_reuse_score(context, context_bytes)
+        if cached is not None:
+            return cached
+        text = context_bytes.decode("utf-8", errors="ignore")
         if not self._looks_complete(text):
             return float("-inf")
-        return await self._check_well_typed(text)
+        score = await self._check_well_typed(text)
+        self._score_cache[context_bytes] = score
+        return score
 
-    def _context_to_text(self, context: Iterable[Any]) -> str:
+    def _context_bytes(self, context: Iterable[Any], limit: int | None = None) -> bytes:
         byte_stream = []
+        count = 0
         for token in context:
             if isinstance(token, EndOfSequence):
                 break
+            if limit is not None and count >= limit:
+                break
             byte_stream.append(token)
-        return b"".join(byte_stream).decode("utf-8", errors="ignore")
+            count += 1
+        return b"".join(byte_stream)
+
+    def _context_length(self, context: Iterable[Any]) -> int:
+        return sum(1 for token in context if not isinstance(token, EndOfSequence))
+
+    def _maybe_reuse_score(self, context: Iterable[Any], context_bytes: bytes) -> float | None:
+        if self.potential_stride <= 1:
+            return None
+        token_len = self._context_length(context)
+        if token_len == 0 or token_len % self.potential_stride == 0:
+            return None
+        prev_len = token_len - (token_len % self.potential_stride)
+        if prev_len <= 0:
+            return None
+        prev_bytes = self._context_bytes(context, limit=prev_len)
+        cached = self._score_cache.get(prev_bytes)
+        if cached is not None:
+            self._score_cache[context_bytes] = cached
+        return cached
 
     def _has_noise(self, text: str) -> bool:
         if text.count("\n\n\n") > 2:
@@ -283,12 +347,15 @@ class CycleConsistencyPotential(Potential):
         reference_model: AutoModelForCausalLM,
         reference_tokenizer,
         cfg: ModelConfig,
+        potential_stride: int = 1,
     ):
         super().__init__(vocabulary)
         self.original_nl = original_nl.strip()
         self.reference_model = reference_model
         self.reference_tokenizer = reference_tokenizer
         self.cfg = cfg
+        self.potential_stride = max(1, potential_stride)
+        self._score_cache: Dict[bytes, float] = {}
 
     async def prefix(self, context) -> float:
         return 0.0
@@ -296,13 +363,19 @@ class CycleConsistencyPotential(Potential):
     async def complete(self, context) -> float:
         if not context:
             return float("-inf")
-        lean_code = self._context_to_text(context)
+        context_bytes = self._context_bytes(context)
+        cached = self._maybe_reuse_score(context, context_bytes)
+        if cached is not None:
+            return cached
+        lean_code = context_bytes.decode("utf-8", errors="ignore")
         if not lean_code.strip() or not self.original_nl:
             return float("-inf")
         try:
-            return await asyncio.to_thread(self._score_cycle, lean_code)
+            score = await asyncio.to_thread(self._score_cycle, lean_code)
         except Exception:
             return float("-inf")
+        self._score_cache[context_bytes] = score
+        return score
 
     def _score_cycle(self, lean_code: str) -> float:
         prompt_messages = build_informalization_prompt(lean_code, self.original_nl)
@@ -349,13 +422,35 @@ class CycleConsistencyPotential(Potential):
         norm = max(1.0, float(len(target_ids)))
         return (logp / norm) * self.cfg.top_p
 
-    def _context_to_text(self, context: Iterable[Any]) -> str:
+    def _context_bytes(self, context: Iterable[Any], limit: int | None = None) -> bytes:
         byte_stream = []
+        count = 0
         for token in context:
             if isinstance(token, EndOfSequence):
                 break
+            if limit is not None and count >= limit:
+                break
             byte_stream.append(token)
-        return b"".join(byte_stream).decode("utf-8", errors="ignore")
+            count += 1
+        return b"".join(byte_stream)
+
+    def _context_length(self, context: Iterable[Any]) -> int:
+        return sum(1 for token in context if not isinstance(token, EndOfSequence))
+
+    def _maybe_reuse_score(self, context: Iterable[Any], context_bytes: bytes) -> float | None:
+        if self.potential_stride <= 1:
+            return None
+        token_len = self._context_length(context)
+        if token_len == 0 or token_len % self.potential_stride == 0:
+            return None
+        prev_len = token_len - (token_len % self.potential_stride)
+        if prev_len <= 0:
+            return None
+        prev_bytes = self._context_bytes(context, limit=prev_len)
+        cached = self._score_cache.get(prev_bytes)
+        if cached is not None:
+            self._score_cache[context_bytes] = cached
+        return cached
 
 
 def decode_sequence(context: List[Any]) -> str:
@@ -423,16 +518,25 @@ async def run_sampler(
     max_tokens: int,
     ess_threshold: float = 0.5,
 ) -> Any:
-    sampler = AWRS(unit_potential, condition, proper_weights=False)
+    async def _run(proper_weights: bool):
+        sampler = AWRS(unit_potential, condition, proper_weights=proper_weights)
+        try:
+            return await sampler.smc(
+                n_particles=n_particles,
+                ess_threshold=ess_threshold,
+                max_tokens=max_tokens,
+                verbosity=0,
+            )
+        finally:
+            await sampler.cleanup()
+
     try:
-        return await sampler.smc(
-            n_particles=n_particles,
-            ess_threshold=ess_threshold,
-            max_tokens=max_tokens,
-            verbosity=0,
+        return await _run(True)
+    except AssertionError as exc:
+        print(
+            "[WARN] AWRS assertion failed (" + str(exc) + ") – retrying with improper weights for stability."
         )
-    finally:
-        await sampler.cleanup()
+        return await _run(False)
 
 
 async def run_smc_for_example(
@@ -445,17 +549,39 @@ async def run_smc_for_example(
     reference_model: AutoModelForCausalLM,
     reference_tokenizer,
     cfg: ModelConfig,
+    smc_cfg: SMCConfig,
 ) -> Dict[str, MethodRun]:
     kimina_llm = build_prompted_llm(primary_async, primary_tokenizer, cfg, nl_statement, theorem_name)
     accept_all = AlwaysAcceptPotential(kimina_llm.vocab)
-    lean_potential = LeanWellTypedPotential(kimina_llm.vocab, lean_server, lean_header, theorem_name)
+    lean_potential = LeanWellTypedPotential(
+        kimina_llm.vocab,
+        lean_server,
+        lean_header,
+        theorem_name,
+        potential_stride=smc_cfg.potential_stride,
+    )
     cycle_potential = CycleConsistencyPotential(
         kimina_llm.vocab,
         nl_statement,
         reference_model,
         reference_tokenizer,
         cfg,
+        potential_stride=smc_cfg.potential_stride,
     )
+
+    method_definitions: List[Tuple[str, Potential, Potential]] = []
+    kimina_cycle = Product(kimina_llm, cycle_potential)
+    if smc_cfg.smc_mode == "all":
+        method_definitions.extend(
+            [
+                ("smc_no_potential", kimina_llm, accept_all),
+                ("smc_lean_only", kimina_llm, lean_potential),
+                ("smc_cycle_only", kimina_cycle, accept_all),
+                ("smc_both", kimina_cycle, lean_potential),
+            ]
+        )
+    else:
+        method_definitions.append(("smc_both", kimina_cycle, lean_potential))
 
     methods: Dict[str, MethodRun] = {}
 
@@ -473,41 +599,15 @@ async def run_smc_for_example(
     )
     await record_run("baseline", baseline_sequences, time.time() - start)
 
-    start = time.time()
-    prior_sequences = await run_sampler(
-        unit_potential=kimina_llm,
-        condition=accept_all,
-        n_particles=N_PARTICLES,
-        max_tokens=cfg.max_new_tokens,
-    )
-    await record_run("smc_no_potential", prior_sequences, time.time() - start)
-
-    start = time.time()
-    lean_sequences = await run_sampler(
-        unit_potential=kimina_llm,
-        condition=lean_potential,
-        n_particles=N_PARTICLES,
-        max_tokens=cfg.max_new_tokens,
-    )
-    await record_run("smc_lean_only", lean_sequences, time.time() - start)
-
-    start = time.time()
-    cycle_sequences = await run_sampler(
-        unit_potential=Product(kimina_llm, cycle_potential),
-        condition=accept_all,
-        n_particles=N_PARTICLES,
-        max_tokens=cfg.max_new_tokens,
-    )
-    await record_run("smc_cycle_only", cycle_sequences, time.time() - start)
-
-    start = time.time()
-    combined_sequences = await run_sampler(
-        unit_potential=Product(kimina_llm, cycle_potential),
-        condition=lean_potential,
-        n_particles=N_PARTICLES,
-        max_tokens=cfg.max_new_tokens,
-    )
-    await record_run("smc_both", combined_sequences, time.time() - start)
+    for name, unit_potential, condition in method_definitions:
+        start = time.time()
+        sequences = await run_sampler(
+            unit_potential=unit_potential,
+            condition=condition,
+            n_particles=smc_cfg.num_particles,
+            max_tokens=cfg.max_new_tokens,
+        )
+        await record_run(name, sequences, time.time() - start)
 
     return methods
 
@@ -547,6 +647,29 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--n-examples", type=int, default=N_EXAMPLES, help="Number of examples to run")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for dataset sampling")
     parser.add_argument("--max-tokens", type=int, default=512, help="Maximum generation length")
+    parser.add_argument(
+        "--num-particles",
+        type=int,
+        default=N_PARTICLES,
+        help="Number of particles for SMC sampling",
+    )
+    parser.add_argument(
+        "--smc-config",
+        choices=["all", "full"],
+        default="all",
+        help="Which SMC configurations to run (all ablations or only the full method)",
+    )
+    parser.add_argument(
+        "--no-ablations",
+        action="store_true",
+        help="Shortcut for running only the full SMC method",
+    )
+    parser.add_argument(
+        "--potential-stride",
+        type=int,
+        default=1,
+        help="Evaluate Lean/cycle potentials every N tokens instead of every step",
+    )
     parser.add_argument("--results-path", type=Path, default=RESULTS_PATH, help="Where to save the JSON summary")
     parser.add_argument(
         "--primary-model-id",
@@ -560,6 +683,11 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_REFERENCE_MODEL_ID,
         help="HF model id to use for GenLM semantic potentials",
     )
+    parser.add_argument(
+        "--four-bit",
+        action="store_true",
+        help="Attempt to load both models in 4-bit mode via bitsandbytes",
+    )
     return parser.parse_args()
 
 
@@ -568,12 +696,22 @@ async def async_main(args: argparse.Namespace) -> None:
     dataset = load_dataset(DATASET_NAME, split=args.split)
     dataset = dataset.shuffle(seed=args.seed).select(range(args.n_examples))
 
+    smc_mode = args.smc_config
+    if args.no_ablations:
+        smc_mode = "full"
+    smc_cfg = SMCConfig(
+        num_particles=max(1, args.num_particles),
+        smc_mode=smc_mode,
+        potential_stride=max(1, args.potential_stride),
+    )
+
     model_cfg = ModelConfig(
         primary_model_id=args.primary_model_id,
         reference_model_id=args.reference_model_id,
         max_new_tokens=args.max_tokens,
         temperature=0.2,
         top_p=0.9,
+        load_in_4bit=args.four_bit,
     )
     models = build_models(model_cfg)
 
@@ -583,13 +721,14 @@ async def async_main(args: argparse.Namespace) -> None:
     )
     server = AutoLeanServer(config=repl_config)
 
-    method_summaries: Dict[str, MethodSummary] = {
-        "baseline": MethodSummary(),
-        "smc_no_potential": MethodSummary(),
-        "smc_lean_only": MethodSummary(),
-        "smc_cycle_only": MethodSummary(),
-        "smc_both": MethodSummary(),
-    }
+    smc_method_names = ["baseline"]
+    if smc_cfg.smc_mode == "all":
+        smc_method_names.extend(
+            ["smc_no_potential", "smc_lean_only", "smc_cycle_only", "smc_both"]
+        )
+    else:
+        smc_method_names.append("smc_both")
+    method_summaries: Dict[str, MethodSummary] = {name: MethodSummary() for name in smc_method_names}
 
     records: List[Dict[str, Any]] = []
 
@@ -608,6 +747,7 @@ async def async_main(args: argparse.Namespace) -> None:
             models["reference_model"],
             models["reference_tok"],
             model_cfg,
+            smc_cfg,
         )
 
         record = {
@@ -632,10 +772,11 @@ async def async_main(args: argparse.Namespace) -> None:
                 record["baseline_candidate"] = next(iter(method_run.posterior.keys()), "")
                 record["baseline_beq"] = next(iter(beq_labels.values()), False)
 
-        both_score = method_summaries["smc_both"].score_sum / (idx + 1)
+        main_key = "smc_both" if "smc_both" in method_summaries else smc_method_names[1]
+        both_score = method_summaries.get(main_key, MethodSummary()).score_sum / max(1, idx + 1)
         print(
             f"[{idx + 1}/{args.n_examples}] {example['id']} -> "
-            f"Kimina GenLM both-potentials score {both_score:.2f}"
+            f"Kimina GenLM {main_key} score {both_score:.2f}"
         )
         records.append(record)
 
@@ -654,8 +795,11 @@ async def async_main(args: argparse.Namespace) -> None:
         "meta": {
             "model": model_cfg.primary_model_id,
             "reference_model": model_cfg.reference_model_id,
-            "n_particles": N_PARTICLES,
+            "n_particles": smc_cfg.num_particles,
             "max_tokens": model_cfg.max_new_tokens,
+            "smc_mode": smc_cfg.smc_mode,
+            "potential_stride": smc_cfg.potential_stride,
+            "four_bit": model_cfg.load_in_4bit,
             "dataset": DATASET_NAME,
             "split": args.split,
             "n_examples": args.n_examples,
