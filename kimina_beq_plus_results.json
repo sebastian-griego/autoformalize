@@ -48,7 +48,9 @@
       "kimina_output": "theorem autoformalized_theorem_4 (n : \u2115) (a b c : \u2124) : (a + b) + c \u2261 a + (b + c) [ZMOD n] := by sorry",
       "ground_truth": "theorem exercise_1_1_3 (n : \u2115) : \n  \u2200 (x y z : ZMod n), (x + y) + z = x + (y + z) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 5,
@@ -58,7 +60,9 @@
       "kimina_output": "theorem autoformalized_theorem_5 (p : \u211d) (hp : p \u2264 1) :\n  \u00ac Summable (\u03bb k => 1 / (k * (log k) ^ p)) := by sorry",
       "ground_truth": "theorem exercise_3_63b (p : \u211d) (f : \u2115 \u2192 \u211d) (hp : p \u2264 1)\n  (h : f = \u03bb (k : \u2115) => (1 : \u211d) / (k * (log k) ^ p)) :\n  \u00ac \u2203 l, Tendsto f atTop (\ud835\udcdd l) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 6,
@@ -68,7 +72,9 @@
       "kimina_output": "theorem autoformalized_theorem_6 : Irreducible (X^2 + Y^2 - 1 : MvPolynomial (Fin 2) \u211a) := by sorry",
       "ground_truth": "theorem exercise_9_4_11 :\n  Irreducible ((MvPolynomial.X 0)^2 + (MvPolynomial.X 1)^2 - 1 : MvPolynomial (Fin 2) \u211a) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 7,
@@ -78,7 +84,9 @@
       "kimina_output": "theorem autoformalized_theorem_7 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
       "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 8,
@@ -98,7 +106,9 @@
       "kimina_output": "theorem autoformalized_theorem_9 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
       "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 10,
@@ -138,7 +148,9 @@
       "kimina_output": "theorem autoformalized_theorem_13 : Set.Infinite {p : \u2115 | p.Prime \u2227 p + 1 \u2261 0 [MOD 6]} := by sorry",
       "ground_truth": "theorem exercise_3_1 : Infinite {p : Nat.Primes // p \u2261 -1 [ZMOD 6]} :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 14,
@@ -148,7 +160,9 @@
       "kimina_output": "theorem autoformalized_theorem_14 (n : \u2115) (a b c : \u2124) : (a + b) + c \u2261 a + (b + c) [ZMOD n] := by sorry",
       "ground_truth": "theorem exercise_1_1_3 (n : \u2115) : \n  \u2200 (x y z : ZMod n), (x + y) + z = x + (y + z) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 15,
@@ -218,7 +232,9 @@
       "kimina_output": "theorem autoformalized_theorem_21 (m : \u2115) (B : Set (EuclideanSpace \u211d (Fin m)))\n  (hB : B = {x | \u2016x\u2016 \u2264 1}) :\n  IsCompact B := by sorry",
       "ground_truth": "theorem exercise_2_41 (m : \u2115) [NormedSpace \u211d ((Fin m) \u2192 \u211d)] :\n  IsCompact (Metric.closedBall (0 : EuclideanSpace \u211d (Fin m)) 1) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 22,
@@ -228,7 +244,9 @@
       "kimina_output": "theorem autoformalized_theorem_22\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h\u2081 : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry",
       "ground_truth": "theorem exercise_4_2a\n  {\u03b1 : Type} [MetricSpace \u03b1]\n  {\u03b2 : Type} [MetricSpace \u03b2]\n  (f : \u03b1 \u2192 \u03b2)\n  (h\u2081 : Continuous f)\n  : \u2200 (x : Set \u03b1), f '' (closure x) \u2286 closure (f '' x) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 23,
@@ -248,7 +266,9 @@
       "kimina_output": "theorem autoformalized_theorem_24\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (hM0 : M0 = sSup {abs (f x) | x > a})\n  (hM1 : M1 = sSup {abs (deriv f x) | x > a})\n  (hM2 : M2 = sSup {abs (iteratedDeriv 2 f x) | x > a})\n  (hf : ContDiffOn \u211d 2 f (Set.Ioi a)) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
       "ground_truth": "theorem exercise_5_15 {f : \u211d \u2192 \u211d} (a M0 M1 M2 : \u211d)\n  (hf' : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf'' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (hM0 : M0 = sSup {(|f x|) | x \u2208 (Set.Ioi a)})\n  (hM1 : M1 = sSup {(|deriv f x|) | x \u2208 (Set.Ioi a)})\n  (hM2 : M2 = sSup {(|deriv (deriv f) x|) | x \u2208 (Set.Ioi a)}) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 25,
@@ -258,7 +278,9 @@
       "kimina_output": "theorem autoformalized_theorem_25 {R : Type*} [Ring R] [IsDomain R] {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 := by sorry",
       "ground_truth": "theorem exercise_7_1_11 {R : Type*} [CommRing R] [IsDomain R]\n  {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 26,
@@ -308,7 +330,9 @@
       "kimina_output": "theorem autoformalized_theorem_30 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
       "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 31,
@@ -318,7 +342,9 @@
       "kimina_output": "theorem autoformalized_theorem_31 (a : \u211d) (ha : 0 < a) :\n    Tendsto (\u03bb y => \u222b x in -y..y, cos x / (x^2 + a^2)) atTop (\ud835\udcdd (Real.pi * (Real.exp (-a) / a))) := by sorry",
       "ground_truth": "theorem exercise_3_3 (a : \u211d) (ha : 0 < a) :\n    Tendsto (\u03bb y => \u222b x in -y..y, Real.cos x / (x ^ 2 + a ^ 2))\n    atTop (\ud835\udcdd (Real.pi * (Real.exp (-a) / a))) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 32,
@@ -338,7 +364,9 @@
       "kimina_output": "theorem autoformalized_theorem_33 {R : Type*} [Ring R] [IsDomain R] {x : R} (hx : x ^ 2 = 1) : x = 1 \u2228 x = -1 := by sorry",
       "ground_truth": "theorem exercise_7_1_11 {R : Type*} [CommRing R] [IsDomain R]\n  {x : R} (hx : x^2 = 1) : x = 1 \u2228 x = -1 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 34,
@@ -378,7 +406,9 @@
       "kimina_output": "theorem autoformalized_theorem_37 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x, f x = x\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x :=\nsorry",
       "ground_truth": "theorem exercise_1_6_17 {G : Type*} [Group G] (f : G \u2192 G)\n  (hf : f = \u03bb g => g\u207b\u00b9) :\n  (\u2200 x y : G, f x * f y = f (x*y)) \u2194 \u2200 x y : G, x*y = y*x :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 38,
@@ -488,7 +518,9 @@
       "kimina_output": "theorem autoformalized_theorem_48 {a n : \u2115} (ha : a > 1) (hn : n > 1) :\n    n \u2223 (a ^ n - 1).totient := by sorry",
       "ground_truth": "theorem exercise_2_4_36 {a n : \u2115} (h : a > 1) :\n  n \u2223 (a ^ n - 1).totient :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 49,
@@ -528,7 +560,9 @@
       "kimina_output": "theorem autoformalized_theorem_52 (x y : \u2102) : |(\u2016x\u2016 : \u2102) - \u2016y\u2016| \u2264 \u2016x - y\u2016 := by sorry",
       "ground_truth": "theorem exercise_1_13 (x y : \u2102) :\n  |(abs x) - (abs y)| \u2264 abs (x - y) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 53,
@@ -568,7 +602,9 @@
       "kimina_output": "theorem autoformalized_theorem_56 (z : \u2102) (hz : abs z = 1) :\n    \u2203 y, Tendsto (\u03bb n => \u2211 i in range n, z ^ i / (i + 1) ^ 2) atTop (\ud835\udcdd y) := by sorry",
       "ground_truth": "theorem exercise_1_19b (z : \u2102) (hz : abs z = 1) (s : \u2115 \u2192 \u2102)\n    (h : s = (\u03bb n => \u2211 i in (range n), z ^ (i + 1) / (i + 1) ^ 2)) :\n    \u2203 y, Tendsto s atTop (\ud835\udcdd y) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 57,
@@ -578,7 +614,9 @@
       "kimina_output": "theorem autoformalized_theorem_57 {p : Polynomial \u2102} (hp : p.degree = m) :\n    p.roots.toFinset.card = m \u2194 Disjoint p.roots p.derivative.roots := by sorry",
       "ground_truth": "theorem exercise_4_4 (p : Polynomial \u2102) :\n  p.degree = @card (rootSet p \u2102) (rootSetFintype p \u2102) \u2194\n  Disjoint\n  (@card (rootSet (derivative p) \u2102) (rootSetFintype (derivative p) \u2102))\n  (@card (rootSet p \u2102) (rootSetFintype p \u2102)) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 58,
@@ -638,7 +676,9 @@
       "kimina_output": "theorem autoformalized_theorem_63 {p q n : \u2115} (hp : Odd p \u2227 Nat.Prime p) (hq : Odd q \u2227 Nat.Prime q)\n    (hne : p \u2260 q) (hdiv : (p - 1) \u2223 (q - 1)) (hn : Nat.Coprime n (p * q)) :\n    n ^ (q - 1) \u2261 1 [MOD p * q] := by sorry",
       "ground_truth": "theorem exercise_3_14 {p q n : \u2115} (hp0 : p.Prime \u2227 p > 2)\n  (hq0 : q.Prime \u2227 q > 2) (hpq0 : p \u2260 q) (hpq1 : p - 1 \u2223 q - 1)\n  (hn : n.gcd (p*q) = 1) :\n  n^(q-1) \u2261 1 [MOD p*q] :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 64,
@@ -648,7 +688,9 @@
       "kimina_output": "theorem autoformalized_theorem_64 : IsLeast {n : \u2115 | \u2203 x y z w : \u2124, n = x^3 + y^3 \u2227 n = z^3 + w^3 \u2227 x \u2260 z \u2227 x \u2260 w \u2227 y \u2260 z \u2227 y \u2260 w} 1729 := by sorry",
       "ground_truth": "theorem exercise_18_4 : 1729 = sInf (fun (n : \u2115) => \u2203 x y z w : \u2124,\n  x^3 + y^3 = n \u2227 z^3 + w^3 = n \u2227 x \u2260 z \u2227 x \u2260 w \u2227 y \u2260 z \u2227 y \u2260 w) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 65,
@@ -668,7 +710,9 @@
       "kimina_output": "theorem autoformalized_theorem_66 {p : \u2115} {G : Type*} [Group G]\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=\nsorry",
       "ground_truth": "theorem exercise_2_11_6 {G : Type*} [Group G] {p : \u2115} (hp : Nat.Prime p)\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 67,
@@ -678,7 +722,9 @@
       "kimina_output": "theorem autoformalized_theorem_67 {p : \u2115} {G : Type*} [Group G] {P : Sylow p G}\n  (hP : P.Normal) :\n  \u2200 Q : Sylow p G, P = Q :=\nsorry",
       "ground_truth": "theorem exercise_2_11_6 {G : Type*} [Group G] {p : \u2115} (hp : Nat.Prime p)\n  {P : Sylow p G} (hP : P.Normal) :\n  \u2200 (Q : Sylow p G), P = Q :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 68,
@@ -708,7 +754,9 @@
       "kimina_output": "theorem autoformalized_theorem_70 (p r : \u2115) (hp : p.Prime) (hpr : p = 2 ^ r + 1) :\n    \u2203 k, p = 2 ^ (2 ^ k) + 1 := by sorry",
       "ground_truth": "theorem exercise_13_4_10\n    {p : \u2115} {hp : Nat.Prime p} (h : \u2203 r : \u2115, p = 2 ^ r + 1) :\n    \u2203 (k : \u2115), p = 2 ^ (2 ^ k) + 1 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 71,
@@ -768,7 +816,9 @@
       "kimina_output": "theorem autoformalized_theorem_76\n  : \u2203 (X : Type*) (_ : TopologicalSpace X), \u2203 (S : Set X), IsConnected S \u2227 \u00ac IsConnected (interior S) :=\nsorry",
       "ground_truth": "theorem exercise_2_57 {X : Type*} [TopologicalSpace X]\n  : \u2203 (S : Set X), IsConnected S \u2227 \u00ac IsConnected (interior S) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 77,
@@ -778,7 +828,9 @@
       "kimina_output": "theorem autoformalized_theorem_77\n  (s : \u2115 \u2192 \u211d)\n  (h\u2080 : s 1 = Real.sqrt 2)\n  (h\u2081 : \u2200 n \u2265 1, s (n + 1) = Real.sqrt (2 + Real.sqrt (s n))) :\n  \u2203 L, Tendsto s atTop (\ud835\udcdd L) \u2227 \u2200 n \u2265 1, s n < 2 := by sorry",
       "ground_truth": "noncomputable def f : \u2115 \u2192 \u211d\n| 0 => sqrt 2\n| (n + 1) => sqrt (2 + sqrt (f n))\n\ntheorem exercise_3_3\n  : \u2203 (x : \u211d), Tendsto f atTop (\ud835\udcdd x) \u2227 \u2200 n, f n < 2 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 78,
@@ -808,7 +860,9 @@
       "kimina_output": "theorem autoformalized_theorem_80\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : (\u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0) \u2192 M0 = sSup {x | \u2203 y \u2208 Set.Ioi a, |f y| = x})\n  (h\u2087 : (\u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1) \u2192 M1 = sSup {x | \u2203 y \u2208 Set.Ioi a, |deriv f y| = x})\n  (h\u2088 : (\u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) \u2192 M2 = sSup {x | \u2203 y \u2208 Set.Ioi a, |deriv (deriv f) y| = x}) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
       "ground_truth": "theorem exercise_5_15 {f : \u211d \u2192 \u211d} (a M0 M1 M2 : \u211d)\n  (hf' : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf'' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (hM0 : M0 = sSup {(|f x|) | x \u2208 (Set.Ioi a)})\n  (hM1 : M1 = sSup {(|deriv f x|) | x \u2208 (Set.Ioi a)})\n  (hM2 : M2 = sSup {(|deriv (deriv f) x|) | x \u2208 (Set.Ioi a)}) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 81,
@@ -818,7 +872,9 @@
       "kimina_output": "theorem autoformalized_theorem_81\n  {X : Type*} [MetricSpace X]\n  {Y : Type*} [MetricSpace Y]\n  (f : X \u2192 Y)\n  (h : Continuous f)\n  : \u2200 (E : Set X), f '' (closure E) \u2286 closure (f '' E) :=\nsorry",
       "ground_truth": "theorem exercise_4_2a\n  {\u03b1 : Type} [MetricSpace \u03b1]\n  {\u03b2 : Type} [MetricSpace \u03b2]\n  (f : \u03b1 \u2192 \u03b2)\n  (h\u2081 : Continuous f)\n  : \u2200 (x : Set \u03b1), f '' (closure x) \u2286 closure (f '' x) :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 82,
@@ -908,7 +964,9 @@
       "kimina_output": "theorem autoformalized_theorem_90 (a n : \u2115) (ha : a > 1) (hn : 0 < n) :\n    n \u2223 (a ^ n - 1).totient := by sorry",
       "ground_truth": "theorem exercise_2_4_36 {a n : \u2115} (h : a > 1) :\n  n \u2223 (a ^ n - 1).totient :=",
       "kimina_equivalent": false,
-      "beq_error": null
+      "beq_error": null,
+      "manual_review_equivalent": true,
+      "manual_review_notes": "User manual review from non-SMC run"
     },
     {
       "index": 91,
@@ -1002,5 +1060,6 @@
     }
   ],
   "equivalent": 40,
-  "total": 100
+  "total": 100,
+  "manual_review_equivalent_total": 29
 }

@@ -30,7 +30,7 @@ try:
     from transformers import BitsAndBytesConfig
 except ImportError:  # pragma: no cover - optional dependency
     BitsAndBytesConfig = None
-from genlm.backend.llm.hf import AsyncTransformer
+from genlm.backend.llm.vllm import AsyncVirtualLM
 from genlm.control import AWRS, PromptedLLM
 from genlm.control.constant import EndOfSequence
 from genlm.control.potential.base import Potential
@@ -95,13 +95,17 @@ def load_hf_causal_lm(model_id: str, *, load_in_4bit: bool) -> Tuple[Any, Any]:
 
 
 def build_models(cfg: ModelConfig) -> Dict[str, Any]:
-    primary_model, primary_tok = load_hf_causal_lm(cfg.primary_model_id, load_in_4bit=cfg.load_in_4bit)
-    reference_model, reference_tok = load_hf_causal_lm(cfg.reference_model_id, load_in_4bit=cfg.load_in_4bit)
-    primary_async = AsyncTransformer(primary_model, primary_tok)
+    primary_async = AsyncVirtualLM.from_name(cfg.primary_model_id)
+    primary_tok = primary_async.tokenizer
+
+    reference_model, reference_tok = load_hf_causal_lm(
+        cfg.reference_model_id,
+        load_in_4bit=cfg.load_in_4bit,
+    )
+
     return {
-        "primary_model": primary_model,
-        "primary_tok": primary_tok,
         "primary_async": primary_async,
+        "primary_tok": primary_tok,
         "reference_model": reference_model,
         "reference_tok": reference_tok,
     }
@@ -487,14 +491,14 @@ def summarize_sequences(sequences, theorem_name: str) -> Tuple[Dict[str, float],
 
 
 def build_prompted_llm(
-    primary_async: AsyncTransformer,
+    primary_async,
     tokenizer,
     cfg: ModelConfig,
     nl_statement: str,
     theorem_name: str,
 ) -> PromptedLLM:
     user_prompt = build_formalization_prompt(nl_statement, theorem_name)
-    user_prompt += "\n<think>Okay, I'm done thinking.</think>\n```lean4\n"
+    user_prompt += "\nOkay, I'm done thinking.\n```lean4\n"
     messages = [
         {
             "role": "system",
@@ -544,7 +548,7 @@ async def run_smc_for_example(
     theorem_name: str,
     lean_header: str,
     lean_server: AutoLeanServer,
-    primary_async: AsyncTransformer,
+    primary_async,
     primary_tokenizer,
     reference_model: AutoModelForCausalLM,
     reference_tokenizer,
@@ -667,7 +671,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--potential-stride",
         type=int,
-        default=1,
+        default=8,
         help="Evaluate Lean/cycle potentials every N tokens instead of every step",
     )
     parser.add_argument("--results-path", type=Path, default=RESULTS_PATH, help="Where to save the JSON summary")
