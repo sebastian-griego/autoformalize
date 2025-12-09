@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 2,
+    "max_tokens": 160,
+    "smc_mode": "full",
+    "potential_stride": 8,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "n_examples": 2
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.5,
+      "avg_runtime_sec": 3.1092816591262817,
+      "avg_tokens": 91.0
+    },
+    "smc_both": {
+      "expected_correct": 0.0,
+      "avg_runtime_sec": 1038.993614077568,
+      "avg_tokens": 160.0
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -5.3537665359601385e-05
+          }
+        ],
+        "runtime_sec": 3.104649543762207,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' :=\nsorry\n\ntheorem autoformalized_theorem_1 (X I : Type*) [TopologicalSpace X]\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 1186.5700488090515,
+        "avg_tokens": 160.0
+      }
+    },
+    {
+      "index": 1,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+            "log_weight": -0.00017137978173904805
+          }
+        ],
+        "runtime_sec": 3.1139137744903564,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoform\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformal\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 891.4171793460846,
+        "avg_tokens": 160.0
+      }
+    }
+  ]
+}

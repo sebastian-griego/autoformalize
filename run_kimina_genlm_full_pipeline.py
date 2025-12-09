@@ -43,7 +43,7 @@ from examples.beq_plus import DEFAULT_TIMEOUT, beq_plus
 
 DEFAULT_PRIMARY_MODEL_ID = "AI-MO/Kimina-Autoformalizer-7B"
 DEFAULT_REFERENCE_MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
-N_PARTICLES = 5
+N_PARTICLES = 2
 DATASET_NAME = "PAug/ProofNetVerif"
 SPLIT = "valid"
 N_EXAMPLES = 100
@@ -54,7 +54,7 @@ RESULTS_PATH = Path("kimina_genlm_full_results.json")
 class ModelConfig:
     primary_model_id: str = DEFAULT_PRIMARY_MODEL_ID
     reference_model_id: str = DEFAULT_REFERENCE_MODEL_ID
-    max_new_tokens: int = 512
+    max_new_tokens: int = 160
     temperature: float = 0.2
     top_p: float = 0.9
     load_in_4bit: bool = False
@@ -64,7 +64,7 @@ class ModelConfig:
 class SMCConfig:
     num_particles: int = N_PARTICLES
     smc_mode: str = "all"
-    potential_stride: int = 1
+    potential_stride: int = 8
 
 
 def load_hf_causal_lm(model_id: str, *, load_in_4bit: bool) -> Tuple[Any, Any]:
@@ -124,11 +124,61 @@ class MethodSummary:
     score_sum: float = 0.0
     runtime_sum: float = 0.0
     token_sum: float = 0.0
+    count: int = 0
 
     def update(self, score: float, runtime: float, avg_tokens: float) -> None:
         self.score_sum += score
         self.runtime_sum += runtime
         self.token_sum += avg_tokens
+        self.count += 1
+
+
+def _is_method_block(block: Any) -> bool:
+    if not isinstance(block, dict):
+        return False
+    return {"posterior", "beq_labels", "runtime_sec", "avg_tokens"}.issubset(block.keys())
+
+
+def _score_from_block(block: Dict[str, Any]) -> float:
+    posterior = block.get("posterior", {}) or {}
+    beq_labels = block.get("beq_labels", {}) or {}
+    score = 0.0
+    for candidate, prob in posterior.items():
+        try:
+            prob_val = float(prob)
+        except (TypeError, ValueError):
+            continue
+        if beq_labels.get(candidate, False):
+            score += prob_val
+    return score
+
+
+def _update_summary_from_block(name: str, block: Dict[str, Any], method_summaries: Dict[str, MethodSummary]) -> None:
+    stats = method_summaries.setdefault(name, MethodSummary())
+    score = _score_from_block(block)
+    runtime = float(block.get("runtime_sec", 0.0) or 0.0)
+    avg_tokens = float(block.get("avg_tokens", 0.0) or 0.0)
+    stats.update(score, runtime, avg_tokens)
+
+
+def _build_summary(method_summaries: Dict[str, MethodSummary], method_order: List[str]) -> Dict[str, Dict[str, float]]:
+    summary: Dict[str, Dict[str, float]] = {}
+    for name in method_order:
+        stats = method_summaries.get(name)
+        if not stats or stats.count == 0:
+            summary[name] = {
+                "expected_correct": 0.0,
+                "avg_runtime_sec": 0.0,
+                "avg_tokens": 0.0,
+            }
+            continue
+        denom = float(stats.count)
+        summary[name] = {
+            "expected_correct": stats.score_sum / denom,
+            "avg_runtime_sec": stats.runtime_sum / denom,
+            "avg_tokens": stats.token_sum / denom,
+        }
+    return summary
 
 
 def build_formalization_prompt(nl_statement: str, theorem_name: str) -> str:
@@ -649,8 +699,14 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Kimina GenLM autoformalization pipeline")
     parser.add_argument("--split", default=SPLIT, help="Dataset split to evaluate")
     parser.add_argument("--n-examples", type=int, default=N_EXAMPLES, help="Number of examples to run")
+    parser.add_argument(
+        "--start-index",
+        type=int,
+        default=0,
+        help="Start offset in the dataset split (useful for sharding long runs)",
+    )
     parser.add_argument("--seed", type=int, default=42, help="Random seed for dataset sampling")
-    parser.add_argument("--max-tokens", type=int, default=512, help="Maximum generation length")
+    parser.add_argument("--max-tokens", type=int, default=160, help="Maximum generation length")
     parser.add_argument(
         "--num-particles",
         type=int,
@@ -697,8 +753,56 @@ def parse_args() -> argparse.Namespace:
 
 async def async_main(args: argparse.Namespace) -> None:
     random.seed(args.seed)
+    max_examples = max(0, args.n_examples)
+    if max_examples == 0:
+        print("[INFO] n-examples set to 0 – nothing to run.")
+        return
+
     dataset = load_dataset(DATASET_NAME, split=args.split)
-    dataset = dataset.shuffle(seed=args.seed).select(range(args.n_examples))
+    total_available = len(dataset)
+    if total_available == 0:
+        print(f"[WARN] Dataset split '{args.split}' is empty.")
+        return
+
+    start_index = max(0, args.start_index)
+    if start_index >= total_available:
+        print(
+            f"[WARN] start-index {start_index} is beyond the split size {total_available}; no examples to run."
+        )
+        return
+
+    end_index = min(total_available, start_index + max_examples)
+    dataset_slice = dataset.select(range(start_index, end_index))
+    total_examples = len(dataset_slice)
+    if total_examples == 0:
+        print("[INFO] Requested range produced no examples – exiting early.")
+        return
+
+    existing_records: List[Dict[str, Any]] = []
+    processed_ids: set[str] = set()
+    latest_summary: Dict[str, Dict[str, float]] | None = None
+    if args.results_path.exists():
+        try:
+            previous = json.loads(args.results_path.read_text())
+            maybe_records = previous.get("records", [])
+            if isinstance(maybe_records, list):
+                existing_records = maybe_records
+                print(
+                    f"[INFO] Loaded {len(existing_records)} existing records from {args.results_path}."
+                )
+            else:
+                print(
+                    f"[WARN] Ignoring malformed records in {args.results_path}; starting fresh."
+                )
+        except Exception as exc:
+            print(f"[WARN] Could not parse existing results file {args.results_path}: {exc}")
+
+    records: List[Dict[str, Any]] = list(existing_records)
+    processed_ids = {
+        rec.get("id")
+        for rec in records
+        if isinstance(rec, dict) and rec.get("id") is not None
+    }
 
     smc_mode = args.smc_config
     if args.no_ablations:
@@ -725,19 +829,57 @@ async def async_main(args: argparse.Namespace) -> None:
     )
     server = AutoLeanServer(config=repl_config)
 
-    smc_method_names = ["baseline"]
+    method_order = ["baseline"]
     if smc_cfg.smc_mode == "all":
-        smc_method_names.extend(
-            ["smc_no_potential", "smc_lean_only", "smc_cycle_only", "smc_both"]
-        )
+        method_order.extend(["smc_no_potential", "smc_lean_only", "smc_cycle_only", "smc_both"])
     else:
-        smc_method_names.append("smc_both")
-    method_summaries: Dict[str, MethodSummary] = {name: MethodSummary() for name in smc_method_names}
+        method_order.append("smc_both")
+    # Deduplicate while preserving order.
+    method_order = list(dict.fromkeys(method_order))
+    method_summaries: Dict[str, MethodSummary] = {name: MethodSummary() for name in method_order}
 
-    records: List[Dict[str, Any]] = []
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        for name, value in record.items():
+            if _is_method_block(value):
+                if name not in method_order:
+                    method_order.append(name)
+                _update_summary_from_block(name, value, method_summaries)
 
-    for idx, example in enumerate(dataset):
-        theorem_name = f"autoformalized_theorem_{idx}"
+    args.results_path.parent.mkdir(parents=True, exist_ok=True)
+
+    def persist_results() -> Dict[str, Dict[str, float]]:
+        summary = _build_summary(method_summaries, method_order)
+        results = {
+            "meta": {
+                "model": model_cfg.primary_model_id,
+                "reference_model": model_cfg.reference_model_id,
+                "n_particles": smc_cfg.num_particles,
+                "max_tokens": model_cfg.max_new_tokens,
+                "smc_mode": smc_cfg.smc_mode,
+                "potential_stride": smc_cfg.potential_stride,
+                "four_bit": model_cfg.load_in_4bit,
+                "dataset": DATASET_NAME,
+                "split": args.split,
+                "n_examples": len(records),
+            },
+            "summary": summary,
+            "records": records,
+        }
+        args.results_path.write_text(json.dumps(results, indent=2))
+        return summary
+
+    processed_in_slice = 0
+    dataset_progress_total = total_examples
+    for relative_idx, example in enumerate(dataset_slice):
+        example_id = example["id"]
+        if example_id in processed_ids:
+            processed_in_slice += 1
+            print(f"[{processed_in_slice}/{dataset_progress_total}] {example_id} already processed, skipping.")
+            continue
+
+        theorem_name = f"autoformalized_theorem_{start_index + relative_idx}"
         nl_statement = example["nl_statement"].strip()
         lean_header = example["lean4_src_header"]
         ground_truth = example["lean4_formalization"]
@@ -755,16 +897,21 @@ async def async_main(args: argparse.Namespace) -> None:
         )
 
         record = {
-            "index": idx,
-            "id": example["id"],
+            "index": start_index + relative_idx,
+            "id": example_id,
             "nl_statement": nl_statement,
             "ground_truth": ground_truth,
             "lean_header": lean_header,
         }
 
+        method_logs: List[Tuple[str, float]] = []
         for name, method_run in methods.items():
             beq_labels, score = evaluate_posterior(method_run.posterior, lean_header, ground_truth, server)
-            method_summaries[name].update(score, method_run.runtime_sec, method_run.avg_tokens)
+            method_summaries.setdefault(name, MethodSummary()).update(
+                score,
+                method_run.runtime_sec,
+                method_run.avg_tokens,
+            )
             record[name] = {
                 "posterior": method_run.posterior,
                 "beq_labels": {cand: bool(val) for cand, val in beq_labels.items()},
@@ -775,47 +922,25 @@ async def async_main(args: argparse.Namespace) -> None:
             if name == "baseline":
                 record["baseline_candidate"] = next(iter(method_run.posterior.keys()), "")
                 record["baseline_beq"] = next(iter(beq_labels.values()), False)
+            method_logs.append((name, score))
 
-        main_key = "smc_both" if "smc_both" in method_summaries else smc_method_names[1]
-        both_score = method_summaries.get(main_key, MethodSummary()).score_sum / max(1, idx + 1)
-        print(
-            f"[{idx + 1}/{args.n_examples}] {example['id']} -> "
-            f"Kimina GenLM {main_key} score {both_score:.2f}"
-        )
         records.append(record)
+        processed_ids.add(example_id)
+        processed_in_slice += 1
+        latest_summary = persist_results()
 
-    summary = {}
-    for name, stats in method_summaries.items():
-        avg_score = stats.score_sum / args.n_examples
-        avg_runtime = stats.runtime_sum / args.n_examples
-        avg_tokens = stats.token_sum / args.n_examples
-        summary[name] = {
-            "expected_correct": avg_score,
-            "avg_runtime_sec": avg_runtime,
-            "avg_tokens": avg_tokens,
-        }
+        progress_prefix = f"[{processed_in_slice}/{dataset_progress_total}]"
+        for meth_name, meth_score in method_logs:
+            print(f"{progress_prefix} {example_id} -> {meth_name} score {meth_score:.2f}")
 
-    results = {
-        "meta": {
-            "model": model_cfg.primary_model_id,
-            "reference_model": model_cfg.reference_model_id,
-            "n_particles": smc_cfg.num_particles,
-            "max_tokens": model_cfg.max_new_tokens,
-            "smc_mode": smc_cfg.smc_mode,
-            "potential_stride": smc_cfg.potential_stride,
-            "four_bit": model_cfg.load_in_4bit,
-            "dataset": DATASET_NAME,
-            "split": args.split,
-            "n_examples": args.n_examples,
-        },
-        "summary": summary,
-        "records": records,
-    }
-
-    args.results_path.write_text(json.dumps(results, indent=2))
+    if latest_summary is None:
+        latest_summary = _build_summary(method_summaries, method_order)
 
     print("\nMethod | Expected BEq+ | Avg runtime (s) | Avg tokens")
-    for name, stats in summary.items():
+    for name in method_order:
+        stats = latest_summary.get(name)
+        if not stats:
+            stats = {"expected_correct": 0.0, "avg_runtime_sec": 0.0, "avg_tokens": 0.0}
         print(
             f"{name:18s} | {stats['expected_correct']:.3f} | "
             f"{stats['avg_runtime_sec']:.2f} | {stats['avg_tokens']:.1f}"
