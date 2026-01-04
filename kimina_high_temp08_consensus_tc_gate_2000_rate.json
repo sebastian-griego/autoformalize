@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start2000_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "feature": "tc_rate",
+    "direction": "ge",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8291902306084897,
+    "tc_consensus_f1_avg": 0.7849279305008696
+  },
+  "summary": {
+    "threshold_0.009174311926605505": {
+      "count": 19,
+      "chosen_f1_avg": 0.7849279305008696,
+      "chosen_typecheck_rate": 1.0
+    },
+    "threshold_0.14960629921259844": {
+      "count": 19,
+      "chosen_f1_avg": 0.8274598727187356,
+      "chosen_typecheck_rate": 0.8947368421052632
+    },
+    "threshold_0.31666666666666665": {
+      "count": 19,
+      "chosen_f1_avg": 0.8292243261355757,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.41732283464566927": {
+      "count": 19,
+      "chosen_f1_avg": 0.8279411749550021,
+      "chosen_typecheck_rate": 0.7894736842105263
+    },
+    "threshold_0.4845360824742268": {
+      "count": 19,
+      "chosen_f1_avg": 0.8279411749550021,
+      "chosen_typecheck_rate": 0.7894736842105263
+    },
+    "threshold_0.7444444444444445": {
+      "count": 19,
+      "chosen_f1_avg": 0.8291902306084898,
+      "chosen_typecheck_rate": 0.7368421052631579
+    },
+    "threshold_0.8476190476190476": {
+      "count": 19,
+      "chosen_f1_avg": 0.8291902306084898,
+      "chosen_typecheck_rate": 0.7368421052631579
+    },
+    "threshold_0.875": {
+      "count": 19,
+      "chosen_f1_avg": 0.8291902306084898,
+      "chosen_typecheck_rate": 0.7368421052631579
+    },
+    "threshold_0.95": {
+      "count": 19,
+      "chosen_f1_avg": 0.8291902306084898,
+      "chosen_typecheck_rate": 0.7368421052631579
+    },
+    "threshold_0.972972972972973": {
+      "count": 19,
+      "chosen_f1_avg": 0.8291902306084898,
+      "chosen_typecheck_rate": 0.7368421052631579
+    },
+    "threshold_1.0": {
+      "count": 19,
+      "chosen_f1_avg": 0.8291902306084898,
+      "chosen_typecheck_rate": 0.7368421052631579
+    }
+  }
+}

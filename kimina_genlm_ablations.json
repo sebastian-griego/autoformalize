@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 1,
+    "max_tokens": 256,
+    "smc_mode": "all",
+    "potential_stride": 32,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 1,
+    "shard_id": 0,
+    "n_examples": 3
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.3333333333333333,
+      "avg_runtime_sec": 3.1062249342600503,
+      "avg_tokens": 90.33333333333333
+    },
+    "smc_no_potential": {
+      "expected_correct": 0.3333333333333333,
+      "avg_runtime_sec": 3.510826269785563,
+      "avg_tokens": 104.0
+    },
+    "smc_lean_only": {
+      "expected_correct": 0.0,
+      "avg_runtime_sec": 3.148018995920817,
+      "avg_tokens": 90.0
+    },
+    "smc_cycle_only": {
+      "expected_correct": 0.3333333333333333,
+      "avg_runtime_sec": 171.44597522417703,
+      "avg_tokens": 90.0
+    },
+    "smc_both": {
+      "expected_correct": 0.3333333333333333,
+      "avg_runtime_sec": 192.19616103172302,
+      "avg_tokens": 100.66666666666667
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -5.3537665359601385e-05
+          }
+        ],
+        "runtime_sec": 3.1399896144866943,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry",
+      "baseline_beq": false,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T)\n  (hT' : \u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T) :\n  \u2203! T', IsLeast {T' | (\u2200s, (\u2200t \u2208 s, t \u2208 T') \u2192 sUnion s \u2208 T')} T := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T)\n  (hT' : \u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T) :\n  \u2203! T', IsLeast {T' | (\u2200s, (\u2200t \u2208 s, t \u2208 T') \u2192 sUnion s \u2208 T')} T := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T)\n  (hT' : \u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T) :\n  \u2203! T', IsLeast {T' | (\u2200s, (\u2200t \u2208 s, t \u2208 T') \u2192 sUnion s \u2208 T')} T :=\nsorry",
+            "log_weight": 0.0006996146929405978
+          }
+        ],
+        "runtime_sec": 4.379075527191162,
+        "avg_tokens": 132.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 3.3101003170013428,
+        "avg_tokens": 91.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T :=\nsorry",
+            "log_weight": -2.527022392953291
+          }
+        ],
+        "runtime_sec": 171.1336088180542,
+        "avg_tokens": 90.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 236.71476292610168,
+        "avg_tokens": 122.0
+      }
+    },
+    {
+      "index": 1,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+            "log_weight": 0.0007078779448942123
+          }
+        ],
+        "runtime_sec": 3.2044732570648193,
+        "avg_tokens": 92.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "baseline_beq": true,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+            "log_weight": 0.0009506938338995294
+          }
+        ],
+        "runtime_sec": 3.1679701805114746,
+        "avg_tokens": 92.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 3.075765609741211,
+        "avg_tokens": 91.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+            "log_weight": -2.2144704435432647
+          }
+        ],
+        "runtime_sec": 172.6397819519043,
+        "avg_tokens": 92.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+            "log_weight": -2.214470148424134
+          }
+        ],
+        "runtime_sec": 173.8484649658203,
+        "avg_tokens": 92.0
+      }
+    },
+    {
+      "index": 2,
+      "id": "Rudin|exercise_1_18a",
+      "nl_statement": "If $k \\geq 2$ and $\\mathbf{x} \\in R^{k}$, prove that there exists $\\mathbf{y} \\in R^{k}$ such that $\\mathbf{y} \\neq 0$ but $\\mathbf{x} \\cdot \\mathbf{y}=0$",
+      "ground_truth": "theorem exercise_1_18a\n  (n : \u2115)\n  (h : n > 1)\n  (x : EuclideanSpace \u211d (Fin n)) -- R^n\n  : \u2203 (y : EuclideanSpace \u211d (Fin n)), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": 0.0006324759987744713
+          }
+        ],
+        "runtime_sec": 2.9742119312286377,
+        "avg_tokens": 88.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+      "baseline_beq": false,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": 0.0005984480840422883
+          }
+        ],
+        "runtime_sec": 2.9854331016540527,
+        "avg_tokens": 88.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": 0.000550602147395764
+          }
+        ],
+        "runtime_sec": 3.0581910610198975,
+        "avg_tokens": 88.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": -2.0870761825418906
+          }
+        ],
+        "runtime_sec": 170.56453490257263,
+        "avg_tokens": 88.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": -2.0870761825418906
+          }
+        ],
+        "runtime_sec": 166.02525520324707,
+        "avg_tokens": 88.0
+      }
+    }
+  ]
+}

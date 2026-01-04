@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_16_50_start600_temp06_qwen1p5_rescored_cpu.json"
+  },
+  "summary": {
+    "records": 44,
+    "candidate_typecheck_rate": 0.7495798319327731,
+    "tc_candidate_f1_avg": 0.7746590014722335,
+    "non_tc_candidate_f1_avg": 0.6734027561572824,
+    "max_tc_f1_avg": 0.8697684906487365,
+    "max_non_tc_f1_avg": 0.769490803460385,
+    "records_with_tc": 42,
+    "records_with_non_tc": 27,
+    "records_with_both": 25
+  }
+}

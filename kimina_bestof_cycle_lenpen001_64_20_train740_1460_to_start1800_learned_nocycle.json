@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "results_path": null,
+    "train_results": "kimina_bestof_cycle_lenpen001_64_20_temp08_merged_start740_1460_rescored_cpu.json",
+    "test_results": "kimina_bestof_cycle_lenpen001_128_20_start1800_temp08_qwen1p5_rescored_cpu.json",
+    "folds": 5,
+    "model": "ridge",
+    "ridge": 0.001,
+    "gbrt_estimators": 200,
+    "gbrt_learning_rate": 0.05,
+    "gbrt_depth": 3,
+    "baseline_feature": false
+  },
+  "summary": {
+    "count": 19,
+    "baseline_f1_avg": 0.8216701134395191,
+    "learned_f1_avg": 0.8733676258209239,
+    "learned_tc_f1_avg": 0.8733676258209239,
+    "learned_typecheck_rate": 1.0,
+    "learned_tc_typecheck_rate": 1.0,
+    "learned_improve_rate": 0.631578947368421,
+    "learned_tc_improve_rate": 0.631578947368421,
+    "avg_weights": [
+      0.716177148747008,
+      0.011653765385993256,
+      0.06854173711106998,
+      0.06124807895581997
+    ]
+  }
+}

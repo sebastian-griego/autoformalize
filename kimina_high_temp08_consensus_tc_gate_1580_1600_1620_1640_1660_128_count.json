@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start1580_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1600_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1620_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1640_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1660_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "feature": "tc_count",
+    "direction": "ge",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8439734953471654,
+    "tc_consensus_f1_avg": 0.8500039616670902
+  },
+  "summary": {
+    "threshold_0.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.85000396166709,
+      "chosen_typecheck_rate": 0.9897959183673469
+    },
+    "threshold_17.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8527480270803824,
+      "chosen_typecheck_rate": 0.8979591836734694
+    },
+    "threshold_25.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8511788182883815,
+      "chosen_typecheck_rate": 0.8877551020408163
+    },
+    "threshold_36.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8505662099668393,
+      "chosen_typecheck_rate": 0.826530612244898
+    },
+    "threshold_46.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8474085036774999,
+      "chosen_typecheck_rate": 0.8163265306122449
+    },
+    "threshold_54.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8481450356640319,
+      "chosen_typecheck_rate": 0.8061224489795918
+    },
+    "threshold_61.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8468608035843237,
+      "chosen_typecheck_rate": 0.8061224489795918
+    },
+    "threshold_75.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8459561984121805,
+      "chosen_typecheck_rate": 0.8061224489795918
+    },
+    "threshold_83.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8448106983212719,
+      "chosen_typecheck_rate": 0.8061224489795918
+    },
+    "threshold_99.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8439762689154138,
+      "chosen_typecheck_rate": 0.8061224489795918
+    },
+    "threshold_124.0": {
+      "count": 98,
+      "chosen_f1_avg": 0.8439734953471651,
+      "chosen_typecheck_rate": 0.8061224489795918
+    }
+  }
+}

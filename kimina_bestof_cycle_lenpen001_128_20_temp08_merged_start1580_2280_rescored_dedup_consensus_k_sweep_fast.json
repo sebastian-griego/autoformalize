@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2280_rescored_dedup.json",
+    "ks": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "trials": 30,
+    "seed": 0,
+    "prepared_records": 173
+  },
+  "summary": {
+    "all": {
+      "k_4": {
+        "count": 5190,
+        "f1_avg": 0.8013469553837886,
+        "typecheck_rate": 0.6963391136801541
+      },
+      "k_8": {
+        "count": 5190,
+        "f1_avg": 0.8172647964403119,
+        "typecheck_rate": 0.7304431599229287
+      },
+      "k_16": {
+        "count": 5160,
+        "f1_avg": 0.8252637133406576,
+        "typecheck_rate": 0.7560077519379845
+      },
+      "k_32": {
+        "count": 4950,
+        "f1_avg": 0.8305377223876992,
+        "typecheck_rate": 0.7658585858585859
+      },
+      "k_64": {
+        "count": 4410,
+        "f1_avg": 0.828363577193684,
+        "typecheck_rate": 0.7646258503401361
+      }
+    },
+    "tc_only": {
+      "k_4": {
+        "count": 5070,
+        "f1_avg": 0.8170750063904644,
+        "typecheck_rate": 1.0
+      },
+      "k_8": {
+        "count": 4950,
+        "f1_avg": 0.83030449781755,
+        "typecheck_rate": 1.0
+      },
+      "k_16": {
+        "count": 4560,
+        "f1_avg": 0.8400354283224595,
+        "typecheck_rate": 1.0
+      },
+      "k_32": {
+        "count": 3840,
+        "f1_avg": 0.846624430664815,
+        "typecheck_rate": 1.0
+      },
+      "k_64": {
+        "count": 2370,
+        "f1_avg": 0.8441911505747445,
+        "typecheck_rate": 1.0
+      }
+    }
+  }
+}

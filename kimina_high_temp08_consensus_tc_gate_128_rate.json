@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start1580_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1600_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1620_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1640_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "feature": "tc_rate",
+    "direction": "ge",
+    "dedupe_id": true,
+    "all_consensus_f1_avg": 0.8417626812728011,
+    "tc_consensus_f1_avg": 0.8422562222377573
+  },
+  "summary": {
+    "threshold_0.0": {
+      "count": 64,
+      "chosen_f1_avg": 0.8422562222377571,
+      "chosen_typecheck_rate": 0.984375
+    },
+    "threshold_0.13953488372093023": {
+      "count": 64,
+      "chosen_f1_avg": 0.844310382874227,
+      "chosen_typecheck_rate": 0.90625
+    },
+    "threshold_0.4": {
+      "count": 64,
+      "chosen_f1_avg": 0.8506710133171717,
+      "chosen_typecheck_rate": 0.859375
+    },
+    "threshold_0.5662650602409639": {
+      "count": 64,
+      "chosen_f1_avg": 0.8445671243846834,
+      "chosen_typecheck_rate": 0.8125
+    },
+    "threshold_0.6535433070866141": {
+      "count": 64,
+      "chosen_f1_avg": 0.8453127989890535,
+      "chosen_typecheck_rate": 0.8125
+    },
+    "threshold_0.7321428571428571": {
+      "count": 64,
+      "chosen_f1_avg": 0.8452832061860233,
+      "chosen_typecheck_rate": 0.796875
+    },
+    "threshold_0.8208955223880597": {
+      "count": 64,
+      "chosen_f1_avg": 0.8441891428504619,
+      "chosen_typecheck_rate": 0.796875
+    },
+    "threshold_0.8641975308641975": {
+      "count": 64,
+      "chosen_f1_avg": 0.8429023781445794,
+      "chosen_typecheck_rate": 0.78125
+    },
+    "threshold_0.9339622641509434": {
+      "count": 64,
+      "chosen_f1_avg": 0.8417626812728011,
+      "chosen_typecheck_rate": 0.78125
+    },
+    "threshold_0.9634146341463414": {
+      "count": 64,
+      "chosen_f1_avg": 0.8417626812728011,
+      "chosen_typecheck_rate": 0.78125
+    },
+    "threshold_1.0": {
+      "count": 64,
+      "chosen_f1_avg": 0.8417626812728011,
+      "chosen_typecheck_rate": 0.78125
+    }
+  }
+}

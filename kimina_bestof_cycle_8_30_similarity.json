@@ -1,0 +1,2213 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_8_30.json"
+  },
+  "summary": {
+    "count": 27,
+    "baseline_f1_avg": 0.801485430174961,
+    "best_cycle_f1_avg": 0.8070028064549701,
+    "best_cycle_tc_f1_avg": 0.8123101669667597,
+    "best_cycle_improve_rate": 0.2222222222222222,
+    "best_cycle_tc_improve_rate": 0.2962962962962963
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "baseline_candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | T' \u2286 T \u2227 IsTopologicalSpace T'} (\ud835\udcdf T) := by sorry",
+      "baseline_cycle_score": -3.1382857311603636,
+      "baseline_typecheck": false,
+      "best_cycle_candidate": "theorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry",
+      "best_cycle_score": -2.649444483047308,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry",
+      "best_cycle_tc_score": -2.649444483047308,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 6,
+      "num_typechecked_candidates": 5,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | T' \u2286 T \u2227 IsTopologicalSpace T'} (\ud835\udcdf T) := by sorry",
+          "log_weight": -0.00046359483129426027
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+          "log_weight": -0.00032188064767805586
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' :=\nsorry",
+          "log_weight": 0.002486917746625486
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+          "log_weight": 0.0006661609607264472
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' :=\nsorry",
+          "log_weight": 0.0002770738342752343
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+          "log_weight": 0.0006661609607264472
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsLeast {T' | \u2200 i, T' \u2286 T i} T :=\nsorry",
+          "log_weight": 0.0005689860287915569
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsLeast {x | \u2200 i, T' \u2286 T i} T' \u2227 IsTopologicalBasis T' :=\nsorry",
+          "log_weight": 0.0021575109995218156
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+          "log_weight": 0.0006661609607264472
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry",
+          "cycle_score": -2.720324288967044,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry",
+          "cycle_score": -2.649444483047308,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsLeast {x | \u2200 i, T' \u2286 T i} T' \u2227 IsTopologicalBasis T' := by sorry",
+          "cycle_score": -2.801473939141562,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsLeast {T' | \u2200 i, T' \u2286 T i} T := by sorry",
+          "cycle_score": -2.686981966329175,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' := by sorry",
+          "cycle_score": -2.822776908098265,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry",
+          "cycle_score": -2.721017593561217,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 18.59035301208496,
+      "baseline_stmt_f1": 0.5405405405405407,
+      "best_cycle_stmt_f1": 0.9090909090909091,
+      "best_cycle_tc_stmt_f1": 0.9090909090909091
+    },
+    {
+      "index": 1,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "baseline_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "baseline_cycle_score": -2.332917785240432,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "best_cycle_score": -2.3460560835013955,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "best_cycle_tc_score": -2.3460560835013955,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+          "log_weight": 0.0007235690772922275
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+          "log_weight": 0.0007928653838540156
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+          "log_weight": 0.0009504254558957653
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+          "log_weight": 0.0009504051991070058
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+          "log_weight": 0.0009504051991070058
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+          "log_weight": 0.0009504051991070058
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+          "log_weight": 0.0009504051991070058
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+          "log_weight": 0.0009504254558957653
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+          "log_weight": 0.0009504254558957653
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+          "cycle_score": -2.3460560835013955,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+          "cycle_score": -2.389802696341175,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 14.16726303100586,
+      "baseline_stmt_f1": 0.9807692307692307,
+      "best_cycle_stmt_f1": 0.9607843137254902,
+      "best_cycle_tc_stmt_f1": 0.9607843137254902
+    },
+    {
+      "index": 2,
+      "id": "Rudin|exercise_1_18a",
+      "nl_statement": "If $k \\geq 2$ and $\\mathbf{x} \\in R^{k}$, prove that there exists $\\mathbf{y} \\in R^{k}$ such that $\\mathbf{y} \\neq 0$ but $\\mathbf{x} \\cdot \\mathbf{y}=0$",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_1_18a\n  (n : \u2115)\n  (h : n > 1)\n  (x : EuclideanSpace \u211d (Fin n)) -- R^n\n  : \u2203 (y : EuclideanSpace \u211d (Fin n)), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+      "baseline_cycle_score": -2.070276200771332,
+      "baseline_typecheck": false,
+      "best_cycle_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+      "best_cycle_score": -2.0684903667253605,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) := by sorry",
+      "best_cycle_tc_score": -2.0883833573145023,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 5,
+      "num_typechecked_candidates": 1,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0006324759987744713
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) :=\nsorry",
+          "log_weight": 6.669178909191498e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0005785383785693055
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0005785383785693055
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h : k \u2265 2) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0006431024643765193
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (n : \u2115)\n  (x : EuclideanSpace \u211d (Fin n))\n  (h : n \u2265 2) :\n  \u2203 y : EuclideanSpace \u211d (Fin n), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0010574308408208975
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0005785383785693055
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0007601563385659021
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "log_weight": 0.0005785383785693055
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "cycle_score": -2.070276200771332,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_2\n  (n : \u2115)\n  (x : EuclideanSpace \u211d (Fin n))\n  (h : n \u2265 2) :\n  \u2203 y : EuclideanSpace \u211d (Fin n), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "cycle_score": -2.182793601470835,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "cycle_score": -2.0684903667253605,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h : k \u2265 2) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+          "cycle_score": -2.0934712290763855,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) := by sorry",
+          "cycle_score": -2.0883833573145023,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 13.764738082885742,
+      "baseline_stmt_f1": 0.7200000000000001,
+      "best_cycle_stmt_f1": 0.7200000000000001,
+      "best_cycle_tc_stmt_f1": 0.7924528301886793
+    },
+    {
+      "index": 3,
+      "id": "Ireland-Rosen|exercise_3_5",
+      "nl_statement": "Show that the equation $7 x^{3}+2=y^{3}$ has no solution in integers.",
+      "lean_header": "import Mathlib\n\nopen Real\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_3_5 : \u00ac \u2203 x y : \u2124, 7*x^3 + 2 = y^3 :=",
+      "baseline_candidate": "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+      "baseline_cycle_score": -4.6421619707887825,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+      "best_cycle_score": -4.6421619707887825,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+      "best_cycle_tc_score": -4.6421619707887825,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": -0.0016909475665974885
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001039887268905202
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001039887268905202
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001039887268905202
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001039887268905202
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001027278422472447
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001039887268905202
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001039887268905202
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "log_weight": 0.001039887268905202
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "cycle_score": -4.656033597209237,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+          "cycle_score": -4.6421619707887825,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 6.414604663848877,
+      "baseline_stmt_f1": 0.9500000000000001,
+      "best_cycle_stmt_f1": 0.9500000000000001,
+      "best_cycle_tc_stmt_f1": 0.9500000000000001
+    },
+    {
+      "index": 4,
+      "id": "Dummit-Foote|exercise_7_3_37",
+      "nl_statement": "An ideal $N$ is called nilpotent if $N^{n}$ is the zero ideal for some $n \\geq 1$. Prove that the ideal $p \\mathbb{Z} / p^{m} \\mathbb{Z}$ is a nilpotent ideal in the ring $\\mathbb{Z} / p^{m} \\mathbb{Z}$.",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_7_3_37 {p m : \u2115} (hp : p.Prime) :\n  IsNilpotent (span ({\u2191p} : Set $ ZMod $ p^m) : Ideal $ ZMod $ p^m) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry",
+      "baseline_cycle_score": -2.3009232694720043,
+      "baseline_typecheck": false,
+      "best_cycle_candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry",
+      "best_cycle_score": -2.2681370429050776,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry",
+      "best_cycle_tc_score": -2.2681370429050776,
+      "best_cycle_tc_typecheck": false,
+      "num_candidates": 4,
+      "num_typechecked_candidates": 0,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+          "log_weight": -0.0014273156640689847
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+          "log_weight": -0.0017906839481848006
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+          "log_weight": -0.0017906867355993036
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+          "log_weight": -0.0017906867355993036
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n    IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+          "log_weight": -0.0015140901281489431
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+          "log_weight": -0.0017906867355993036
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+          "log_weight": -0.0017906839481848006
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+          "log_weight": -0.0017906867355993036
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent ((\u27e8p, m\u27e9) : Ideal (ZMod (p ^ m))) :=\nsorry",
+          "log_weight": -0.00156101554378113
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry",
+          "cycle_score": -2.2681370429050776,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry",
+          "cycle_score": -2.3009232694720043,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n    IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry",
+          "cycle_score": -2.304101690833951,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent ((\u27e8p, m\u27e9) : Ideal (ZMod (p ^ m))) := by sorry",
+          "cycle_score": -2.3113532610881475,
+          "typecheck": false
+        }
+      ],
+      "runtime_sec": 13.054427862167358,
+      "baseline_stmt_f1": 0.6829268292682927,
+      "best_cycle_stmt_f1": 0.6829268292682927,
+      "best_cycle_tc_stmt_f1": 0.6829268292682927
+    },
+    {
+      "index": 5,
+      "id": "Munkres|exercise_33_8",
+      "nl_statement": "Let $X$ be completely regular, let $A$ and $B$ be disjoint closed subsets of $X$. Show that if $A$ is compact, there is a continuous function $f \\colon X \\rightarrow [0, 1]$ such that $f(A) = \\{0\\}$ and $f(B) = \\{1\\}$.",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "ground_truth": "theorem exercise_33_8\n  (X : Type*) [TopologicalSpace X] [CompletelyRegularSpace X]\n  (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B)\n  (hAc : IsCompact A) :\n  \u2203 (f : X \u2192 Icc 0 1), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} :=",
+      "baseline_candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+      "baseline_cycle_score": -2.0011927938461302,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] {A B : Set X} (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} \u2227\n  \u2200 x, f x \u2208 Icc 0 1 := by sorry",
+      "best_cycle_score": -1.8673653507232666,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] {A B : Set X} (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} \u2227\n  \u2200 x, f x \u2208 Icc 0 1 := by sorry",
+      "best_cycle_tc_score": -1.8673653507232666,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 4,
+      "num_typechecked_candidates": 4,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "log_weight": 0.0014192364026391182
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "log_weight": 0.0018983926945624252
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] {A B : Set X} (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} \u2227\n  \u2200 x, f x \u2208 Icc 0 1 := by sorry",
+          "log_weight": 0.0011071695496286385
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "log_weight": 0.0018983926945624252
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} \u2227\n  \u2200 x, x \u2209 A \u2227 x \u2209 B \u2192 f x = 0 := by sorry",
+          "log_weight": -0.0007506418787788694
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "log_weight": 0.0018440397233962947
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "log_weight": 0.0018440397233962947
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "log_weight": 0.0018983926945624252
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "log_weight": 0.0018983926945624252
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "cycle_score": -1.9674638573328653,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+          "cycle_score": -2.0011927938461302,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] {A B : Set X} (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} \u2227\n  \u2200 x, f x \u2208 Icc 0 1 := by sorry",
+          "cycle_score": -1.8673653507232666,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} \u2227\n  \u2200 x, x \u2209 A \u2227 x \u2209 B \u2192 f x = 0 := by sorry",
+          "cycle_score": -2.057951733271281,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 18.600096940994263,
+      "baseline_stmt_f1": 0.896103896103896,
+      "best_cycle_stmt_f1": 0.8536585365853657,
+      "best_cycle_tc_stmt_f1": 0.8536585365853657
+    },
+    {
+      "index": 6,
+      "id": "Munkres|exercise_18_8b",
+      "nl_statement": "Let $Y$ be an ordered set in the order topology. Let $f, g: X \\rightarrow Y$ be continuous. Let $h: X \\rightarrow Y$ be the function $h(x)=\\min \\{f(x), g(x)\\}.$ Show that $h$ is continuous.",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "ground_truth": "theorem exercise_18_8b {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+      "baseline_cycle_score": -2.7753319475385876,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry",
+      "best_cycle_score": -2.7622425158818564,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry",
+      "best_cycle_tc_score": -2.7622425158818564,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+          "log_weight": 0.0005001834502398156
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+          "log_weight": -0.0006040428812598886
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+          "log_weight": -0.0006040428812598886
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+          "log_weight": -0.0006040428812598886
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry",
+          "log_weight": -0.0004841600561110907
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) :=\nsorry",
+          "log_weight": -0.0006040431126912071
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+          "log_weight": -0.0006040428812598886
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+          "log_weight": -0.0006040428812598886
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) :=\nsorry",
+          "log_weight": -0.0006040431126912071
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+          "cycle_score": -2.9778184701525974,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry",
+          "cycle_score": -2.7622425158818564,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 15.873489618301392,
+      "baseline_stmt_f1": 0.8955223880597014,
+      "best_cycle_stmt_f1": 0.8955223880597014,
+      "best_cycle_tc_stmt_f1": 0.8955223880597014
+    },
+    {
+      "index": 7,
+      "id": "Munkres|exercise_13_6",
+      "nl_statement": "Show that the lower limit topology $\\mathbb{R}_l$ and $K$-topology $\\mathbb{R}_K$ are not comparable.",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "ground_truth": "def lower_limit_topology (X : Type) [Preorder X] :=\n  generateFrom {S : Set X | \u2203 a b, a < b \u2227 S = Ico a b}\n\ndef Rl := lower_limit_topology \u211d\n\ndef K : Set \u211d := {r | \u2203 n : \u2115, r = 1 / n}\n\ndef K_topology := generateFrom\n  ({S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b} \u222a {S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b \\ K})\n\ntheorem exercise_13_6 :\n  \u00ac (\u2200 U, Rl.IsOpen U \u2192 K_topology.IsOpen U) \u2227 \u00ac (\u2200 U, K_topology.IsOpen U \u2192 Rl.IsOpen U) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2227 IsOpen (kTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2227 IsOpen (lowerLimitTopology U)) := by sorry",
+      "baseline_cycle_score": -3.2172279646902373,
+      "baseline_typecheck": false,
+      "best_cycle_candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+      "best_cycle_score": -2.9640956430724175,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+      "best_cycle_tc_score": -2.9640956430724175,
+      "best_cycle_tc_typecheck": false,
+      "num_candidates": 5,
+      "num_typechecked_candidates": 0,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2227 IsOpen (kTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2227 IsOpen (lowerLimitTopology U)) := by sorry",
+          "log_weight": 0.0007513475471275044
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (rKTopology U)) := by sorry",
+          "log_weight": 0.000956618255781392
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "log_weight": 0.0013147764821458564
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2192 IsOpen (kTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2192 IsOpen (lowerLimitTopology U)) := by sorry",
+          "log_weight": 0.0002822845543714054
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "log_weight": 0.0013147764821458564
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "log_weight": 0.0013147764821458564
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "log_weight": 0.0008096605143090361
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "log_weight": 0.00096124580880832
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "log_weight": 0.00096124580880832
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "cycle_score": -3.0918546842806265,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "cycle_score": -3.1951055562857427,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (rKTopology U)) := by sorry",
+          "cycle_score": -3.180198831991716,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+          "cycle_score": -2.9640956430724175,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2192 IsOpen (kTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2192 IsOpen (lowerLimitTopology U)) := by sorry",
+          "cycle_score": -2.9987847407658896,
+          "typecheck": false
+        }
+      ],
+      "runtime_sec": 19.802736520767212,
+      "baseline_stmt_f1": 0.5853658536585367,
+      "best_cycle_stmt_f1": 0.36619718309859156,
+      "best_cycle_tc_stmt_f1": 0.36619718309859156
+    },
+    {
+      "index": 8,
+      "id": "Artin|exercise_3_5_6",
+      "nl_statement": "Let $V$ be a vector space which is spanned by a countably infinite set. Prove that every linearly independent subset of $V$ is finite or countably infinite.",
+      "lean_header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = \u22a4) {\u03b9 : Type*} (R : \u03b9 \u2192 V)\n  (hR : LinearIndependent K R) : Countable \u03b9 :=",
+      "baseline_candidate": "theorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Finite R := by sorry",
+      "baseline_cycle_score": -3.7099594724805733,
+      "baseline_typecheck": false,
+      "best_cycle_candidate": "theorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 T.Finite \u2228 T.Countable := by sorry",
+      "best_cycle_score": -3.0744612185578597,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 R : Set V, Countable R \u2192 Set.Finite R \u2228 Set.Countable R := by sorry",
+      "best_cycle_tc_score": -3.3957473290594002,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 6,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Finite R := by sorry",
+          "log_weight": 0.0010536992416507642
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 T.Finite \u2228 T.Countable := by sorry",
+          "log_weight": -0.00040424165852238463
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] [FiniteDimensional \u211d V]\n    (S : Set V) (hS : Countable S) (hS1 : Infinite S) (hS2 : Set.Countable S)\n    (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S) (hS5 : Set.PairwiseDisjoint S)\n    (hS6 : Set.PairwiseInter S) (hS7 : Set.PairwiseUnion S) (hS8 : Set.PairwiseSym S)\n    (hS9 : Set.PairwiseAnti S) (hS10 : Set.PairwiseMono S) (hS11 : Set.PairwiseAnti S)\n    (hS12 : Set.PairwisePartialOrder S) (hS13 : Set.PairwiseLinearOrder S)\n    (hS14 : Set.PairwisePartialOrder S) (hS15 : Set.PairwiseLinearOrder S)\n    (hS16 : Set.PairwisePartialOrder S) (hS1",
+          "log_weight": -0.0015985042731006414
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 R : Set V, Countable R \u2192 Set.Finite R \u2228 Set.Countable R := by sorry",
+          "log_weight": 0.001602113901706301
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) (hS6 : Set.PairwiseDisjoint S)\n    (hS7 : Set.PairwiseUnion S) (hS8 : Set.PairwiseInter S) :\n    Countable S \u2228 Finite S := by sorry",
+          "log_weight": -0.0018622997565180034
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n  [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n  (hS2 : Set.Countable S) (hS3 : Set.Infinite S) :\n  \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 R.Finite := by sorry",
+          "log_weight": -0.0008655762522040629
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) (hS6 : Set.PairwiseDisjoint S)\n    (hS7 : Set.PairwiseUnion S) (hS8 : Set.PairwiseInter S) :\n    Countable S := by sorry",
+          "log_weight": 0.0022102077839147027
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V] [FiniteDimensional \u211d V]\n    (S : Set V) (hS : Countable S) (hS1 : Infinite S) (hS2 : Set.Countable S)\n    (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S) (hS5 : Set.Pairwise S)\n    (hS6 : Set.PairwiseDisjoint S) (hS7 : Set.PairwiseUnion S)\n    (hS8 : Set.PairwiseInter S) (hS9 : Set.PairwiseSym S) (hS10 : Set.PairwiseAnti S)\n    (hS11 : Set.PairwisePartialOrder S) (hS12 : Set.PairwiseLinearOrder S)\n    (hS13 : Set.PairwisePartialOrder S) (hS14 : Set.PairwiseLinearOrder S)\n    (hS15 : Set.PairwisePartialOrder S) (hS16 : Set.PairwiseLinearOrder S)\n    (h",
+          "log_weight": 0.002485759617532106
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : span F S = \u22a4) :\n    \u2200 R : Set V, Countable R \u2192 LinearIndependent F R \u2192 R.Finite \u2228 Countable R := by sorry",
+          "log_weight": 0.0007352429649335378
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) (hS6 : Set.PairwiseDisjoint S)\n    (hS7 : Set.PairwiseUnion S) (hS8 : Set.PairwiseInter S) :\n    Countable S := by sorry",
+          "cycle_score": -3.9399363084843286,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 R : Set V, Countable R \u2192 Set.Finite R \u2228 Set.Countable R := by sorry",
+          "cycle_score": -3.3957473290594002,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : span F S = \u22a4) :\n    \u2200 R : Set V, Countable R \u2192 LinearIndependent F R \u2192 R.Finite \u2228 Countable R := by sorry",
+          "cycle_score": -3.14663544140364,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 T.Finite \u2228 T.Countable := by sorry",
+          "cycle_score": -3.0744612185578597,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n  [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n  (hS2 : Set.Countable S) (hS3 : Set.Infinite S) :\n  \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 R.Finite := by sorry",
+          "cycle_score": -3.6279026081687524,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] {S : Set V} (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S)\n    (hS5 : Set.PairwiseIndependent S) (hS6 : Set.PairwiseDisjoint S)\n    (hS7 : Set.PairwiseUnion S) (hS8 : Set.PairwiseInter S) :\n    Countable S \u2228 Finite S := by sorry",
+          "cycle_score": -4.051966293861992,
+          "typecheck": false
+        }
+      ],
+      "runtime_sec": 25.98263716697693,
+      "baseline_stmt_f1": 0.6143790849673202,
+      "best_cycle_stmt_f1": 0.5695364238410596,
+      "best_cycle_tc_stmt_f1": 0.6174496644295302
+    },
+    {
+      "index": 9,
+      "id": "Dummit-Foote|exercise_3_4_5a",
+      "nl_statement": "Prove that subgroups of a solvable group are solvable.",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_3_4_5a {G : Type*} [Group G]\n  (H : Subgroup G) [IsSolvable G] : IsSolvable H :=",
+      "baseline_candidate": "theorem autoformalized_theorem_9 (G : Type*) [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+      "baseline_cycle_score": -2.5013157725334167,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+      "best_cycle_score": -2.575200004237039,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+      "best_cycle_tc_score": -2.575200004237039,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 3,
+      "num_typechecked_candidates": 3,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 (G : Type*) [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+          "log_weight": 0.0013862568805647867
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) :\n    IsSolvable H := by sorry",
+          "log_weight": 0.0005490930592353892
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+          "log_weight": 0.0011405649601101092
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] {H : Subgroup G}\n  [IsSolvable G] : IsSolvable H :=\nsorry",
+          "log_weight": -0.0016185645170353165
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+          "log_weight": 0.0011405649601101092
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) :\n    IsSolvable H := by sorry",
+          "log_weight": 0.0005490930592353892
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+          "log_weight": 0.0011405649601101092
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+          "log_weight": 0.0011405649601101092
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+          "log_weight": 0.0011405649601101092
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+          "cycle_score": -2.575200004237039,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) :\n    IsSolvable H := by sorry",
+          "cycle_score": -2.706896560532706,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_9 {G : Type*} [Group G] {H : Subgroup G}\n  [IsSolvable G] : IsSolvable H := by sorry",
+          "cycle_score": -2.575888786997114,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 7.588390350341797,
+      "baseline_stmt_f1": 0.875,
+      "best_cycle_stmt_f1": 0.9583333333333334,
+      "best_cycle_tc_stmt_f1": 0.9583333333333334
+    },
+    {
+      "index": 10,
+      "id": "Rudin|exercise_4_8b",
+      "nl_statement": "Let $E$ be a bounded set in $R^{1}$. Prove that there exists a real function $f$ such that $f$ is uniformly continuous and is not bounded on $E$.",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_4_8b\n  (E : Set \u211d) (h : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+      "baseline_cycle_score": -3.7234793390546526,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+      "best_cycle_score": -3.6796620317867825,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+      "best_cycle_tc_score": -3.6796620317867825,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.0003955817549836648
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.00011226352582600887
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.00011226352582600887
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.00011226352582600887
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.00011226352582600887
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.00011226352582600887
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.00011226352582600887
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.00011226352582600887
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "log_weight": 0.0001221862012210996
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "cycle_score": -3.7234793390546526,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+          "cycle_score": -3.6796620317867825,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 12.975703954696655,
+      "baseline_stmt_f1": 0.9473684210526315,
+      "best_cycle_stmt_f1": 0.9473684210526315,
+      "best_cycle_tc_stmt_f1": 0.9473684210526315
+    },
+    {
+      "index": 11,
+      "id": "Shakarchi|exercise_1_13c",
+      "nl_statement": "Suppose that $f$ is holomorphic in an open set $\\Omega$. Prove that if $|f|$ is constant, then $f$ is constant.",
+      "lean_header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\n",
+      "ground_truth": "theorem exercise_1_13c {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, abs (f z) = c) :\n  f a = f b :=",
+      "baseline_candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+      "baseline_cycle_score": -2.750025952563566,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+      "best_cycle_score": -2.750025952563566,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+      "best_cycle_tc_score": -2.750025952563566,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 4,
+      "num_typechecked_candidates": 4,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0013079553568410762
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0007010607178633863
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0010736765119633898
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n    f a = f b := by sorry",
+          "log_weight": 0.0012792034945053063
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0010876682460546929
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0007010607178633863
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0010876682460546929
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0010876682460546929
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.0010736765119633898
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "cycle_score": -2.8252013500999,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "cycle_score": -2.801313835031846,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+          "cycle_score": -2.750025952563566,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n    f a = f b := by sorry",
+          "cycle_score": -2.8061556079808403,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 16.35628080368042,
+      "baseline_stmt_f1": 0.944,
+      "best_cycle_stmt_f1": 0.944,
+      "best_cycle_tc_stmt_f1": 0.944
+    },
+    {
+      "index": 12,
+      "id": "Munkres|exercise_32_2b",
+      "nl_statement": "Show that if $\\prod X_\\alpha$ is regular, then so is $X_\\alpha$. Assume that each $X_\\alpha$ is nonempty.",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "ground_truth": "theorem exercise_32_2b\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_12\n  (\u03b9 : Type*) [TopologicalSpace \u03b9]\n  (X : \u03b9 \u2192 Type*) [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i))\n  (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry",
+      "baseline_cycle_score": -5.026889868080616,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry",
+      "best_cycle_score": -5.062912501394749,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry",
+      "best_cycle_tc_score": -5.062912501394749,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 1,
+      "num_typechecked_candidates": 1,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  (\u03b9 : Type*) [TopologicalSpace \u03b9]\n  (X : \u03b9 \u2192 Type*) [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i))\n  (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": -0.001453886659570669
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+          "log_weight": 4.648590476452285e-05
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry",
+          "cycle_score": -5.062912501394749,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 14.686566829681396,
+      "baseline_stmt_f1": 0.8833333333333333,
+      "best_cycle_stmt_f1": 0.9827586206896551,
+      "best_cycle_tc_stmt_f1": 0.9827586206896551
+    },
+    {
+      "index": 13,
+      "id": "Rudin|exercise_3_22",
+      "nl_statement": "Suppose $X$ is a nonempty complete metric space, and $\\left\\{G_{n}\\right\\}$ is a sequence of dense open sets of $X$. Prove Baire's theorem, namely, that $\\bigcap_{1}^{\\infty} G_{n}$ is not empty.",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_3_22 (X : Type*) [MetricSpace X] [CompleteSpace X] [Nonempty X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n :=",
+      "baseline_candidate": "theorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+      "baseline_cycle_score": -3.197809987801772,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+      "best_cycle_score": -3.197809987801772,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+      "best_cycle_tc_score": -3.197809987801772,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017358377005053764
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017232405040628533
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017361682985353962
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017232405040628533
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017361682985353962
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017361682985353962
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017232405040628533
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017361682985353962
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "log_weight": -0.0017232405040628533
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X) (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "cycle_score": -3.221323367265555,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_13\n  (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : \u2115 \u2192 Set X)\n  (hG : \u2200 n, IsOpen (G n) \u2227 Dense (G n)) :\n  \u2203 x, \u2200 n, x \u2208 G n := by sorry",
+          "cycle_score": -3.197809987801772,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 14.246182441711426,
+      "baseline_stmt_f1": 0.9444444444444444,
+      "best_cycle_stmt_f1": 0.9444444444444444,
+      "best_cycle_tc_stmt_f1": 0.9444444444444444
+    },
+    {
+      "index": 14,
+      "id": "Rudin|exercise_3_20",
+      "nl_statement": "Suppose $\\left\\{p_{n}\\right\\}$ is a Cauchy sequence in a metric space $X$, and some sequence $\\left\\{p_{n l}\\right\\}$ converges to a point $p \\in X$. Prove that the full sequence $\\left\\{p_{n}\\right\\}$ converges to $p$.",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_3_20 {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X) (l : \u2115+) (r : X)\n  (hp : CauchySeq p)\n  (hpl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+      "baseline_cycle_score": -2.028495117823283,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (n * l)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+      "best_cycle_score": -1.956862030029297,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (n * l)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+      "best_cycle_tc_score": -1.956862030029297,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 4,
+      "num_typechecked_candidates": 4,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.002405091390649637
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.0009941280044514522
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (n * l)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.0011948453620875246
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.0009941280044514522
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.0009941280044514522
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  (X : Type*) [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": 0.00010411217524394123
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.0009941280044514522
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.0012099053280558323
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "log_weight": -0.0012099053280558323
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "cycle_score": -2.1223988644282024,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "cycle_score": -2.028495117823283,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_14\n  (X : Type*) [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "cycle_score": -2.010637345314026,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (n * l)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+          "cycle_score": -1.956862030029297,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 18.28175950050354,
+      "baseline_stmt_f1": 0.8970588235294118,
+      "best_cycle_stmt_f1": 0.8970588235294118,
+      "best_cycle_tc_stmt_f1": 0.8970588235294118
+    },
+    {
+      "index": 15,
+      "id": "Munkres|exercise_13_4a1",
+      "nl_statement": "If $\\mathcal{T}_\\alpha$ is a family of topologies on $X$, show that $\\bigcap \\mathcal{T}_\\alpha$ is a topology on $X$.",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4a1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  is_topology X (\u22c2 i : I, T i) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2\u2080 T) := by sorry",
+      "baseline_cycle_score": -3.209588973950117,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2\u2080 T) := by sorry",
+      "best_cycle_score": -3.209588973950117,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2\u2080 T) := by sorry",
+      "best_cycle_tc_score": -3.209588973950117,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 5,
+      "num_typechecked_candidates": 3,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2\u2080 T) :=\nsorry",
+          "log_weight": -0.00038232486973606536
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) \u2227\n  \u2200 U, IsOpen U \u2192 (\u2203 s \u2208 T, U = s) \u2227\n  \u2200 U V, IsOpen U \u2192 IsOpen V \u2192 IsOpen (U \u2229 V) \u2227\n  \u2200 U, IsOpen U \u2192 IsOpen (U\u1d9c) \u2227\n  \u2200 U, IsOpen U \u2192 (\u2203 s \u2208 T, U\u1d9c = s) \u2227\n  IsOpen (\u22c2 s \u2208 T, s\u1d9c) \u2227\n  \u2200 U, IsOpen U \u2192 (\u2203 s \u2208 T, U\u1d9c = s) \u2227\n  IsOpen (\u22c2 s \u2208 T, s\u1d9c) := by sorry",
+          "log_weight": 0.0005356812207946585
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2\u2080 T) :=\nsorry",
+          "log_weight": 1.1502753459033757e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) :\n  IsTopologicalBasis (\u22c2 s \u2208 T, s) :=\nsorry",
+          "log_weight": -0.00010870592873691804
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) :=\nsorry",
+          "log_weight": -1.2646485100239547e-07
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (h : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) :=\nsorry",
+          "log_weight": 0.0005057129885170714
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry",
+          "log_weight": -1.2575794113864114e-07
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2\u2080 T) := by sorry",
+          "log_weight": 1.1503829919731721e-05
+        },
+        {
+          "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) :\n  IsTopologicalBasis (\u22c2 s \u2208 T, s) :=\nsorry",
+          "log_weight": -0.00010870592873691804
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) :\n  IsTopologicalBasis (\u22c2 s \u2208 T, s) := by sorry",
+          "cycle_score": -3.291328344589625,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) \u2227\n  \u2200 U, IsOpen U \u2192 (\u2203 s \u2208 T, U = s) \u2227\n  \u2200 U V, IsOpen U \u2192 IsOpen V \u2192 IsOpen (U \u2229 V) \u2227\n  \u2200 U, IsOpen U \u2192 IsOpen (U\u1d9c) \u2227\n  \u2200 U, IsOpen U \u2192 (\u2203 s \u2208 T, U\u1d9c = s) \u2227\n  IsOpen (\u22c2 s \u2208 T, s\u1d9c) \u2227\n  \u2200 U, IsOpen U \u2192 (\u2203 s \u2208 T, U\u1d9c = s) \u2227\n  IsOpen (\u22c2 s \u2208 T, s\u1d9c) := by sorry",
+          "cycle_score": -3.2555122589453673,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (h : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry",
+          "cycle_score": -3.3160301538614125,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2\u2080 T) := by sorry",
+          "cycle_score": -3.209588973950117,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry",
+          "cycle_score": -3.328440296344268,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 15.75879192352295,
+      "baseline_stmt_f1": 0.6585365853658537,
+      "best_cycle_stmt_f1": 0.6585365853658537,
+      "best_cycle_tc_stmt_f1": 0.6585365853658537
+    },
+    {
+      "index": 16,
+      "id": "Dummit-Foote|exercise_9_4_2d",
+      "nl_statement": "Prove that $\\frac{(x+2)^p-2^p}{x}$, where $p$ is an odd prime, is irreducible in $\\mathbb{Z}[x]$.",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_9_4_2d {p : \u2115} (hp : p.Prime \u2227 p > 2)\n  {f : Polynomial \u2124} (hf : f = (X + 2)^p):\n  Irreducible (\u2211 n in (f.support \\ {0}), (f.coeff n : Polynomial \u2124) * X ^ (n-1) :\n  Polynomial \u2124) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) := by sorry",
+      "baseline_cycle_score": -2.037164397355987,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) := by sorry",
+      "best_cycle_score": -2.037164397355987,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) := by sorry",
+      "best_cycle_tc_score": -2.037164397355987,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 1,
+      "num_typechecked_candidates": 1,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0010599250195474279
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0008077412650154769
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0008077412650154769
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0008077412650154769
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0008077412650154769
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0008077412650154769
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0008077412650154769
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0009110670287500789
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) :=\nsorry",
+          "log_weight": -0.0008077412650154769
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_16 {p : \u2115} (hp : Odd p \u2227 Nat.Prime p) :\n  Irreducible ((X + 2)^p - 2^p : Polynomial \u2124) := by sorry",
+          "cycle_score": -2.037164397355987,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 10.5209321975708,
+      "baseline_stmt_f1": 0.5740740740740741,
+      "best_cycle_stmt_f1": 0.5740740740740741,
+      "best_cycle_tc_stmt_f1": 0.5740740740740741
+    },
+    {
+      "index": 17,
+      "id": "Putnam|exercise_2000_a2",
+      "nl_statement": "Prove that there exist infinitely many integers $n$ such that $n, n+1, n+2$ are each the sum of the squares of two integers.",
+      "lean_header": "import Mathlib\n\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
+      "baseline_candidate": "theorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "baseline_cycle_score": -2.1352948904037476,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "best_cycle_score": -2.1352948904037476,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "best_cycle_tc_score": -2.1352948904037476,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+          "log_weight": 0.0006086553749834955
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 :\n    {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2}.Infinite := by sorry",
+          "log_weight": 0.00046569177817724645
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 :\n    {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2}.Infinite := by sorry",
+          "log_weight": 0.00046569177817724645
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+          "log_weight": -3.760414534232899e-05
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+          "log_weight": -3.760414534232899e-05
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 :\n    {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2}.Infinite := by sorry",
+          "log_weight": 0.00046569177817724645
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+          "log_weight": -3.760414534232899e-05
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+          "log_weight": -3.760414534232899e-05
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+          "log_weight": -3.760414534232899e-05
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+          "cycle_score": -2.1352948904037476,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_17 :\n    {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2}.Infinite := by sorry",
+          "cycle_score": -2.4398452418191092,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 11.77066946029663,
+      "baseline_stmt_f1": 0.5116279069767442,
+      "best_cycle_stmt_f1": 0.5116279069767442,
+      "best_cycle_tc_stmt_f1": 0.5116279069767442
+    },
+    {
+      "index": 18,
+      "id": "Ireland-Rosen|exercise_1_27",
+      "nl_statement": "For all odd $n$ show that $8 \\mid n^{2}-1$.",
+      "lean_header": "import Mathlib\n\nopen Real\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_1_27 {n : \u2115} (hn : Odd n) : 8 \u2223 (n^2 - 1) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+      "baseline_cycle_score": -7.141116195254856,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_18 (n : \u2115) (hn : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+      "best_cycle_score": -7.105091240670946,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_18 (n : \u2115) (hn : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+      "best_cycle_tc_score": -7.105091240670946,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 5,
+      "num_typechecked_candidates": 5,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+          "log_weight": -0.0015313908632434735
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+          "log_weight": -0.003495226486500611
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (hn : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "log_weight": -0.0018948086998417208
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+          "log_weight": -0.00015372475379459407
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (hn : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "log_weight": -0.0018948086998417208
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+          "log_weight": -0.00015372475379459407
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "log_weight": -0.0034952264748679164
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "log_weight": -0.0034952264748679164
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "log_weight": -0.0001537247451952506
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+          "cycle_score": -7.1246216959423485,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_18 (n : \u2115) (hn : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "cycle_score": -7.105091240670946,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "cycle_score": -7.206673767831591,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n^2 - 1) := by sorry",
+          "cycle_score": -7.116412255499098,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+          "cycle_score": -7.141116195254856,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 7.709285020828247,
+      "baseline_stmt_f1": 0.8181818181818182,
+      "best_cycle_stmt_f1": 0.8636363636363636,
+      "best_cycle_tc_stmt_f1": 0.8636363636363636
+    },
+    {
+      "index": 19,
+      "id": "Artin|exercise_10_2_4",
+      "nl_statement": "Prove that in the ring $\\mathbb{Z}[x],(2) \\cap(x)=(2 x)$.",
+      "lean_header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_10_2_4 :\n  span ({2} : Set $ Polynomial \u2124) \u2293 (span {X}) =\n  span ({2 * X} : Set $ Polynomial \u2124) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_19 : span ({2} : Set (Polynomial \u2124)) \u2293 (span {X}) = span {2 * X} := by sorry",
+      "baseline_cycle_score": -5.643522033691406,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X := by sorry",
+      "best_cycle_score": -5.537219028472901,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_19 : span ({2} : Set (Polynomial \u2124)) \u2293 (span {X}) = span {2 * X} := by sorry",
+      "best_cycle_tc_score": -5.643522033691406,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 1,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : span ({2} : Set (Polynomial \u2124)) \u2293 (span {X}) = span {2 * X} := by sorry",
+          "log_weight": -0.0010639629133065262
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X :=\nsorry",
+          "log_weight": -0.001774254797807648
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X := by sorry",
+          "log_weight": -0.0017742547903740386
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X :=\nsorry",
+          "log_weight": -0.001774254797807648
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : span ({2} : Set (Polynomial \u2124)) \u2293 (span {X}) = span {2 * X} := by sorry",
+          "log_weight": -0.000800435291067631
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X :=\nsorry",
+          "log_weight": -0.001774254797807648
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X :=\nsorry",
+          "log_weight": -0.001774254797807648
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X :=\nsorry",
+          "log_weight": -0.001774254797807648
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X := by sorry",
+          "log_weight": -0.0017742547903740386
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_19 : (2 : Polynomial \u2124) \u2293 (X : Polynomial \u2124) = 2 * X := by sorry",
+          "cycle_score": -5.537219028472901,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_19 : span ({2} : Set (Polynomial \u2124)) \u2293 (span {X}) = span {2 * X} := by sorry",
+          "cycle_score": -5.643522033691406,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 8.961495637893677,
+      "baseline_stmt_f1": 0.8709677419354839,
+      "best_cycle_stmt_f1": 0.679245283018868,
+      "best_cycle_tc_stmt_f1": 0.8709677419354839
+    },
+    {
+      "index": 20,
+      "id": "Herstein|exercise_2_6_15",
+      "nl_statement": "If $G$ is an abelian group and if $G$ has an element of order $m$ and one of order $n$, where $m$ and $n$ are relatively prime, prove that $G$ has an element of order $mn$.",
+      "lean_header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_2_6_15 {G : Type*} [CommGroup G] {m n : \u2115}\n  (hm : \u2203 (g : G), orderOf g = m)\n  (hn : \u2203 (g : G), orderOf g = n)\n  (hmn : m.Coprime n) :\n  \u2203 (g : G), orderOf g = m * n :=",
+      "baseline_candidate": "theorem autoformalized_theorem_20 {G : Type*} [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (hG : \u2203 g : G, orderOf g = m) (hG' : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+      "baseline_cycle_score": -1.9870719777213202,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (hG : \u2203 g : G, orderOf g = m) (hG' : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+      "best_cycle_score": -1.9633310083989743,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (hG : \u2203 g : G, orderOf g = m) (hG' : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+      "best_cycle_tc_score": -1.9633310083989743,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 6,
+      "num_typechecked_candidates": 5,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 {G : Type*} [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (hG : \u2203 g : G, orderOf g = m) (hG' : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": 0.003908146422104649
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": -0.000988954971568871
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0)\n    (hmn : Nat.Coprime m n) (g h : G) (hg : orderOf g = m) (hh : orderOf h = n) :\n    \u2203 x, orderOf x = m * n := by sorry",
+          "log_weight": 0.0016284712734660426
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m \u2260 0) (hn : n \u2260 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) : \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": 0.0012544290972209802
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m \u2260 0) (hn : n \u2260 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": 0.0012545026368386268
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m \u2260 0) (hn : n \u2260 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": 0.0012545026368386268
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m \u2260 0) (hn : n \u2260 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": 0.0012545026368386268
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 {G : Type*} [CommGroup G] [Fintype G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) : \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": -0.002909448424643306
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (hG : \u2203 g : G, orderOf g = m) (hG' : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "log_weight": 0.0018485006297389347
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m \u2260 0) (hn : n \u2260 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "cycle_score": -2.2765062561741582,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (hG : \u2203 g : G, orderOf g = m) (hG' : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "cycle_score": -1.9633310083989743,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : m > 0) (hn : n > 0)\n    (hmn : Nat.Coprime m n) (g h : G) (hg : orderOf g = m) (hh : orderOf h = n) :\n    \u2203 x, orderOf x = m * n := by sorry",
+          "cycle_score": -2.1913825030680054,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m \u2260 0) (hn : n \u2260 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) : \u2203 g : G, orderOf g = m * n := by sorry",
+          "cycle_score": -2.247312342679059,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) :\n    \u2203 g : G, orderOf g = m * n := by sorry",
+          "cycle_score": -2.2157834393006786,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_20 {G : Type*} [CommGroup G] [Fintype G] (m n : \u2115) (hm : m > 0) (hn : n > 0) (hmn : Nat.Coprime m n) (h1 : \u2203 g : G, orderOf g = m) (h2 : \u2203 g : G, orderOf g = n) : \u2203 g : G, orderOf g = m * n := by sorry",
+          "cycle_score": -2.220218230176855,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 17.4958074092865,
+      "baseline_stmt_f1": 0.8979591836734695,
+      "best_cycle_stmt_f1": 0.870748299319728,
+      "best_cycle_tc_stmt_f1": 0.870748299319728
+    },
+    {
+      "index": 21,
+      "id": "Dummit-Foote|exercise_1_6_17",
+      "nl_statement": "Let $G$ be any group. Prove that the map from $G$ to itself defined by $g \\mapsto g^{-1}$ is a homomorphism if and only if $G$ is abelian.",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_1_6_17 {G : Type*} [Group G] (f : G \u2192 G)\n  (hf : f = \u03bb g => g\u207b\u00b9) :\n  (\u2200 x y : G, f x * f y = f (x*y)) \u2194 \u2200 x y : G, x*y = y*x :=",
+      "baseline_candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x, f x = x\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x := by sorry",
+      "baseline_cycle_score": -2.402339598406916,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 g, f g = g\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x := by sorry",
+      "best_cycle_score": -2.485995619193367,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 g, f g = g\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x := by sorry",
+      "best_cycle_tc_score": -2.485995619193367,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 4,
+      "num_typechecked_candidates": 3,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x, f x = x\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x :=\nsorry",
+          "log_weight": -0.000789721714440029
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry",
+          "log_weight": 0.0019317038919862166
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 g, f g = g\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x :=\nsorry",
+          "log_weight": 0.0005190585022767212
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry",
+          "log_weight": -0.002131957505655515
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry",
+          "log_weight": 0.001364708064293968
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 g, f g = g\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x :=\nsorry",
+          "log_weight": 0.0004983247397106807
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry",
+          "log_weight": -0.002131957505655515
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry",
+          "log_weight": -0.002131957505655515
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  CommGroup G :=\nsorry",
+          "log_weight": 0.006285464579258419
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry",
+          "cycle_score": -2.7082190850506658,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  CommGroup G := by sorry",
+          "cycle_score": -2.9927723589150803,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, \u2200 x y : G, f x * f y = f (x * y) \u2194 \u2200 x y : G, x * y = y * x := by sorry",
+          "cycle_score": -2.8094069698582524,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192* G, \u2200 g, f g = g\u207b\u00b9 \u2194 \u2200 x y : G, x*y = y*x := by sorry",
+          "cycle_score": -2.485995619193367,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 12.832425117492676,
+      "baseline_stmt_f1": 0.7079646017699115,
+      "best_cycle_stmt_f1": 0.7155963302752293,
+      "best_cycle_tc_stmt_f1": 0.7155963302752293
+    },
+    {
+      "index": 23,
+      "id": "Herstein|exercise_4_5_25",
+      "nl_statement": "If $p$ is a prime, show that $q(x) = 1 + x + x^2 + \\cdots x^{p - 1}$ is irreducible in $Q[x]$.",
+      "lean_header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_4_5_25 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i in Finset.range p, X ^ i : Polynomial \u211a) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+      "baseline_cycle_score": -3.7238446779029313,
+      "baseline_typecheck": false,
+      "best_cycle_candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Fin p, X ^ i : Polynomial \u211a) := by sorry",
+      "best_cycle_score": -3.6767380819764246,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Fin p, X ^ p : Polynomial \u211a) := by sorry",
+      "best_cycle_tc_score": -3.704430957173192,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 4,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+          "log_weight": 0.001572109194126499
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ p : Polynomial \u211a) := by sorry",
+          "log_weight": 0.00013378545220814136
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+          "log_weight": -0.0002496711630168384
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+          "log_weight": -0.0002496711630168384
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Fin p, X ^ p : Polynomial \u211a) := by sorry",
+          "log_weight": 0.0002607370634721781
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Fin p, X ^ i : Polynomial \u211a) := by sorry",
+          "log_weight": -0.00013106869638170377
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+          "log_weight": -0.0002496711630168384
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+          "log_weight": -0.0002496711630168384
+        },
+        {
+          "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+          "log_weight": -0.0002496711630168384
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+          "cycle_score": -3.7238446779029313,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Fin p, X ^ p : Polynomial \u211a) := by sorry",
+          "cycle_score": -3.704430957173192,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ p : Polynomial \u211a) := by sorry",
+          "cycle_score": -3.8041802145713985,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Fin p, X ^ i : Polynomial \u211a) := by sorry",
+          "cycle_score": -3.6767380819764246,
+          "typecheck": false
+        }
+      ],
+      "runtime_sec": 10.788793802261353,
+      "baseline_stmt_f1": 0.9375,
+      "best_cycle_stmt_f1": 0.870967741935484,
+      "best_cycle_tc_stmt_f1": 0.8387096774193549
+    },
+    {
+      "index": 24,
+      "id": "Shakarchi|exercise_1_13a",
+      "nl_statement": "Suppose that $f$ is holomorphic in an open set $\\Omega$. Prove that if $\\text{Re}(f)$ is constant, then $f$ is constant.",
+      "lean_header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\n",
+      "ground_truth": "theorem exercise_1_13a {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b :=",
+      "baseline_candidate": "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+      "baseline_cycle_score": -2.7047376407159343,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+      "best_cycle_score": -2.6602553032539986,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+      "best_cycle_tc_score": -2.6602553032539986,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 3,
+      "num_typechecked_candidates": 3,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+          "log_weight": -0.0018524266625732054
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.001678162718869416
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.001678162718869416
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9)\n    (h1 : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+          "log_weight": 0.00020646232085176327
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+          "log_weight": 0.001678162718869416
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+          "log_weight": 0.0018700916053156933
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+          "log_weight": 0.0018700916053156933
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+          "log_weight": 0.0018700916053156933
+        },
+        {
+          "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+          "log_weight": 0.0018700916053156933
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+          "cycle_score": -2.6602553032539986,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+          "cycle_score": -2.7041784267167785,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9)\n    (h1 : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+          "cycle_score": -2.7801968020361825,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 15.82073712348938,
+      "baseline_stmt_f1": 0.984375,
+      "best_cycle_stmt_f1": 0.9682539682539683,
+      "best_cycle_tc_stmt_f1": 0.9682539682539683
+    },
+    {
+      "index": 25,
+      "id": "Rudin|exercise_1_19",
+      "nl_statement": "Suppose $a, b \\in R^k$. Find $c \\in R^k$ and $r > 0$ such that $|x-a|=2|x-b|$ if and only if $| x - c | = r$. Prove that $3c = 4b - a$ and $3r = 2 |b - a|$.",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_1_19\n  (n : \u2115)\n  (a b : EuclideanSpace \u211d (Fin n))\n  : (\u2203 c r, r > 0 \u2227 (\u2200 x, \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r)) \u2227\n    (\u2200 c r, (r > 0 \u2227 (\u2200 x, \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r)) \u2192\n      (3 \u2022 c = 4 \u2022 b - a \u2227 3 * r = 2 * \u2016b - a\u2016)) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c x : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : r > 0)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016x - b\u2016)\n  (h\u2083 : \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n  True := by sorry",
+      "baseline_cycle_score": -2.8556705835538034,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (h : \u2203 r > 0, \u2200 x, \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n    3 \u2022 c = 4 \u2022 b - a \u2227 3 * r = 2 * \u2016b - a\u2016 := by sorry",
+      "best_cycle_score": -2.0166056629938955,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (h : \u2203 c : EuclideanSpace \u211d (Fin k), \u2203 r > 0, \u2200 x : EuclideanSpace \u211d (Fin k), \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r \u2227 3 \u2022 c = 4 \u2022 b - a \u2227 3 * r = 2 * \u2016b - a\u2016) : True := by sorry",
+      "best_cycle_tc_score": -2.3534686259734325,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 5,
+      "num_typechecked_candidates": 4,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c x : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : r > 0)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016x - b\u2016)\n  (h\u2083 : \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n  True := by sorry",
+          "log_weight": -0.0008174729186581005
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (x : EuclideanSpace \u211d (Fin k)) (c : EuclideanSpace \u211d (Fin k)) (r : \u211d) (h\u2080 : r > 0) (h\u2081 : 3 \u2022 c = 4 \u2022 b - a) (h\u2082 : 3 * r = 2 * \u2016x - b\u2016) :\n  \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r := by sorry",
+          "log_weight": 0.0033209566641782726
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c x : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : r > 0)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016x - b\u2016)\n  (h\u2083 : \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n  True := by sorry",
+          "log_weight": -0.0006756820545140382
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c x : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : r > 0)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016x - b\u2016)\n  (h\u2083 : \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n  True := by sorry",
+          "log_weight": -0.0006756820545140382
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (h : \u2203 r > 0, \u2200 x, \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n    3 \u2022 c = 4 \u2022 b - a \u2227 3 * r = 2 * \u2016b - a\u2016 := by sorry",
+          "log_weight": -0.00021193228134812857
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c x : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : r > 0)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016x - b\u2016)\n  (h\u2083 : \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n  True := by sorry",
+          "log_weight": -0.0006756820545140382
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c x : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : r > 0)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016x - b\u2016)\n  (h\u2083 : \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n  True := by sorry",
+          "log_weight": -0.0006756820545140382
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : \u2200 x, \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016b - a\u2016) :\n  True := by sorry",
+          "log_weight": 0.00040394750921364595
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (h : \u2203 c : EuclideanSpace \u211d (Fin k), \u2203 r > 0, \u2200 x : EuclideanSpace \u211d (Fin k), \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r \u2227 3 \u2022 c = 4 \u2022 b - a \u2227 3 * r = 2 * \u2016b - a\u2016) : True := by sorry",
+          "log_weight": 0.00017008310040456562
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c x : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : r > 0)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016x - b\u2016)\n  (h\u2083 : \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n  True := by sorry",
+          "cycle_score": -2.8556705835538034,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (x : EuclideanSpace \u211d (Fin k)) (c : EuclideanSpace \u211d (Fin k)) (r : \u211d) (h\u2080 : r > 0) (h\u2081 : 3 \u2022 c = 4 \u2022 b - a) (h\u2082 : 3 * r = 2 * \u2016x - b\u2016) :\n  \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r := by sorry",
+          "cycle_score": -2.7336154457850332,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_25\n  (n : \u2115)\n  (a b c : EuclideanSpace \u211d (Fin n))\n  (r : \u211d)\n  (h\u2080 : \u2200 x, \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r)\n  (h\u2081 : 3 \u2022 c = 4 \u2022 b - a)\n  (h\u2082 : 3 * r = 2 * \u2016b - a\u2016) :\n  True := by sorry",
+          "cycle_score": -2.3561023764121227,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (h : \u2203 c : EuclideanSpace \u211d (Fin k), \u2203 r > 0, \u2200 x : EuclideanSpace \u211d (Fin k), \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r \u2227 3 \u2022 c = 4 \u2022 b - a \u2227 3 * r = 2 * \u2016b - a\u2016) : True := by sorry",
+          "cycle_score": -2.3534686259734325,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_25 (k : \u2115) (a b : EuclideanSpace \u211d (Fin k)) (h : \u2203 r > 0, \u2200 x, \u2016x - a\u2016 = 2 * \u2016x - b\u2016 \u2194 \u2016x - c\u2016 = r) :\n    3 \u2022 c = 4 \u2022 b - a \u2227 3 * r = 2 * \u2016b - a\u2016 := by sorry",
+          "cycle_score": -2.0166056629938955,
+          "typecheck": false
+        }
+      ],
+      "runtime_sec": 21.43624758720398,
+      "baseline_stmt_f1": 0.714975845410628,
+      "best_cycle_stmt_f1": 0.708994708994709,
+      "best_cycle_tc_stmt_f1": 0.7115384615384616
+    },
+    {
+      "index": 27,
+      "id": "Artin|exercise_11_4_1b",
+      "nl_statement": "Prove that $x^3 + 6x + 12$ is irreducible in $\\mathbb{Q}$.",
+      "lean_header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_11_4_1b :\n  Irreducible (12 + 6 * X + X ^ 3 : Polynomial \u211a) :=",
+      "baseline_candidate": "theorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+      "baseline_cycle_score": -3.0442823701434665,
+      "baseline_typecheck": true,
+      "best_cycle_candidate": "theorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+      "best_cycle_score": -3.0442823701434665,
+      "best_cycle_typecheck": true,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+      "best_cycle_tc_score": -3.0442823701434665,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 2,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": -0.0017190455451417206
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.00028363368621609636
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.00028363368621609636
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.00028363368621609636
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.0006404821075261317
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.00028363368621609636
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.0006404821075261317
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.0006404821075261317
+        },
+        {
+          "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+          "log_weight": 0.0006404821075261317
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+          "cycle_score": -3.152208685874939,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_27 : Irreducible (X ^ 3 + 6 * X + 12 : Polynomial \u211a) := by sorry",
+          "cycle_score": -3.0442823701434665,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 7.141537189483643,
+      "baseline_stmt_f1": 0.9444444444444444,
+      "best_cycle_stmt_f1": 0.9444444444444444,
+      "best_cycle_tc_stmt_f1": 0.9444444444444444
+    },
+    {
+      "index": 29,
+      "id": "Rudin|exercise_5_15",
+      "nl_statement": "Suppose $a \\in R^{1}, f$ is a twice-differentiable real function on $(a, \\infty)$, and $M_{0}, M_{1}, M_{2}$ are the least upper bounds of $|f(x)|,\\left|f^{\\prime}(x)\\right|,\\left|f^{\\prime \\prime}(x)\\right|$, respectively, on $(a, \\infty)$. Prove that $M_{1}^{2} \\leq 4 M_{0} M_{2} .$",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "ground_truth": "theorem exercise_5_15 {f : \u211d \u2192 \u211d} (a M0 M1 M2 : \u211d)\n  (hf' : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf'' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (hM0 : M0 = sSup {(|f x|) | x \u2208 (Set.Ioi a)})\n  (hM1 : M1 = sSup {(|deriv f x|) | x \u2208 (Set.Ioi a)})\n  (hM2 : M2 = sSup {(|deriv (deriv f) x|) | x \u2208 (Set.Ioi a)}) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 :=",
+      "baseline_candidate": "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : IsGreatest (Set.image (\u03bb x => |f x|) (Set.Ioi a)) M0)\n  (h\u2087 : IsGreatest (Set.image (\u03bb x => |deriv f x|) (Set.Ioi a)) M1)\n  (h\u2088 : IsGreatest (Set.image (\u03bb x => |deriv (deriv f) x|) (Set.Ioi a)) M := by sorry",
+      "baseline_cycle_score": -1.774046750150175,
+      "baseline_typecheck": false,
+      "best_cycle_candidate": "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (hM0 : M0 = sSup {abs (f x) | x > a})\n  (hM1 : M1 = sSup {abs (deriv f x) | x > a})\n  (hM2 : M2 = sSup {abs (iteratedDeriv 2 f x) | x > a})\n  (hf : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  : (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+      "best_cycle_score": -1.6386199568071935,
+      "best_cycle_typecheck": false,
+      "best_cycle_tc_candidate": "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2087 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2088 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  M1^2 \u2264 4 * M0 * M2 := by sorry",
+      "best_cycle_tc_score": -1.6795751875282352,
+      "best_cycle_tc_typecheck": true,
+      "num_candidates": 3,
+      "num_typechecked_candidates": 2,
+      "baseline_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : IsGreatest (Set.image (\u03bb x => |f x|) (Set.Ioi a)) M0)\n  (h\u2087 : IsGreatest (Set.image (\u03bb x => |deriv f x|) (Set.Ioi a)) M1)\n  (h\u2088 : IsGreatest (Set.image (\u03bb x => |deriv (deriv f) x|) (Set.Ioi a)) M",
+          "log_weight": -0.0020560501213336226
+        }
+      ],
+      "candidate_raw": [
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2087 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2088 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  M1^2 \u2264 4 * M0 * M2 := by sorry",
+          "log_weight": -0.0011313870906429749
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : \u2200 x, a < x \u2192 |f x| \u2264 M0)\n  (h\u2082 : \u2200 x, a < x \u2192 |deriv f x| \u2264 M1)\n  (h\u2083 : \u2200 x, a < x \u2192 |deriv (deriv f) x| \u2264 M2)\n  (h\u2084 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2085 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2086 : DifferentiableOn \u211d (deriv (deriv f)) (Set.Ioi a))\n  (h\u2087 : \u2200 x, a < x \u2192 deriv f x \u2260 0)\n  (h\u2088 : \u2200 x, a < x \u2192 deriv (deriv f) x \u2260 0)\n  (h\u2089 : \u2200 x, a < x \u2192 f x \u2260 0)\n  (h\u2081\u2080 : \u2200 x, a < x",
+          "log_weight": 0.0008595315496160545
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : M0 = sSup {abs (f x) | x \u2208 Set.Ioi a})\n  (h\u2087 : M1 = sSup {abs (deriv f x) | x \u2208 Set.Ioi a})\n  (h\u2088 : M2 = sSup {abs (deriv (deriv f) x) | x \u2208 Set.Ioi a}) :\n  (M1 ^ 2) \u2264 4 *",
+          "log_weight": -0.0021785542086783503
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (hM0 : M0 = sSup {abs (f x) | x > a})\n  (hM1 : M1 = sSup {abs (deriv f x) | x > a})\n  (hM2 : M2 = sSup {abs (iteratedDeriv 2 f x) | x > a})\n  (hf : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  : (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+          "log_weight": -0.0008547527791010444
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : IsGreatest (Set.image (\u03bb x => |f x|) (Set.Ioi a)) M0)\n  (h\u2087 : IsGreatest (Set.image (\u03bb x => |deriv f x|) (Set.Ioi a)) M1)\n  (h\u2088 : IsGreatest (Set.image (\u03bb x => |deriv (deriv f) x|) (Set.Ioi a)) M",
+          "log_weight": -0.001546375640822365
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : IsGreatest (Set.image (\u03bb x => |f x|) (Set.Ioi a)) M0)\n  (h\u2087 : IsGreatest (Set.image (\u03bb x => |deriv f x|) (Set.Ioi a)) M1)\n  (h\u2088 : IsGreatest (Set.image (\u03bb x => |deriv (deriv f) x|) (Set.Ioi a)) M",
+          "log_weight": -0.001546375640822365
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : \u2200 x, a < x \u2192 |f x| \u2264 M0)\n  (h\u2082 : \u2200 x, a < x \u2192 |deriv f x| \u2264 M1)\n  (h\u2083 : \u2200 x, a < x \u2192 |deriv (deriv f) x| \u2264 M2)\n  (h\u2084 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2085 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2086 : \u2200 x, a < x \u2192 deriv f x \u2260 0)\n  (h\u2087 : \u2200 x, a < x \u2192 deriv (deriv f) x \u2260 0)\n  (h\u2088 : \u2200 x, a < x \u2192 f x \u2260 0)\n  (h\u2089 : \u2200 x, a < x \u2192 |deriv f x| < M1)\n  (h\u2081\u2080 : \u2200 x, a < x",
+          "log_weight": -0.0066924217757628815
+        },
+        {
+          "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 := by sorry",
+          "log_weight": 0.0002051570636518111
+        }
+      ],
+      "candidates": [
+        {
+          "candidate": "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 := by sorry",
+          "cycle_score": -1.6958251437570295,
+          "typecheck": true
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (hM0 : M0 = sSup {abs (f x) | x > a})\n  (hM1 : M1 = sSup {abs (deriv f x) | x > a})\n  (hM2 : M2 = sSup {abs (iteratedDeriv 2 f x) | x > a})\n  (hf : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  : (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+          "cycle_score": -1.6386199568071935,
+          "typecheck": false
+        },
+        {
+          "candidate": "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2)\n  (h\u2086 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2087 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2088 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  M1^2 \u2264 4 * M0 * M2 := by sorry",
+          "cycle_score": -1.6795751875282352,
+          "typecheck": true
+        }
+      ],
+      "runtime_sec": 36.630147218704224,
+      "baseline_stmt_f1": 0.6626865671641791,
+      "best_cycle_stmt_f1": 0.8412698412698412,
+      "best_cycle_tc_stmt_f1": 0.7021943573667712
+    }
+  ]
+}

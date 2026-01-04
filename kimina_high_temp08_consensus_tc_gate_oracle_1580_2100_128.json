@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2100_rescored_cpu.json",
+    "note": "Oracle gate between all-consensus and tc-only (choose higher F1 per record)."
+  },
+  "summary": {
+    "count": 163,
+    "all_consensus_f1_avg": 0.8342580643229547,
+    "tc_consensus_f1_avg": 0.8388771140827722,
+    "oracle_gate_f1_avg": 0.8514580663874451,
+    "tc_better_rate": 0.22085889570552147,
+    "all_better_rate": 0.15950920245398773,
+    "tie_rate": 0.6196319018404908
+  }
+}

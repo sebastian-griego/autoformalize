@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_temp08_merged_64_128_rescored.json"
+  },
+  "summary": {
+    "count": 859,
+    "baseline_f1_avg": 0.7740837768437153,
+    "consensus_f1_avg": 0.8330117695445595,
+    "nl_number_f1_avg": 0.8068211754279507,
+    "digits": {
+      "count": 532,
+      "consensus_f1_avg": 0.826168830846901,
+      "nl_number_f1_avg": 0.7838798828277925
+    },
+    "nodigits": {
+      "count": 327,
+      "consensus_f1_avg": 0.8441446239395262,
+      "nl_number_f1_avg": 0.8441446239395262
+    }
+  }
+}

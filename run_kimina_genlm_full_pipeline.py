@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import math
 import random
 import re
 import sys
@@ -67,8 +68,41 @@ class SMCConfig:
     potential_stride: int = 8
 
 
-def load_hf_causal_lm(model_id: str, *, load_in_4bit: bool) -> Tuple[Any, Any]:
+def _logits_are_degenerate(model, tokenizer) -> bool:
+    # Quick sanity check to detect degenerate GPU logits (e.g., all zeros or NaNs).
+    try:
+        ids = tokenizer.encode("Hello world", return_tensors="pt")
+    except Exception:
+        return True
+    try:
+        ids = ids.to(model.device)
+    except Exception:
+        return True
+    with torch.no_grad():
+        logits = model(input_ids=ids).logits
+    sample = logits[0, -1].float().cpu()
+    if not torch.isfinite(sample).all():
+        return True
+    return float(sample.std().item()) == 0.0
+
+
+def load_hf_causal_lm(
+    model_id: str,
+    *,
+    load_in_4bit: bool,
+    force_cpu: bool = False,
+) -> Tuple[Any, Any]:
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+    if force_cpu:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            device_map="cpu",
+            torch_dtype=torch.float32,
+            trust_remote_code=True,
+        )
+        model.eval()
+        return model, tokenizer
+
     dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
     quant_config = None
     if load_in_4bit and BitsAndBytesConfig is not None:
@@ -91,6 +125,29 @@ def load_hf_causal_lm(model_id: str, *, load_in_4bit: bool) -> Tuple[Any, Any]:
     finally:
         torch.set_grad_enabled(grad_state)
     model.eval()
+    if torch.cuda.is_available() and _logits_are_degenerate(model, tokenizer):
+        print("[WARN] Reference model logits appear degenerate; retrying on GPU float16.")
+        del model
+        torch.cuda.empty_cache()
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            device_map="auto",
+            torch_dtype=torch.float16,
+            trust_remote_code=True,
+            quantization_config=quant_config,
+        )
+        model.eval()
+        if _logits_are_degenerate(model, tokenizer):
+            print("[WARN] Reference model logits appear degenerate; reloading on CPU float32.")
+            del model
+            torch.cuda.empty_cache()
+            model = AutoModelForCausalLM.from_pretrained(
+                model_id,
+                device_map="cpu",
+                torch_dtype=torch.float32,
+                trust_remote_code=True,
+            )
+            model.eval()
     return model, tokenizer
 
 
@@ -330,7 +387,7 @@ class LeanWellTypedPotential(Potential):
         if cached is not None:
             return cached
         text = context_bytes.decode("utf-8", errors="ignore")
-        if not self._looks_complete(text):
+        if "theorem" not in text.lower():
             return float("-inf")
         score = await self._check_well_typed(text)
         self._score_cache[context_bytes] = score
@@ -531,6 +588,29 @@ def summarize_sequences(sequences, theorem_name: str) -> Tuple[Dict[str, float],
     total = sum(aggregate.values())
     if total > 0:
         aggregate = {k: v / total for k, v in aggregate.items()}
+    else:
+        fallback: Dict[str, float] = {}
+        contexts = getattr(sequences, "contexts", None)
+        log_weights = getattr(sequences, "log_weights", None)
+        if contexts is not None and log_weights is not None and len(contexts) and len(log_weights):
+            try:
+                max_log = max(float(w) for w in log_weights)
+            except ValueError:
+                max_log = float("-inf")
+            if math.isfinite(max_log):
+                for context, log_w in zip(contexts, log_weights):
+                    log_val = float(log_w)
+                    if not math.isfinite(log_val):
+                        continue
+                    cleaned = clean_candidate_output(decode_sequence(context), theorem_name)
+                    if not cleaned.strip():
+                        continue
+                    weight = math.exp(log_val - max_log)
+                    fallback[cleaned] = fallback.get(cleaned, 0.0) + weight
+        if fallback:
+            total_fallback = sum(fallback.values())
+            if total_fallback > 0:
+                aggregate = {k: v / total_fallback for k, v in fallback.items()}
 
     raw_particles = []
     for context, log_w in zip(sequences.contexts, sequences.log_weights):
@@ -705,6 +785,18 @@ def parse_args() -> argparse.Namespace:
         default=0,
         help="Start offset in the dataset split (useful for sharding long runs)",
     )
+    parser.add_argument(
+        "--num-shards",
+        type=int,
+        default=1,
+        help="Total number of dataset shards for parallel runs",
+    )
+    parser.add_argument(
+        "--shard-id",
+        type=int,
+        default=0,
+        help="Shard index in [0, num-shards) to process",
+    )
     parser.add_argument("--seed", type=int, default=42, help="Random seed for dataset sampling")
     parser.add_argument("--max-tokens", type=int, default=160, help="Maximum generation length")
     parser.add_argument(
@@ -764,6 +856,12 @@ async def async_main(args: argparse.Namespace) -> None:
         print(f"[WARN] Dataset split '{args.split}' is empty.")
         return
 
+    num_shards = max(1, args.num_shards)
+    shard_id = args.shard_id
+    if shard_id < 0 or shard_id >= num_shards:
+        print(f"[WARN] shard-id {shard_id} is out of range for num-shards={num_shards}.")
+        return
+
     start_index = max(0, args.start_index)
     if start_index >= total_available:
         print(
@@ -772,7 +870,19 @@ async def async_main(args: argparse.Namespace) -> None:
         return
 
     end_index = min(total_available, start_index + max_examples)
-    dataset_slice = dataset.select(range(start_index, end_index))
+    indices = list(range(start_index, end_index))
+    if num_shards > 1:
+        indices = [idx for idx in indices if idx % num_shards == shard_id]
+        if args.results_path == RESULTS_PATH:
+            print(
+                "[WARN] num-shards > 1 with the default results path. "
+                "Use --results-path to avoid shard collisions."
+            )
+    if not indices:
+        print("[INFO] No examples assigned to this shard; exiting early.")
+        return
+
+    dataset_slice = dataset.select(indices)
     total_examples = len(dataset_slice)
     if total_examples == 0:
         print("[INFO] Requested range produced no examples – exiting early.")
@@ -862,6 +972,9 @@ async def async_main(args: argparse.Namespace) -> None:
                 "four_bit": model_cfg.load_in_4bit,
                 "dataset": DATASET_NAME,
                 "split": args.split,
+                "start_index": start_index,
+                "num_shards": num_shards,
+                "shard_id": shard_id,
                 "n_examples": len(records),
             },
             "summary": summary,
@@ -873,13 +986,14 @@ async def async_main(args: argparse.Namespace) -> None:
     processed_in_slice = 0
     dataset_progress_total = total_examples
     for relative_idx, example in enumerate(dataset_slice):
+        dataset_idx = indices[relative_idx]
         example_id = example["id"]
         if example_id in processed_ids:
             processed_in_slice += 1
             print(f"[{processed_in_slice}/{dataset_progress_total}] {example_id} already processed, skipping.")
             continue
 
-        theorem_name = f"autoformalized_theorem_{start_index + relative_idx}"
+        theorem_name = f"autoformalized_theorem_{dataset_idx}"
         nl_statement = example["nl_statement"].strip()
         lean_header = example["lean4_src_header"]
         ground_truth = example["lean4_formalization"]
@@ -897,7 +1011,7 @@ async def async_main(args: argparse.Namespace) -> None:
         )
 
         record = {
-            "index": start_index + relative_idx,
+            "index": dataset_idx,
             "id": example_id,
             "nl_statement": nl_statement,
             "ground_truth": ground_truth,

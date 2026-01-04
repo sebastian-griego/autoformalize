@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_64_20_temp08_test_ge1100_forward_kimina7b.json"
+  },
+  "summary": {
+    "count": 33,
+    "baseline_f1_avg": 0.7589055605936174,
+    "consensus_f1_avg": 0.8211617662016316,
+    "consensus_tc_f1_avg": 0.818232502395888,
+    "consensus_typecheck_rate": 0.6363636363636364,
+    "consensus_tc_typecheck_rate": 1.0
+  }
+}

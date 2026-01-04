@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start1580_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1600_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1620_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1640_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1660_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1680_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1700_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1720_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1740_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1760_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1780_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1800_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1820_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1840_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1860_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1880_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1900_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1920_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1940_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1960_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1980_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2000_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2020_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2040_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2060_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2080_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2100_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2120_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2140_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2160_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2180_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2200_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2220_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2240_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2260_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start2280_temp08_qwen1p5_rescored.json"
+    ],
+    "ridge": 0.001,
+    "baseline_feature": false,
+    "no_cycle": true,
+    "no_length": false,
+    "no_consensus": false,
+    "no_typecheck": false,
+    "context_interactions": false,
+    "extra_candidate_features": false
+  },
+  "summary": {
+    "count": 687,
+    "baseline_f1_avg": 0.7782621332067704,
+    "learned_f1_avg": 0.8397017105243296,
+    "learned_tc_f1_avg": 0.8378069323897542,
+    "learned_typecheck_rate": 0.9592430858806404,
+    "learned_tc_typecheck_rate": 0.9956331877729258
+  },
+  "per_slice": {
+    "kimina_bestof_cycle_lenpen001_128_20_start1580_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.8076196240850718,
+      "learned_f1_avg": 0.8778805306304888,
+      "learned_tc_f1_avg": 0.8686078033577616,
+      "learned_typecheck_rate": 0.95,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1600_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7881656968969136,
+      "learned_f1_avg": 0.8757536357977131,
+      "learned_tc_f1_avg": 0.860344135623019,
+      "learned_typecheck_rate": 0.8421052631578947,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1620_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.6768138177712002,
+      "learned_f1_avg": 0.7894061503391671,
+      "learned_tc_f1_avg": 0.7894061503391671,
+      "learned_typecheck_rate": 0.95,
+      "learned_tc_typecheck_rate": 0.95
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1640_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.7960940806753437,
+      "learned_f1_avg": 0.8694365925494424,
+      "learned_tc_f1_avg": 0.8680505381276736,
+      "learned_typecheck_rate": 0.95,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1660_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7295274488876821,
+      "learned_f1_avg": 0.8444836430082688,
+      "learned_tc_f1_avg": 0.8554787420920107,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1680_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 17,
+      "baseline_f1_avg": 0.8024247887276511,
+      "learned_f1_avg": 0.8445702184441071,
+      "learned_tc_f1_avg": 0.8445702184441071,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1700_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7673047688846943,
+      "learned_f1_avg": 0.803702501796332,
+      "learned_tc_f1_avg": 0.803702501796332,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1720_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.77047514643764,
+      "learned_f1_avg": 0.850536916151562,
+      "learned_tc_f1_avg": 0.850536916151562,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1740_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.8103249274160841,
+      "learned_f1_avg": 0.8289259969735983,
+      "learned_tc_f1_avg": 0.8171492432613606,
+      "learned_typecheck_rate": 0.9444444444444444,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1760_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.7811755680099077,
+      "learned_f1_avg": 0.8474225797730723,
+      "learned_tc_f1_avg": 0.8474225797730723,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1780_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.8229590311310861,
+      "learned_f1_avg": 0.8778861921461436,
+      "learned_tc_f1_avg": 0.8778861921461436,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1800_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.8216701134395191,
+      "learned_f1_avg": 0.8642938427308454,
+      "learned_tc_f1_avg": 0.8730192371186717,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1820_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.7768167357254333,
+      "learned_f1_avg": 0.8478316435736958,
+      "learned_tc_f1_avg": 0.7974906682815537,
+      "learned_typecheck_rate": 0.9444444444444444,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1840_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.7587077526914113,
+      "learned_f1_avg": 0.8550851856447022,
+      "learned_tc_f1_avg": 0.8550851856447022,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1860_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.7860882568744504,
+      "learned_f1_avg": 0.8146433902578312,
+      "learned_tc_f1_avg": 0.8146433902578312,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1880_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.8176595820622538,
+      "learned_f1_avg": 0.8751485555159115,
+      "learned_tc_f1_avg": 0.8874247703496712,
+      "learned_typecheck_rate": 0.95,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1900_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.7845256292133432,
+      "learned_f1_avg": 0.8178334859791621,
+      "learned_tc_f1_avg": 0.8370718747090763,
+      "learned_typecheck_rate": 0.95,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1920_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.7705761376681783,
+      "learned_f1_avg": 0.8316529780876434,
+      "learned_tc_f1_avg": 0.7813120027955011,
+      "learned_typecheck_rate": 0.9444444444444444,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1940_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.7846267890451082,
+      "learned_f1_avg": 0.8346890174455532,
+      "learned_tc_f1_avg": 0.8300169680941971,
+      "learned_typecheck_rate": 0.95,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1960_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7643161032510352,
+      "learned_f1_avg": 0.837481269152009,
+      "learned_tc_f1_avg": 0.8570172886880285,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start1980_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.749072244004626,
+      "learned_f1_avg": 0.7919381245992749,
+      "learned_tc_f1_avg": 0.8143931212826392,
+      "learned_typecheck_rate": 0.9,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2000_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7609783511603677,
+      "learned_f1_avg": 0.8246689261706929,
+      "learned_tc_f1_avg": 0.7817043719279432,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2020_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.8431138053980637,
+      "learned_f1_avg": 0.8799324130483671,
+      "learned_tc_f1_avg": 0.8837712914282493,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2040_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.713756569323438,
+      "learned_f1_avg": 0.8308871359429647,
+      "learned_tc_f1_avg": 0.8308871359429647,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2060_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7552331974247328,
+      "learned_f1_avg": 0.8537992852740922,
+      "learned_tc_f1_avg": 0.869226742806813,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2080_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7792077900971288,
+      "learned_f1_avg": 0.8500713591523549,
+      "learned_tc_f1_avg": 0.8703222946575278,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2100_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.8006540814998098,
+      "learned_f1_avg": 0.8256398201346682,
+      "learned_tc_f1_avg": 0.825397278296201,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2120_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7866442504748689,
+      "learned_f1_avg": 0.8233982185763229,
+      "learned_tc_f1_avg": 0.8232952213572479,
+      "learned_typecheck_rate": 0.8947368421052632,
+      "learned_tc_typecheck_rate": 0.9473684210526315
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2140_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7484132311494578,
+      "learned_f1_avg": 0.8170171731922115,
+      "learned_tc_f1_avg": 0.8170171731922115,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 0.9473684210526315
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2160_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.7539782375645319,
+      "learned_f1_avg": 0.8317681841632718,
+      "learned_tc_f1_avg": 0.8317681841632718,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2180_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.7583080691137773,
+      "learned_f1_avg": 0.8660131240729101,
+      "learned_tc_f1_avg": 0.8660131240729101,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2200_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.7840092127670706,
+      "learned_f1_avg": 0.8413899412588393,
+      "learned_tc_f1_avg": 0.8348385472179155,
+      "learned_typecheck_rate": 0.95,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2220_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.7608924196464966,
+      "learned_f1_avg": 0.793032845988605,
+      "learned_tc_f1_avg": 0.7826941650616888,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2240_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 20,
+      "baseline_f1_avg": 0.8348849733091533,
+      "learned_f1_avg": 0.8787490681666613,
+      "learned_tc_f1_avg": 0.8787490681666613,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2260_temp08_qwen1p5_rescored_cpu.json": {
+      "count": 18,
+      "baseline_f1_avg": 0.7518969952380332,
+      "learned_f1_avg": 0.7853044250457645,
+      "learned_tc_f1_avg": 0.7853044250457645,
+      "learned_typecheck_rate": 1.0,
+      "learned_tc_typecheck_rate": 1.0
+    },
+    "kimina_bestof_cycle_lenpen001_128_20_start2280_temp08_qwen1p5_rescored.json": {
+      "count": 19,
+      "baseline_f1_avg": 0.8217524019082127,
+      "learned_f1_avg": 0.8410199755210491,
+      "learned_tc_f1_avg": 0.8355569179017441,
+      "learned_typecheck_rate": 0.9473684210526315,
+      "learned_tc_typecheck_rate": 1.0
+    }
+  }
+}

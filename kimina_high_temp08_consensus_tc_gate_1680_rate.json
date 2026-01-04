@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start1680_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "feature": "tc_rate",
+    "direction": "ge",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8361019499160453,
+    "tc_consensus_f1_avg": 0.8384936997893335
+  },
+  "summary": {
+    "threshold_0.1937984496124031": {
+      "count": 17,
+      "chosen_f1_avg": 0.8384936997893336,
+      "chosen_typecheck_rate": 1.0
+    },
+    "threshold_0.3671875": {
+      "count": 17,
+      "chosen_f1_avg": 0.8293392687861632,
+      "chosen_typecheck_rate": 0.8823529411764706
+    },
+    "threshold_0.4326923076923077": {
+      "count": 17,
+      "chosen_f1_avg": 0.832282750856284,
+      "chosen_typecheck_rate": 0.8823529411764706
+    },
+    "threshold_0.5826771653543307": {
+      "count": 17,
+      "chosen_f1_avg": 0.8371364164604569,
+      "chosen_typecheck_rate": 0.8235294117647058
+    },
+    "threshold_0.675": {
+      "count": 17,
+      "chosen_f1_avg": 0.8361019499160454,
+      "chosen_typecheck_rate": 0.8235294117647058
+    },
+    "threshold_0.8666666666666667": {
+      "count": 17,
+      "chosen_f1_avg": 0.8361019499160454,
+      "chosen_typecheck_rate": 0.8235294117647058
+    },
+    "threshold_0.9230769230769231": {
+      "count": 17,
+      "chosen_f1_avg": 0.8361019499160454,
+      "chosen_typecheck_rate": 0.8235294117647058
+    },
+    "threshold_0.9285714285714286": {
+      "count": 17,
+      "chosen_f1_avg": 0.8361019499160454,
+      "chosen_typecheck_rate": 0.8235294117647058
+    },
+    "threshold_0.9596774193548387": {
+      "count": 17,
+      "chosen_f1_avg": 0.8361019499160454,
+      "chosen_typecheck_rate": 0.8235294117647058
+    },
+    "threshold_0.967741935483871": {
+      "count": 17,
+      "chosen_f1_avg": 0.8361019499160454,
+      "chosen_typecheck_rate": 0.8235294117647058
+    },
+    "threshold_0.9871794871794872": {
+      "count": 17,
+      "chosen_f1_avg": 0.8361019499160454,
+      "chosen_typecheck_rate": 0.8235294117647058
+    }
+  }
+}

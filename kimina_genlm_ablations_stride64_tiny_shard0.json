@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "n_particles": 1,
+    "max_tokens": 256,
+    "smc_mode": "all",
+    "potential_stride": 64,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 3,
+    "shard_id": 0,
+    "n_examples": 4
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.75,
+      "avg_runtime_sec": 2.7035219073295593,
+      "avg_tokens": 75.25
+    },
+    "smc_no_potential": {
+      "expected_correct": 0.75,
+      "avg_runtime_sec": 2.7879112362861633,
+      "avg_tokens": 76.25
+    },
+    "smc_lean_only": {
+      "expected_correct": 0.75,
+      "avg_runtime_sec": 3.5613263845443726,
+      "avg_tokens": 76.25
+    },
+    "smc_cycle_only": {
+      "expected_correct": 0.75,
+      "avg_runtime_sec": 137.8389574289322,
+      "avg_tokens": 69.25
+    },
+    "smc_both": {
+      "expected_correct": 0.75,
+      "avg_runtime_sec": 140.56595528125763,
+      "avg_tokens": 70.0
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -5.3537665359601385e-05
+          }
+        ],
+        "runtime_sec": 3.202979326248169,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry",
+      "baseline_beq": false,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' :=\nsorry",
+            "log_weight": -0.0009963852364224817
+          }
+        ],
+        "runtime_sec": 4.668506145477295,
+        "avg_tokens": 122.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 n, T' \u2286 T n) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 n, T'' \u2286 T n) \u2192 T' \u2286 T'' :=\nsorry",
+            "log_weight": -0.001143234567935179
+          }
+        ],
+        "runtime_sec": 6.6528639793396,
+        "avg_tokens": 122.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | \u2200 s : Set X, s \u2208 T \u2192 s \u2208 T'} T := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | \u2200 s : Set X, s \u2208 T \u2192 s \u2208 T'} T := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | \u2200 s : Set X, s \u2208 T \u2192 s \u2208 T'} T :=\nsorry",
+            "log_weight": -1.9722092949289631
+          }
+        ],
+        "runtime_sec": 151.72544956207275,
+        "avg_tokens": 75.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | T' \u2286 T \u2227 \u2200 U \u2208 T', IsOpen U} T := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | T' \u2286 T \u2227 \u2200 U \u2208 T', IsOpen U} T := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) :\n  \u2203! T', IsLeast {T' | T' \u2286 T \u2227 \u2200 U \u2208 T', IsOpen U} T :=\nsorry",
+            "log_weight": -1.9349983669729314
+          }
+        ],
+        "runtime_sec": 157.56028866767883,
+        "avg_tokens": 77.0
+      }
+    },
+    {
+      "index": 3,
+      "id": "Ireland-Rosen|exercise_3_5",
+      "nl_statement": "Show that the equation $7 x^{3}+2=y^{3}$ has no solution in integers.",
+      "ground_truth": "theorem exercise_3_5 : \u00ac \u2203 x y : \u2124, 7*x^3 + 2 = y^3 :=",
+      "lean_header": "import Mathlib\n\nopen Real\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -0.001691022994995927
+          }
+        ],
+        "runtime_sec": 1.465357780456543,
+        "avg_tokens": 41.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+      "baseline_beq": true,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -0.0016907384459977615
+          }
+        ],
+        "runtime_sec": 1.4995639324188232,
+        "avg_tokens": 42.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -0.00169066459995694
+          }
+        ],
+        "runtime_sec": 1.8365106582641602,
+        "avg_tokens": 42.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -1.9023775329505155
+          }
+        ],
+        "runtime_sec": 79.23872327804565,
+        "avg_tokens": 41.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -1.9081001482061222
+          }
+        ],
+        "runtime_sec": 81.65267395973206,
+        "avg_tokens": 42.0
+      }
+    },
+    {
+      "index": 6,
+      "id": "Munkres|exercise_18_8b",
+      "nl_statement": "Let $Y$ be an ordered set in the order topology. Let $f, g: X \\rightarrow Y$ be continuous. Let $h: X \\rightarrow Y$ be the function $h(x)=\\min \\{f(x), g(x)\\}.$ Show that $h$ is continuous.",
+      "ground_truth": "theorem exercise_18_8b {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+            "log_weight": 0.0005001834502398156
+          }
+        ],
+        "runtime_sec": 3.911983013153076,
+        "avg_tokens": 109.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+      "baseline_beq": true,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+            "log_weight": -0.0009728418991877405
+          }
+        ],
+        "runtime_sec": 3.3479154109954834,
+        "avg_tokens": 96.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+            "log_weight": -0.0009729009013620733
+          }
+        ],
+        "runtime_sec": 4.036372661590576,
+        "avg_tokens": 96.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_6\n  {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y]\n  (f g : X \u2192 Y)\n  (hf : Continuous f)\n  (hg : Continuous g)\n  (h : X \u2192 Y)\n  (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6\n  {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y]\n  (f g : X \u2192 Y)\n  (hf : Continuous f)\n  (hg : Continuous g)\n  (h : X \u2192 Y)\n  (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6\n  {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y]\n  (f g : X \u2192 Y)\n  (hf : Continuous f)\n  (hg : Continuous g)\n  (h : X \u2192 Y)\n  (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+            "log_weight": -1.5375712806809663
+          }
+        ],
+        "runtime_sec": 231.14692044258118,
+        "avg_tokens": 115.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_6\n  {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y]\n  (f g : X \u2192 Y)\n  (h : X \u2192 Y)\n  (hf : Continuous f)\n  (hg : Continuous g)\n  (h_def : h = \u03bb x => min (f x) (g x))\n  : Continuous h := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6\n  {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y]\n  (f g : X \u2192 Y)\n  (h : X \u2192 Y)\n  (hf : Continuous f)\n  (hg : Continuous g)\n  (h_def : h = \u03bb x => min (f x) (g x))\n  : Continuous h := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6\n  {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y]\n  (f g : X \u2192 Y)\n  (h : X \u2192 Y)\n  (hf : Continuous f)\n  (hg : Continuous g)\n  (h_def : h = \u03bb x => min (f x) (g x))\n  : Continuous h := by sorry",
+            "log_weight": -1.538039021090592
+          }
+        ],
+        "runtime_sec": 234.6560719013214,
+        "avg_tokens": 115.0
+      }
+    },
+    {
+      "index": 9,
+      "id": "Dummit-Foote|exercise_3_4_5a",
+      "nl_statement": "Prove that subgroups of a solvable group are solvable.",
+      "ground_truth": "theorem exercise_3_4_5a {G : Type*} [Group G]\n  (H : Subgroup G) [IsSolvable G] : IsSolvable H :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] {H : Subgroup G}\n  [IsSolvable G] : IsSolvable H := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] {H : Subgroup G}\n  [IsSolvable G] : IsSolvable H := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] {H : Subgroup G}\n  [IsSolvable G] : IsSolvable H :=\nsorry",
+            "log_weight": -0.00161955970826555
+          }
+        ],
+        "runtime_sec": 2.233767509460449,
+        "avg_tokens": 60.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_9 {G : Type*} [Group G] {H : Subgroup G}\n  [IsSolvable G] : IsSolvable H := by sorry",
+      "baseline_beq": true,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) : IsSolvable H := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) : IsSolvable H := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) : IsSolvable H := by sorry",
+            "log_weight": 0.0002473889251435501
+          }
+        ],
+        "runtime_sec": 1.6356594562530518,
+        "avg_tokens": 45.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] : IsSolvable H := by sorry",
+            "log_weight": 0.0007011970334108436
+          }
+        ],
+        "runtime_sec": 1.7195582389831543,
+        "avg_tokens": 45.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] :\n    IsSolvable H := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] :\n    IsSolvable H := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] :\n    IsSolvable H := by sorry",
+            "log_weight": -1.5993979113792653
+          }
+        ],
+        "runtime_sec": 89.24473643302917,
+        "avg_tokens": 46.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) :\n    IsSolvable H := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) :\n    IsSolvable H := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] [IsSolvable G] (H : Subgroup G) :\n    IsSolvable H := by sorry",
+            "log_weight": -1.5657290736057925
+          }
+        ],
+        "runtime_sec": 88.39478659629822,
+        "avg_tokens": 46.0
+      }
+    }
+  ]
+}

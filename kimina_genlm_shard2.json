@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 1,
+    "max_tokens": 256,
+    "smc_mode": "full",
+    "potential_stride": 32,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 3,
+    "shard_id": 2,
+    "n_examples": 3
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.0,
+      "avg_runtime_sec": 3.6153863271077475,
+      "avg_tokens": 106.66666666666667
+    },
+    "smc_both": {
+      "expected_correct": 0.0,
+      "avg_runtime_sec": 223.6312829653422,
+      "avg_tokens": 116.33333333333333
+    }
+  },
+  "records": [
+    {
+      "index": 2,
+      "id": "Rudin|exercise_1_18a",
+      "nl_statement": "If $k \\geq 2$ and $\\mathbf{x} \\in R^{k}$, prove that there exists $\\mathbf{y} \\in R^{k}$ such that $\\mathbf{y} \\neq 0$ but $\\mathbf{x} \\cdot \\mathbf{y}=0$",
+      "ground_truth": "theorem exercise_1_18a\n  (n : \u2115)\n  (h : n > 1)\n  (x : EuclideanSpace \u211d (Fin n)) -- R^n\n  : \u2203 (y : EuclideanSpace \u211d (Fin n)), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": 0.0006633223171436555
+          }
+        ],
+        "runtime_sec": 3.0262203216552734,
+        "avg_tokens": 88.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k)\n  : \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": -2.070702447951974
+          }
+        ],
+        "runtime_sec": 169.210191488266,
+        "avg_tokens": 88.0
+      }
+    },
+    {
+      "index": 5,
+      "id": "Munkres|exercise_33_8",
+      "nl_statement": "Let $X$ be completely regular, let $A$ and $B$ be disjoint closed subsets of $X$. Show that if $A$ is compact, there is a continuous function $f \\colon X \\rightarrow [0, 1]$ such that $f(A) = \\{0\\}$ and $f(B) = \\{1\\}$.",
+      "ground_truth": "theorem exercise_33_8\n  (X : Type*) [TopologicalSpace X] [CompletelyRegularSpace X]\n  (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B)\n  (hAc : IsCompact A) :\n  \u2203 (f : X \u2192 Icc 0 1), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+            "log_weight": 0.001549434326796706
+          }
+        ],
+        "runtime_sec": 4.020604372024536,
+        "avg_tokens": 118.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+            "log_weight": -1.963057708587278
+          }
+        ],
+        "runtime_sec": 225.27392721176147,
+        "avg_tokens": 118.0
+      }
+    },
+    {
+      "index": 8,
+      "id": "Artin|exercise_3_5_6",
+      "nl_statement": "Let $V$ be a vector space which is spanned by a countably infinite set. Prove that every linearly independent subset of $V$ is finite or countably infinite.",
+      "ground_truth": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = \u22a4) {\u03b9 : Type*} (R : \u03b9 \u2192 V)\n  (hR : LinearIndependent K R) : Countable \u03b9 :=",
+      "lean_header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] [FiniteDimensional \u211d V]\n    (S : Set V) (hS : Set.Countable S) (hS1 : Infinite S) (hS2 : Set.Span K S = \u22a4)\n    (R : Set (Set V)) (hR : \u2200 T \u2208 R, LinearIndependent \u211d T) :\n    \u2200 T \u2208 R, Countable T \u2228 Finite T := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] [FiniteDimensional \u211d V]\n    (S : Set V) (hS : Set.Countable S) (hS1 : Infinite S) (hS2 : Set.Span K S = \u22a4)\n    (R : Set (Set V)) (hR : \u2200 T \u2208 R, LinearIndependent \u211d T) :\n    \u2200 T \u2208 R, Countable T \u2228 Finite T := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] [FiniteDimensional \u211d V]\n    (S : Set V) (hS : Set.Countable S) (hS1 : Infinite S) (hS2 : Set.Span K S = \u22a4)\n    (R : Set (Set V)) (hR : \u2200 T \u2208 R, LinearIndependent \u211d T) :\n    \u2200 T \u2208 R, Countable T \u2228 Finite T := by sorry",
+            "log_weight": -0.002849983018000865
+          }
+        ],
+        "runtime_sec": 3.7993342876434326,
+        "avg_tokens": 114.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] [FiniteDimensional \u211d V]\n    (S : Set V) (hS : Set.Countable S) (hS1 : Infinite S) (hS2 : Set.Span K S = \u22a4)\n    (R : Set (Set V)) (hR : \u2200 T \u2208 R, LinearIndependent \u211d T) :\n    \u2200 T \u2208 R, Countable T \u2228 Finite T := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] (S : Set V)\n    (hS : Countable S) (hS1 : Infinite S) (hS2 : Set.Countable S)\n    (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S) (hS5 : Set.PairwiseDisjoint S)\n    (hS6 : Set.PairwiseInter S) (hS7 : Set.PairwiseUnion S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Finite R := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] (S : Set V)\n    (hS : Countable S) (hS1 : Infinite S) (hS2 : Set.Countable S)\n    (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S) (hS5 : Set.PairwiseDisjoint S)\n    (hS6 : Set.PairwiseInter S) (hS7 : Set.PairwiseUnion S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Finite R := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V] (S : Set V)\n    (hS : Countable S) (hS1 : Infinite S) (hS2 : Set.Countable S)\n    (hS3 : Set.Infinite S) (hS4 : Set.Nonempty S) (hS5 : Set.PairwiseDisjoint S)\n    (hS6 : Set.PairwiseInter S) (hS7 : Set.PairwiseUnion S) :\n    \u2200 R : Set V, Countable R \u2192 Infinite R \u2228 Finite R := by sorry",
+            "log_weight": -3.3338466871710684
+          }
+        ],
+        "runtime_sec": 276.40973019599915,
+        "avg_tokens": 143.0
+      }
+    }
+  ]
+}

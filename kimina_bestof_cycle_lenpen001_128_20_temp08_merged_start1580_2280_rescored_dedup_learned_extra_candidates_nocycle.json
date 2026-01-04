@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2280_rescored_dedup.json",
+    "train_results": null,
+    "test_results": null,
+    "folds": 5,
+    "model": "ridge",
+    "ridge": 0.001,
+    "gbrt_estimators": 200,
+    "gbrt_learning_rate": 0.05,
+    "gbrt_depth": 3,
+    "baseline_feature": false,
+    "forward_feature": false,
+    "embed_consensus": false,
+    "context_interactions": false,
+    "extra_candidate_features": true,
+    "embed_model_id": null,
+    "embed_batch_size": null,
+    "embed_max_length": null,
+    "embed_device": null
+  },
+  "summary": {
+    "count": 173,
+    "baseline_f1_avg": 0.7666813698291658,
+    "learned_f1_avg": 0.8395743532981581,
+    "learned_tc_f1_avg": 0.8380116049822384,
+    "learned_typecheck_rate": 0.9710982658959537,
+    "learned_tc_typecheck_rate": 0.9884393063583815,
+    "learned_improve_rate": 0.6936416184971098,
+    "learned_tc_improve_rate": 0.6878612716763006,
+    "avg_weights": [
+      0.7003417674004171,
+      0.007216492402047604,
+      0.043888419167275,
+      0.05184948886313758,
+      0.011876688929733037,
+      0.017735611172973658,
+      0.008892394176524047,
+      0.010233002722314182,
+      0.03208726250796826,
+      0.012605665504434638
+    ]
+  }
+}

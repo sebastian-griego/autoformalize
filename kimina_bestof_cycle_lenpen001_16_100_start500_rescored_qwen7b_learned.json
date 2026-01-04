@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_16_100_start500_rescored_qwen7b.json",
+    "folds": 5,
+    "ridge": 0.001
+  },
+  "summary": {
+    "count": 72,
+    "baseline_f1_avg": 0.746127922743239,
+    "learned_f1_avg": 0.757053506685652,
+    "learned_tc_f1_avg": 0.757053506685652,
+    "learned_typecheck_rate": 0.8472222222222222,
+    "learned_tc_typecheck_rate": 0.8472222222222222,
+    "learned_improve_rate": 0.3055555555555556,
+    "learned_tc_improve_rate": 0.3055555555555556,
+    "avg_weights": [
+      0.6712571874409057,
+      0.007450163318780288,
+      0.0020353433631495376,
+      0.005448976110592376,
+      0.14258893755182053
+    ]
+  }
+}

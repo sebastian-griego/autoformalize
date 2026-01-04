@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2280_rescored.json",
+    "train_results": null,
+    "test_results": null,
+    "folds": 5,
+    "model": "ridge",
+    "ridge": 0.001,
+    "gbrt_estimators": 200,
+    "gbrt_learning_rate": 0.05,
+    "gbrt_depth": 3,
+    "baseline_feature": false,
+    "forward_feature": false,
+    "embed_consensus": true,
+    "embed_model_id": "microsoft/codebert-base",
+    "embed_batch_size": 32,
+    "embed_max_length": 256,
+    "embed_device": null
+  },
+  "summary": {
+    "count": 687,
+    "baseline_f1_avg": 0.7782621332067704,
+    "learned_f1_avg": 0.8398834397828381,
+    "learned_tc_f1_avg": 0.8378201970523274,
+    "learned_typecheck_rate": 0.9577874818049491,
+    "learned_tc_typecheck_rate": 0.9956331877729258,
+    "learned_improve_rate": 0.6331877729257642,
+    "learned_tc_improve_rate": 0.6346433770014556,
+    "avg_weights": [
+      0.7354454317474122,
+      0.007167165887918411,
+      0.00744635593561061,
+      0.062058236237306906,
+      0.011103148057370518,
+      0.04201873493022984
+    ]
+  }
+}

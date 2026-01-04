@@ -1,0 +1,441 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 1,
+    "max_tokens": 256,
+    "smc_mode": "full",
+    "potential_stride": 32,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 3,
+    "shard_id": 0,
+    "n_examples": 10
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.7,
+      "avg_runtime_sec": 2.6165240526199343,
+      "avg_tokens": 76.7
+    },
+    "smc_both": {
+      "expected_correct": 0.5,
+      "avg_runtime_sec": 142.3922253370285,
+      "avg_tokens": 74.5
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' :=\nsorry",
+            "log_weight": 0.0021935207176685644
+          }
+        ],
+        "runtime_sec": 4.192686080932617,
+        "avg_tokens": 123.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n  \u2203! T', IsTopologicalBasis T' \u2227 (\u2200 i, T' \u2286 T i) \u2227\n  \u2200 T'', IsTopologicalBasis T'' \u2192 (\u2200 i, T'' \u2286 T i) \u2192 T' \u2286 T'' := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 168.73263835906982,
+        "avg_tokens": 89.0
+      }
+    },
+    {
+      "index": 3,
+      "id": "Ireland-Rosen|exercise_3_5",
+      "nl_statement": "Show that the equation $7 x^{3}+2=y^{3}$ has no solution in integers.",
+      "ground_truth": "theorem exercise_3_5 : \u00ac \u2203 x y : \u2124, 7*x^3 + 2 = y^3 :=",
+      "lean_header": "import Mathlib\n\nopen Real\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -0.001691022994995927
+          }
+        ],
+        "runtime_sec": 1.443427562713623,
+        "avg_tokens": 41.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -5.467252094216982
+          }
+        ],
+        "runtime_sec": 76.54776453971863,
+        "avg_tokens": 41.0
+      }
+    },
+    {
+      "index": 6,
+      "id": "Munkres|exercise_18_8b",
+      "nl_statement": "Let $Y$ be an ordered set in the order topology. Let $f, g: X \\rightarrow Y$ be continuous. Let $h: X \\rightarrow Y$ be the function $h(x)=\\min \\{f(x), g(x)\\}.$ Show that $h$ is continuous.",
+      "ground_truth": "theorem exercise_18_8b {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+            "log_weight": 0.0005001834502398156
+          }
+        ],
+        "runtime_sec": 3.6662793159484863,
+        "avg_tokens": 109.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) :\n  Continuous h := by sorry",
+            "log_weight": -2.396850069303442
+          }
+        ],
+        "runtime_sec": 211.27821016311646,
+        "avg_tokens": 109.0
+      }
+    },
+    {
+      "index": 9,
+      "id": "Dummit-Foote|exercise_3_4_5a",
+      "nl_statement": "Prove that subgroups of a solvable group are solvable.",
+      "ground_truth": "theorem exercise_3_4_5a {G : Type*} [Group G]\n  (H : Subgroup G) [IsSolvable G] : IsSolvable H :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] :\n    IsSolvable H := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] :\n    IsSolvable H := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] :\n    IsSolvable H := by sorry",
+            "log_weight": 0.0014832426837659183
+          }
+        ],
+        "runtime_sec": 1.592423915863037,
+        "avg_tokens": 46.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G) [IsSolvable G] :\n    IsSolvable H := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G)\n  [IsSolvable G] : IsSolvable H := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G)\n  [IsSolvable G] : IsSolvable H := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_9 {G : Type*} [Group G] (H : Subgroup G)\n  [IsSolvable G] : IsSolvable H :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 112.90056467056274,
+        "avg_tokens": 60.0
+      }
+    },
+    {
+      "index": 12,
+      "id": "Munkres|exercise_32_2b",
+      "nl_statement": "Show that if $\\prod X_\\alpha$ is regular, then so is $X_\\alpha$. Assume that each $X_\\alpha$ is nonempty.",
+      "ground_truth": "theorem exercise_32_2b\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+            "log_weight": 1.0093967541133871e-05
+          }
+        ],
+        "runtime_sec": 3.2090680599212646,
+        "avg_tokens": 94.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_12\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 179.10397100448608,
+        "avg_tokens": 94.0
+      }
+    },
+    {
+      "index": 15,
+      "id": "Munkres|exercise_13_4a1",
+      "nl_statement": "If $\\mathcal{T}_\\alpha$ is a family of topologies on $X$, show that $\\bigcap \\mathcal{T}_\\alpha$ is a topology on $X$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4a1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  is_topology X (\u22c2 i : I, T i) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) :=\nsorry",
+            "log_weight": -0.00013575622963293778
+          }
+        ],
+        "runtime_sec": 2.5371649265289307,
+        "avg_tokens": 75.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_15 (X : Type*) [TopologicalSpace X]\n  (T : Set (Set X)) (hT : \u2200 s \u2208 T, IsOpen s) :\n  IsOpen (\u22c2 s \u2208 T, s) := by sorry",
+            "log_weight": -2.872388275059253
+          }
+        ],
+        "runtime_sec": 142.58963894844055,
+        "avg_tokens": 76.0
+      }
+    },
+    {
+      "index": 18,
+      "id": "Ireland-Rosen|exercise_1_27",
+      "nl_statement": "For all odd $n$ show that $8 \\mid n^{2}-1$.",
+      "ground_truth": "theorem exercise_1_27 {n : \u2115} (hn : Odd n) : 8 \u2223 (n^2 - 1) :=",
+      "lean_header": "import Mathlib\n\nopen Real\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+            "log_weight": 0.001698525814222669
+          }
+        ],
+        "runtime_sec": 1.5274736881256104,
+        "avg_tokens": 44.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_18 (n : \u2115) (h\u2080 : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_18 (n : \u2115) (h : Odd n) : 8 \u2223 (n ^ 2 - 1) := by sorry",
+            "log_weight": -5.378074620051768
+          }
+        ],
+        "runtime_sec": 79.86347508430481,
+        "avg_tokens": 43.0
+      }
+    },
+    {
+      "index": 21,
+      "id": "Dummit-Foote|exercise_1_6_17",
+      "nl_statement": "Let $G$ be any group. Prove that the map from $G$ to itself defined by $g \\mapsto g^{-1}$ is a homomorphism if and only if $G$ is abelian.",
+      "ground_truth": "theorem exercise_1_6_17 {G : Type*} [Group G] (f : G \u2192 G)\n  (hf : f = \u03bb g => g\u207b\u00b9) :\n  (\u2200 x y : G, f x * f y = f (x*y)) \u2194 \u2200 x y : G, x*y = y*x :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  \u2200 x y : G, x*y = y*x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  \u2200 x y : G, x*y = y*x := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  \u2200 x y : G, x*y = y*x := by sorry",
+            "log_weight": 0.001666889873134981
+          }
+        ],
+        "runtime_sec": 3.017695903778076,
+        "avg_tokens": 89.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  \u2200 x y : G, x*y = y*x := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  \u2200 x y : G, x*y = y*x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  \u2200 x y : G, x*y = y*x := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_21 {G : Type*} [Group G] :\n  \u2203 f : G \u2192 G, Function.Surjective f \u2227 \u2200 x y : G, f x * f y = f (x*y) \u2194\n  \u2200 x y : G, x*y = y*x := by sorry",
+            "log_weight": -3.4725026368128247
+          }
+        ],
+        "runtime_sec": 174.8584463596344,
+        "avg_tokens": 89.0
+      }
+    },
+    {
+      "index": 24,
+      "id": "Shakarchi|exercise_1_13a",
+      "nl_statement": "Suppose that $f$ is holomorphic in an open set $\\Omega$. Prove that if $\\text{Re}(f)$ is constant, then $f$ is constant.",
+      "ground_truth": "theorem exercise_1_13a {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b :=",
+      "lean_header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+            "log_weight": -0.001852750731474957
+          }
+        ],
+        "runtime_sec": 3.6356077194213867,
+        "avg_tokens": 107.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) :\n  f a = f b := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_24 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9) (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, (f z).re = c) : f a = f b := by sorry",
+            "log_weight": -2.365379829585133
+          }
+        ],
+        "runtime_sec": 203.45826816558838,
+        "avg_tokens": 105.0
+      }
+    },
+    {
+      "index": 27,
+      "id": "Artin|exercise_11_4_1b",
+      "nl_statement": "Prove that $x^3 + 6x + 12$ is irreducible in $\\mathbb{Q}$.",
+      "ground_truth": "theorem exercise_11_4_1b :\n  Irreducible (12 + 6 * X + X ^ 3 : Polynomial \u211a) :=",
+      "lean_header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+            "log_weight": -0.0018567600645403946
+          }
+        ],
+        "runtime_sec": 1.3434133529663086,
+        "avg_tokens": 39.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_27 : Irreducible (X^3 + 6*X + 12 : Polynomial \u211a) := by sorry",
+            "log_weight": -3.16447012174578
+          }
+        ],
+        "runtime_sec": 74.58927607536316,
+        "avg_tokens": 39.0
+      }
+    }
+  ]
+}

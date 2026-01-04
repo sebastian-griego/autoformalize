@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_8_30.json"
+  },
+  "summary": {
+    "alpha_0.0": {
+      "count": 27,
+      "all_f1_avg": 0.8070028064549701,
+      "all_typecheck_rate": 0.7037037037037037,
+      "tc_f1_avg": 0.8123101669667597,
+      "tc_typecheck_rate": 0.9259259259259259
+    },
+    "alpha_0.001": {
+      "count": 27,
+      "all_f1_avg": 0.8151201646238571,
+      "all_typecheck_rate": 0.7037037037037037,
+      "tc_f1_avg": 0.8236905487709468,
+      "tc_typecheck_rate": 0.9259259259259259
+    },
+    "alpha_0.002": {
+      "count": 27,
+      "all_f1_avg": 0.8061414889785147,
+      "all_typecheck_rate": 0.6666666666666666,
+      "tc_f1_avg": 0.8236905487709468,
+      "tc_typecheck_rate": 0.9259259259259259
+    },
+    "alpha_0.005": {
+      "count": 27,
+      "all_f1_avg": 0.8061414889785147,
+      "all_typecheck_rate": 0.6666666666666666,
+      "tc_f1_avg": 0.8123029601475857,
+      "tc_typecheck_rate": 0.9259259259259259
+    },
+    "alpha_0.01": {
+      "count": 27,
+      "all_f1_avg": 0.8114655737727982,
+      "all_typecheck_rate": 0.6666666666666666,
+      "tc_f1_avg": 0.8123029601475857,
+      "tc_typecheck_rate": 0.9259259259259259
+    },
+    "alpha_0.02": {
+      "count": 27,
+      "all_f1_avg": 0.8163554581880307,
+      "all_typecheck_rate": 0.6296296296296297,
+      "tc_f1_avg": 0.8195610664432352,
+      "tc_typecheck_rate": 0.9259259259259259
+    }
+  }
+}

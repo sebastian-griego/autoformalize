@@ -1,0 +1,305 @@
+{
+  "meta": {
+    "learned_slice_cv": "kimina_bestof_cycle_lenpen001_128_20_temp08_learned_slice_cv_1580_2100.json",
+    "consensus_pattern": "kimina_bestof_cycle_lenpen001_128_20_start{start}_temp08_qwen1p5_rescored_cpu_consensus.json"
+  },
+  "summary": {
+    "slices": 27,
+    "avg_delta_vs_consensus": 0.0054450660582228095,
+    "avg_delta_vs_consensus_tc": 0.0057403282930885745,
+    "learned_beats_consensus_slices": 20,
+    "learned_beats_consensus_tc_slices": 13,
+    "worst_delta_vs_consensus": {
+      "start": 1860,
+      "baseline_f1": 0.7860882568744504,
+      "consensus_f1": 0.8228722438546541,
+      "consensus_tc_f1": 0.8214555105378811,
+      "learned_f1": 0.8099088094175987,
+      "learned_tc_f1": 0.8099088094175987,
+      "delta_vs_consensus": -0.012963434437055388,
+      "delta_vs_consensus_tc": -0.011546701120282443
+    },
+    "best_delta_vs_consensus": {
+      "start": 1680,
+      "baseline_f1": 0.8024247887276511,
+      "consensus_f1": 0.8361019499160454,
+      "consensus_tc_f1": 0.8384936997893336,
+      "learned_f1": 0.8606311848160566,
+      "learned_tc_f1": 0.8606311848160566,
+      "delta_vs_consensus": 0.024529234900011243,
+      "delta_vs_consensus_tc": 0.02213748502672297
+    }
+  },
+  "per_slice": [
+    {
+      "start": 1580,
+      "baseline_f1": 0.8076196240850718,
+      "consensus_f1": 0.8752595522267921,
+      "consensus_tc_f1": 0.8641388680437079,
+      "learned_f1": 0.8815387822136225,
+      "learned_tc_f1": 0.8722660549408954,
+      "delta_vs_consensus": 0.0062792299868303925,
+      "delta_vs_consensus_tc": 0.0173999141699146
+    },
+    {
+      "start": 1600,
+      "baseline_f1": 0.7881656968969136,
+      "consensus_f1": 0.8719375444887653,
+      "consensus_tc_f1": 0.8625097307396521,
+      "learned_f1": 0.8720216462801665,
+      "learned_tc_f1": 0.858148834541892,
+      "delta_vs_consensus": 8.410179140128093e-05,
+      "delta_vs_consensus_tc": 0.009511915540514448
+    },
+    {
+      "start": 1620,
+      "baseline_f1": 0.6768138177712002,
+      "consensus_f1": 0.7741102735892845,
+      "consensus_tc_f1": 0.7909426572747785,
+      "learned_f1": 0.7854716931075025,
+      "learned_tc_f1": 0.7854716931075025,
+      "delta_vs_consensus": 0.011361419518218008,
+      "delta_vs_consensus_tc": -0.0054709641672759934
+    },
+    {
+      "start": 1640,
+      "baseline_f1": 0.7960940806753437,
+      "consensus_f1": 0.8606913604149135,
+      "consensus_tc_f1": 0.868373819130776,
+      "learned_f1": 0.8706518778773269,
+      "learned_tc_f1": 0.8692658234555581,
+      "delta_vs_consensus": 0.009960517462413443,
+      "delta_vs_consensus_tc": 0.0022780587465508484
+    },
+    {
+      "start": 1660,
+      "baseline_f1": 0.7295274488876821,
+      "consensus_f1": 0.8390192354797826,
+      "consensus_tc_f1": 0.8654524458071686,
+      "learned_f1": 0.8471764542408429,
+      "learned_tc_f1": 0.8498613040171054,
+      "delta_vs_consensus": 0.008157218761060236,
+      "delta_vs_consensus_tc": -0.018275991566325755
+    },
+    {
+      "start": 1680,
+      "baseline_f1": 0.8024247887276511,
+      "consensus_f1": 0.8361019499160454,
+      "consensus_tc_f1": 0.8384936997893336,
+      "learned_f1": 0.8606311848160566,
+      "learned_tc_f1": 0.8606311848160566,
+      "delta_vs_consensus": 0.024529234900011243,
+      "delta_vs_consensus_tc": 0.02213748502672297
+    },
+    {
+      "start": 1700,
+      "baseline_f1": 0.7673047688846943,
+      "consensus_f1": 0.7990340374340527,
+      "consensus_tc_f1": 0.8041206207665381,
+      "learned_f1": 0.7923701276609334,
+      "learned_tc_f1": 0.7923701276609334,
+      "delta_vs_consensus": -0.006663909773119259,
+      "delta_vs_consensus_tc": -0.01175049310560472
+    },
+    {
+      "start": 1720,
+      "baseline_f1": 0.77047514643764,
+      "consensus_f1": 0.8516126783347547,
+      "consensus_tc_f1": 0.8583899516262791,
+      "learned_f1": 0.8535419823780864,
+      "learned_tc_f1": 0.8535419823780864,
+      "delta_vs_consensus": 0.0019293040433316921,
+      "delta_vs_consensus_tc": -0.004847969248192641
+    },
+    {
+      "start": 1740,
+      "baseline_f1": 0.8103249274160841,
+      "consensus_f1": 0.8247617519853796,
+      "consensus_tc_f1": 0.8264202174391085,
+      "learned_f1": 0.8417853356996464,
+      "learned_tc_f1": 0.8289384910296776,
+      "delta_vs_consensus": 0.01702358371426682,
+      "delta_vs_consensus_tc": 0.01536511826053788
+    },
+    {
+      "start": 1760,
+      "baseline_f1": 0.7811755680099077,
+      "consensus_f1": 0.8434492384652734,
+      "consensus_tc_f1": 0.8239092842843934,
+      "learned_f1": 0.8325418122492333,
+      "learned_tc_f1": 0.8325418122492333,
+      "delta_vs_consensus": -0.010907426216040128,
+      "delta_vs_consensus_tc": 0.008632527964839931
+    },
+    {
+      "start": 1780,
+      "baseline_f1": 0.8229590311310861,
+      "consensus_f1": 0.8721656841153449,
+      "consensus_tc_f1": 0.8764215348978842,
+      "learned_f1": 0.8737796846689463,
+      "learned_tc_f1": 0.8737796846689463,
+      "delta_vs_consensus": 0.0016140005536013913,
+      "delta_vs_consensus_tc": -0.0026418502289379253
+    },
+    {
+      "start": 1800,
+      "baseline_f1": 0.8216701134395191,
+      "consensus_f1": 0.8595693283598503,
+      "consensus_tc_f1": 0.8719829205148217,
+      "learned_f1": 0.8649045200515965,
+      "learned_tc_f1": 0.8736299144394227,
+      "delta_vs_consensus": 0.005335191691746122,
+      "delta_vs_consensus_tc": -0.007078400463225276
+    },
+    {
+      "start": 1820,
+      "baseline_f1": 0.7768167357254333,
+      "consensus_f1": 0.843241482145492,
+      "consensus_tc_f1": 0.7932201374824109,
+      "learned_f1": 0.8462752073695184,
+      "learned_tc_f1": 0.7983673221017072,
+      "delta_vs_consensus": 0.003033725224026451,
+      "delta_vs_consensus_tc": 0.05305506988710751
+    },
+    {
+      "start": 1840,
+      "baseline_f1": 0.7587077526914113,
+      "consensus_f1": 0.8534387508439368,
+      "consensus_tc_f1": 0.8456444366683994,
+      "learned_f1": 0.8564524667793486,
+      "learned_tc_f1": 0.8564524667793486,
+      "delta_vs_consensus": 0.003013715935411776,
+      "delta_vs_consensus_tc": 0.010808030110949218
+    },
+    {
+      "start": 1860,
+      "baseline_f1": 0.7860882568744504,
+      "consensus_f1": 0.8228722438546541,
+      "consensus_tc_f1": 0.8214555105378811,
+      "learned_f1": 0.8099088094175987,
+      "learned_tc_f1": 0.8099088094175987,
+      "delta_vs_consensus": -0.012963434437055388,
+      "delta_vs_consensus_tc": -0.011546701120282443
+    },
+    {
+      "start": 1880,
+      "baseline_f1": 0.8176595820622538,
+      "consensus_f1": 0.8652783190315458,
+      "consensus_tc_f1": 0.8777684985872366,
+      "learned_f1": 0.873751301040827,
+      "learned_tc_f1": 0.8860275158745866,
+      "delta_vs_consensus": 0.00847298200928115,
+      "delta_vs_consensus_tc": -0.004017197546409612
+    },
+    {
+      "start": 1900,
+      "baseline_f1": 0.7845256292133432,
+      "consensus_f1": 0.814131209262056,
+      "consensus_tc_f1": 0.8469842476506197,
+      "learned_f1": 0.8367267960659591,
+      "learned_tc_f1": 0.8576601000501105,
+      "delta_vs_consensus": 0.022595586803903167,
+      "delta_vs_consensus_tc": -0.010257451584660626
+    },
+    {
+      "start": 1920,
+      "baseline_f1": 0.7705761376681783,
+      "consensus_f1": 0.8291877745130857,
+      "consensus_tc_f1": 0.7716229976732246,
+      "learned_f1": 0.8521972895163734,
+      "learned_tc_f1": 0.8053077652361894,
+      "delta_vs_consensus": 0.02300951500328774,
+      "delta_vs_consensus_tc": 0.0805742918431488
+    },
+    {
+      "start": 1940,
+      "baseline_f1": 0.7846267890451082,
+      "consensus_f1": 0.8371656364760964,
+      "consensus_tc_f1": 0.8392527386596939,
+      "learned_f1": 0.8348374787379947,
+      "learned_tc_f1": 0.8355716536865131,
+      "delta_vs_consensus": -0.0023281577381016882,
+      "delta_vs_consensus_tc": -0.004415259921699111
+    },
+    {
+      "start": 1960,
+      "baseline_f1": 0.7643161032510352,
+      "consensus_f1": 0.8363395557467248,
+      "consensus_tc_f1": 0.8607552377212953,
+      "learned_f1": 0.8348615089882424,
+      "learned_tc_f1": 0.8516984731936277,
+      "delta_vs_consensus": -0.0014780467584823986,
+      "delta_vs_consensus_tc": -0.025893728733052845
+    },
+    {
+      "start": 1980,
+      "baseline_f1": 0.749072244004626,
+      "consensus_f1": 0.7896241689833599,
+      "consensus_tc_f1": 0.8088527115896678,
+      "learned_f1": 0.7927414264784174,
+      "learned_tc_f1": 0.8185862536702562,
+      "delta_vs_consensus": 0.003117257495057535,
+      "delta_vs_consensus_tc": -0.016111285111250373
+    },
+    {
+      "start": 2000,
+      "baseline_f1": 0.7609783511603677,
+      "consensus_f1": 0.8291902306084898,
+      "consensus_tc_f1": 0.7849279305008696,
+      "learned_f1": 0.8288837307854185,
+      "learned_tc_f1": 0.7867735852918143,
+      "delta_vs_consensus": -0.0003064998230712934,
+      "delta_vs_consensus_tc": 0.04395580028454893
+    },
+    {
+      "start": 2020,
+      "baseline_f1": 0.8431138053980637,
+      "consensus_f1": 0.8859841481660025,
+      "consensus_tc_f1": 0.8767213897398084,
+      "learned_f1": 0.8908229588245095,
+      "learned_tc_f1": 0.8983300987673897,
+      "delta_vs_consensus": 0.004838810658506998,
+      "delta_vs_consensus_tc": 0.01410156908470106
+    },
+    {
+      "start": 2040,
+      "baseline_f1": 0.713756569323438,
+      "consensus_f1": 0.8107847941658713,
+      "consensus_tc_f1": 0.8116250360034764,
+      "learned_f1": 0.8281447430448676,
+      "learned_tc_f1": 0.8281447430448676,
+      "delta_vs_consensus": 0.01735994887899628,
+      "delta_vs_consensus_tc": 0.016519707041391274
+    },
+    {
+      "start": 2060,
+      "baseline_f1": 0.7552331974247328,
+      "consensus_f1": 0.8644198793860903,
+      "consensus_tc_f1": 0.8531775215067703,
+      "learned_f1": 0.8724799702714642,
+      "learned_tc_f1": 0.8724799702714642,
+      "delta_vs_consensus": 0.00806009088537385,
+      "delta_vs_consensus_tc": 0.01930244876469389
+    },
+    {
+      "start": 2080,
+      "baseline_f1": 0.7792077900971288,
+      "consensus_f1": 0.8401521964177786,
+      "consensus_tc_f1": 0.8655385221035816,
+      "learned_f1": 0.8439223193573214,
+      "learned_tc_f1": 0.8666203077040642,
+      "delta_vs_consensus": 0.0037701229395428193,
+      "delta_vs_consensus_tc": -0.021616202746260194
+    },
+    {
+      "start": 2100,
+      "baseline_f1": 0.8006540814998098,
+      "consensus_f1": 0.812849698571452,
+      "consensus_tc_f1": 0.8256979759021219,
+      "learned_f1": 0.8109683986330696,
+      "learned_tc_f1": 0.812184727852845,
+      "delta_vs_consensus": -0.0018812999383823747,
+      "delta_vs_consensus_tc": -0.01472957726905233
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start1580_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1600_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1620_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1640_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1660_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1680_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1700_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1720_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1740_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1760_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1780_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1800_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1820_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "dedupe_id": true
+  },
+  "summary": {
+    "count": 121,
+    "baseline_f1_avg": 0.769849439958244,
+    "consensus_f1_avg": 0.8361686730683179,
+    "oracle_f1_avg": 0.9347850581538882,
+    "consensus_improve_rate": 0.6198347107438017,
+    "correlations": {
+      "improve_vs_count": 0.09318169697102097,
+      "improve_vs_tc_rate": -0.1958597142700408,
+      "improve_vs_pairwise": -0.28558445134464827,
+      "improve_vs_pairwise_tc": -0.23001616211507328,
+      "improve_vs_consensus_margin": -0.002395286972856228,
+      "improve_vs_baseline_f1": -0.6875441168128206,
+      "oracle_improve_vs_count": 0.10017422442971533,
+      "oracle_improve_vs_pairwise": -0.5344034296536699
+    }
+  }
+}

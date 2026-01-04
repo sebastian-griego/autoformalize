@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_16_50_start450_qwen1p5.json"
+  },
+  "summary": {
+    "count": 41,
+    "baseline_f1_avg": 0.7976040299790546,
+    "consensus_f1_avg": 0.8011695449724938,
+    "consensus_tc_f1_avg": 0.8020023900695082,
+    "consensus_typecheck_rate": 0.9512195121951219,
+    "consensus_tc_typecheck_rate": 1.0
+  }
+}

@@ -15,7 +15,7 @@ from examples.beq_plus import beq_plus, DEFAULT_TIMEOUT
 from lean_interact import AutoLeanServer, LeanREPLConfig
 from lean_interact.project import TempRequireProject
 
-N_SAMPLES = 100
+N_SAMPLES = 50
 MODEL_NAME = "AI-MO/Kimina-Autoformalizer-7B"
 SEED = 42
 

@@ -1,0 +1,441 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 1,
+    "max_tokens": 256,
+    "smc_mode": "full",
+    "potential_stride": 64,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 3,
+    "shard_id": 2,
+    "n_examples": 10
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.3,
+      "avg_runtime_sec": 3.733087754249573,
+      "avg_tokens": 106.9
+    },
+    "smc_both": {
+      "expected_correct": 0.2,
+      "avg_runtime_sec": 218.47388014793395,
+      "avg_tokens": 109.0
+    }
+  },
+  "records": [
+    {
+      "index": 2,
+      "id": "Rudin|exercise_1_18a",
+      "nl_statement": "If $k \\geq 2$ and $\\mathbf{x} \\in R^{k}$, prove that there exists $\\mathbf{y} \\in R^{k}$ such that $\\mathbf{y} \\neq 0$ but $\\mathbf{x} \\cdot \\mathbf{y}=0$",
+      "ground_truth": "theorem exercise_1_18a\n  (n : \u2115)\n  (h : n > 1)\n  (x : EuclideanSpace \u211d (Fin n)) -- R^n\n  : \u2203 (y : EuclideanSpace \u211d (Fin n)), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": 0.0006633223171436555
+          }
+        ],
+        "runtime_sec": 3.2202141284942627,
+        "avg_tokens": 88.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_2 (k : \u2115) (x : EuclideanSpace \u211d (Fin k)) (h : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2 (k : \u2115) (x : EuclideanSpace \u211d (Fin k)) (h : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2 (k : \u2115) (x : EuclideanSpace \u211d (Fin k)) (h : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": -2.0480150566871647
+          }
+        ],
+        "runtime_sec": 174.71170806884766,
+        "avg_tokens": 83.0
+      }
+    },
+    {
+      "index": 5,
+      "id": "Munkres|exercise_33_8",
+      "nl_statement": "Let $X$ be completely regular, let $A$ and $B$ be disjoint closed subsets of $X$. Show that if $A$ is compact, there is a continuous function $f \\colon X \\rightarrow [0, 1]$ such that $f(A) = \\{0\\}$ and $f(B) = \\{1\\}$.",
+      "ground_truth": "theorem exercise_33_8\n  (X : Type*) [TopologicalSpace X] [CompletelyRegularSpace X]\n  (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B)\n  (hAc : IsCompact A) :\n  \u2203 (f : X \u2192 Icc 0 1), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+            "log_weight": 0.001549434326796706
+          }
+        ],
+        "runtime_sec": 4.250397443771362,
+        "avg_tokens": 118.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] [CompactSpace X] {A B : Set X} (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] [CompactSpace X] {A B : Set X} (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] [CompactSpace X] {A B : Set X} (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+            "log_weight": -1.8122732538883368
+          }
+        ],
+        "runtime_sec": 253.55104064941406,
+        "avg_tokens": 123.0
+      }
+    },
+    {
+      "index": 8,
+      "id": "Artin|exercise_3_5_6",
+      "nl_statement": "Let $V$ be a vector space which is spanned by a countably infinite set. Prove that every linearly independent subset of $V$ is finite or countably infinite.",
+      "ground_truth": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = \u22a4) {\u03b9 : Type*} (R : \u03b9 \u2192 V)\n  (hR : LinearIndependent K R) : Countable \u03b9 :=",
+      "lean_header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 Set.Finite R := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 Set.Finite R := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 Set.Finite R := by sorry",
+            "log_weight": 0.002241258684025009
+          }
+        ],
+        "runtime_sec": 4.211987733840942,
+        "avg_tokens": 119.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 Set.Finite R := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) :\n    \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 R.Finite := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) :\n    \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 R.Finite := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {F V : Type*} [AddCommGroup V] [Field F]\n    [Module F V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) :\n    \u2200 (R : Set V), Set.Countable R \u2192 Set.Infinite R \u2228 R.Finite := by sorry",
+            "log_weight": -3.085020489427439
+          }
+        ],
+        "runtime_sec": 215.72962069511414,
+        "avg_tokens": 106.0
+      }
+    },
+    {
+      "index": 11,
+      "id": "Shakarchi|exercise_1_13c",
+      "nl_statement": "Suppose that $f$ is holomorphic in an open set $\\Omega$. Prove that if $|f|$ is constant, then $f$ is constant.",
+      "ground_truth": "theorem exercise_1_13c {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 (c : \u211d), \u2200 z \u2208 \u03a9, abs (f z) = c) :\n  f a = f b :=",
+      "lean_header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+            "log_weight": 0.0021262040547732467
+          }
+        ],
+        "runtime_sec": 3.82309627532959,
+        "avg_tokens": 107.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\ntheorem autoformalized_theorem_11 {f : \u2102 \u2192 \u2102} (\u03a9 : Set \u2102) (a b : \u03a9) (h : IsOpen \u03a9)\n  (hf : DifferentiableOn \u2102 f \u03a9) (hc : \u2203 c : \u211d, \u2200 z \u2208 \u03a9, \u2016f z\u2016 = c) :\n  f a = f b := by sorry",
+            "log_weight": -3.200945103418824
+          }
+        ],
+        "runtime_sec": 220.58408308029175,
+        "avg_tokens": 107.0
+      }
+    },
+    {
+      "index": 14,
+      "id": "Rudin|exercise_3_20",
+      "nl_statement": "Suppose $\\left\\{p_{n}\\right\\}$ is a Cauchy sequence in a metric space $X$, and some sequence $\\left\\{p_{n l}\\right\\}$ converges to a point $p \\in X$. Prove that the full sequence $\\left\\{p_{n}\\right\\}$ converges to $p$.",
+      "ground_truth": "theorem exercise_3_20 {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X) (l : \u2115+) (r : X)\n  (hp : CauchySeq p)\n  (hpl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+            "log_weight": -0.002405091390649637
+          }
+        ],
+        "runtime_sec": 4.430878162384033,
+        "avg_tokens": 124.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (hl : l > 0)\n  (r : X)\n  (hr : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_14\n  {X : Type*} [MetricSpace X]\n  (p : \u2115 \u2192 X)\n  (h : CauchySeq p)\n  (l : \u2115)\n  (r : X)\n  (hl : Tendsto (\u03bb n => p (l * n)) atTop (\ud835\udcdd r)) :\n  Tendsto p atTop (\ud835\udcdd r) := by sorry",
+            "log_weight": -1.9264276781971392
+          }
+        ],
+        "runtime_sec": 225.22336602210999,
+        "avg_tokens": 115.0
+      }
+    },
+    {
+      "index": 17,
+      "id": "Putnam|exercise_2000_a2",
+      "nl_statement": "Prove that there exist infinitely many integers $n$ such that $n, n+1, n+2$ are each the sum of the squares of two integers.",
+      "ground_truth": "theorem exercise_2000_a2 :\n  \u2200 N : \u2115, \u2203 n : \u2115, n > N \u2227 \u2203 i : Fin 6 \u2192 \u2115, n = (i 0)^2 + (i 1)^2 \u2227\n  n + 1 = (i 2)^2 + (i 3)^2 \u2227 n + 2 = (i 4)^2 + (i 5)^2 :=",
+      "lean_header": "import Mathlib\n\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+            "log_weight": 0.0006086553749834955
+          }
+        ],
+        "runtime_sec": 2.5733931064605713,
+        "avg_tokens": 76.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_17 : Set.Infinite {n : \u2124 | \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2} := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_17 :\n    \u2200 N : \u2115, \u2203 n : \u2124, n > N \u2227 \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_17 :\n    \u2200 N : \u2115, \u2203 n : \u2124, n > N \u2227 \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_17 :\n    \u2200 N : \u2115, \u2203 n : \u2124, n > N \u2227 \u2203 a b c d e f : \u2124, n = a^2 + b^2 \u2227 n + 1 = c^2 + d^2 \u2227 n + 2 = e^2 + f^2 := by sorry",
+            "log_weight": -3.1884567086729554
+          }
+        ],
+        "runtime_sec": 158.94339632987976,
+        "avg_tokens": 83.0
+      }
+    },
+    {
+      "index": 20,
+      "id": "Herstein|exercise_2_6_15",
+      "nl_statement": "If $G$ is an abelian group and if $G$ has an element of order $m$ and one of order $n$, where $m$ and $n$ are relatively prime, prove that $G$ has an element of order $mn$.",
+      "ground_truth": "theorem exercise_2_6_15 {G : Type*} [CommGroup G] {m n : \u2115}\n  (hm : \u2203 (g : G), orderOf g = m)\n  (hn : \u2203 (g : G), orderOf g = n)\n  (hmn : m.Coprime n) :\n  \u2203 (g : G), orderOf g = m * n :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m = orderOf (starRingEnd G)) (hn : n = orderOf (starRingEnd G)) (hmn : Nat.Coprime m n) : \u2203 g : G, orderOf g = m * n := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m = orderOf (starRingEnd G)) (hn : n = orderOf (starRingEnd G)) (hmn : Nat.Coprime m n) : \u2203 g : G, orderOf g = m * n := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m = orderOf (starRingEnd G)) (hn : n = orderOf (starRingEnd G)) (hmn : Nat.Coprime m n) : \u2203 g : G, orderOf g = m * n := by sorry",
+            "log_weight": -0.0005569265656817954
+          }
+        ],
+        "runtime_sec": 3.1107327938079834,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] [Fintype G] (m n : \u2115) (hm : m = orderOf (starRingEnd G)) (hn : n = orderOf (starRingEnd G)) (hmn : Nat.Coprime m n) : \u2203 g : G, orderOf g = m * n := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : 0 < m) (hn : 0 < n)\n    (hmn : Nat.Coprime m n) (g : G) (hg : orderOf g = m) (h : \u2203 g' : G, orderOf g' = n) :\n    \u2203 g'' : G, orderOf g'' = m * n := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : 0 < m) (hn : 0 < n)\n    (hmn : Nat.Coprime m n) (g : G) (hg : orderOf g = m) (h : \u2203 g' : G, orderOf g' = n) :\n    \u2203 g'' : G, orderOf g'' = m * n := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_20 (G : Type*) [CommGroup G] (m n : \u2115) (hm : 0 < m) (hn : 0 < n)\n    (hmn : Nat.Coprime m n) (g : G) (hg : orderOf g = m) (h : \u2203 g' : G, orderOf g' = n) :\n    \u2203 g'' : G, orderOf g'' = m * n := by sorry",
+            "log_weight": -2.1340741987352825
+          }
+        ],
+        "runtime_sec": 213.7871289253235,
+        "avg_tokens": 110.0
+      }
+    },
+    {
+      "index": 23,
+      "id": "Herstein|exercise_4_5_25",
+      "nl_statement": "If $p$ is a prime, show that $q(x) = 1 + x + x^2 + \\cdots x^{p - 1}$ is irreducible in $Q[x]$.",
+      "ground_truth": "theorem exercise_4_5_25 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i in Finset.range p, X ^ i : Polynomial \u211a) :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+            "log_weight": 0.001572109194126499
+          }
+        ],
+        "runtime_sec": 2.3008038997650146,
+        "avg_tokens": 67.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_23 {p : \u2115} (hp : Nat.Prime p) :\n  Irreducible (\u2211 i : Finset.range p, X ^ i : Polynomial \u211a) := by sorry",
+            "log_weight": -3.332856442279369
+          }
+        ],
+        "runtime_sec": 126.87238121032715,
+        "avg_tokens": 67.0
+      }
+    },
+    {
+      "index": 26,
+      "id": "Munkres|exercise_32_2b",
+      "nl_statement": "Show that if $\\prod X_\\alpha$ is regular, then so is $X_\\alpha$. Assume that each $X_\\alpha$ is nonempty.",
+      "ground_truth": "theorem exercise_32_2b\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_26\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_26\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_26\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+            "log_weight": -3.597592338961149e-05
+          }
+        ],
+        "runtime_sec": 3.2077722549438477,
+        "avg_tokens": 94.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_26\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_26\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_26\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_26\n  {\u03b9 : Type*} {X : \u03b9 \u2192 Type*} [\u2200 i, TopologicalSpace (X i)]\n  (h : \u2200 i, Nonempty (X i)) (h2 : RegularSpace (\u03a0 i, X i)) :\n  \u2200 i, RegularSpace (X i) :=\nsorry",
+            "log_weight": -5.185763717387897
+          }
+        ],
+        "runtime_sec": 181.5676348209381,
+        "avg_tokens": 94.0
+      }
+    },
+    {
+      "index": 29,
+      "id": "Rudin|exercise_5_15",
+      "nl_statement": "Suppose $a \\in R^{1}, f$ is a twice-differentiable real function on $(a, \\infty)$, and $M_{0}, M_{1}, M_{2}$ are the least upper bounds of $|f(x)|,\\left|f^{\\prime}(x)\\right|,\\left|f^{\\prime \\prime}(x)\\right|$, respectively, on $(a, \\infty)$. Prove that $M_{1}^{2} \\leq 4 M_{0} M_{2} .$",
+      "ground_truth": "theorem exercise_5_15 {f : \u211d \u2192 \u211d} (a M0 M1 M2 : \u211d)\n  (hf' : DifferentiableOn \u211d f (Set.Ioi a))\n  (hf'' : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (hM0 : M0 = sSup {(|f x|) | x \u2208 (Set.Ioi a)})\n  (hM1 : M1 = sSup {(|deriv f x|) | x \u2208 (Set.Ioi a)})\n  (hM2 : M2 = sSup {(|deriv (deriv f) x|) | x \u2208 (Set.Ioi a)}) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+            "log_weight": -0.0001380087746281718
+          }
+        ],
+        "runtime_sec": 6.20160174369812,
+        "avg_tokens": 185.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2082 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2083 : \u2200 x \u2208 Set.Ioi a, |f x| \u2264 M0)\n  (h\u2084 : \u2200 x \u2208 Set.Ioi a, |deriv f x| \u2264 M1)\n  (h\u2085 : \u2200 x \u2208 Set.Ioi a, |deriv (deriv f) x| \u2264 M2) :\n  (M1 ^ 2 \u2264 4 * M0 * M2) := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : \u2200 x, a < x \u2192 |f x| \u2264 M0)\n  (h\u2082 : \u2200 x, a < x \u2192 |deriv f x| \u2264 M1)\n  (h\u2083 : \u2200 x, a < x \u2192 |deriv (deriv f) x| \u2264 M2)\n  (h\u2084 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2085 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2086 : \u2200 x, a < x \u2192 deriv f x \u2260 0) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : \u2200 x, a < x \u2192 |f x| \u2264 M0)\n  (h\u2082 : \u2200 x, a < x \u2192 |deriv f x| \u2264 M1)\n  (h\u2083 : \u2200 x, a < x \u2192 |deriv (deriv f) x| \u2264 M2)\n  (h\u2084 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2085 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2086 : \u2200 x, a < x \u2192 deriv f x \u2260 0) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_29\n  (a : \u211d)\n  (f : \u211d \u2192 \u211d)\n  (M0 M1 M2 : \u211d)\n  (h\u2081 : \u2200 x, a < x \u2192 |f x| \u2264 M0)\n  (h\u2082 : \u2200 x, a < x \u2192 |deriv f x| \u2264 M1)\n  (h\u2083 : \u2200 x, a < x \u2192 |deriv (deriv f) x| \u2264 M2)\n  (h\u2084 : DifferentiableOn \u211d f (Set.Ioi a))\n  (h\u2085 : DifferentiableOn \u211d (deriv f) (Set.Ioi a))\n  (h\u2086 : \u2200 x, a < x \u2192 deriv f x \u2260 0) :\n  (M1 ^ 2) \u2264 4 * M0 * M2 := by sorry",
+            "log_weight": -1.6185006029182964
+          }
+        ],
+        "runtime_sec": 413.7684416770935,
+        "avg_tokens": 202.0
+      }
+    }
+  ]
+}

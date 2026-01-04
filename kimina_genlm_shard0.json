@@ -1,0 +1,396 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 1,
+    "max_tokens": 256,
+    "smc_mode": "full",
+    "potential_stride": 32,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 1,
+    "shard_id": 0,
+    "n_examples": 9
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.3333333333333333,
+      "avg_runtime_sec": 3.1385965612199573,
+      "avg_tokens": 92.0
+    },
+    "smc_both": {
+      "expected_correct": 0.2222222222222222,
+      "avg_runtime_sec": 220.54089244206747,
+      "avg_tokens": 112.66666666666667
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -5.3537665359601385e-05
+          }
+        ],
+        "runtime_sec": 3.1279687881469727,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X] (T : \u2115 \u2192 Set (Set X)) (h : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 168.22882747650146,
+        "avg_tokens": 89.0
+      }
+    },
+    {
+      "index": 1,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+            "log_weight": 0.000950660723962206
+          }
+        ],
+        "runtime_sec": 3.102114677429199,
+        "avg_tokens": 92.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 171.02538466453552,
+        "avg_tokens": 91.0
+      }
+    },
+    {
+      "index": 2,
+      "id": "Rudin|exercise_1_18a",
+      "nl_statement": "If $k \\geq 2$ and $\\mathbf{x} \\in R^{k}$, prove that there exists $\\mathbf{y} \\in R^{k}$ such that $\\mathbf{y} \\neq 0$ but $\\mathbf{x} \\cdot \\mathbf{y}=0$",
+      "ground_truth": "theorem exercise_1_18a\n  (n : \u2115)\n  (h : n > 1)\n  (x : EuclideanSpace \u211d (Fin n)) -- R^n\n  : \u2203 (y : EuclideanSpace \u211d (Fin n)), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": 0.0006324759987744713
+          }
+        ],
+        "runtime_sec": 3.030586004257202,
+        "avg_tokens": 88.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": -2.0870761825418906
+          }
+        ],
+        "runtime_sec": 167.1343538761139,
+        "avg_tokens": 88.0
+      }
+    },
+    {
+      "index": 3,
+      "id": "Ireland-Rosen|exercise_3_5",
+      "nl_statement": "Show that the equation $7 x^{3}+2=y^{3}$ has no solution in integers.",
+      "ground_truth": "theorem exercise_3_5 : \u00ac \u2203 x y : \u2124, 7*x^3 + 2 = y^3 :=",
+      "lean_header": "import Mathlib\n\nopen Real\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -0.001691022994995927
+          }
+        ],
+        "runtime_sec": 1.4946794509887695,
+        "avg_tokens": 41.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_3 : \u00ac\u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -5.2813062826351045
+          }
+        ],
+        "runtime_sec": 76.87762880325317,
+        "avg_tokens": 42.0
+      }
+    },
+    {
+      "index": 4,
+      "id": "Dummit-Foote|exercise_7_3_37",
+      "nl_statement": "An ideal $N$ is called nilpotent if $N^{n}$ is the zero ideal for some $n \\geq 1$. Prove that the ideal $p \\mathbb{Z} / p^{m} \\mathbb{Z}$ is a nilpotent ideal in the ring $\\mathbb{Z} / p^{m} \\mathbb{Z}$.",
+      "ground_truth": "theorem exercise_7_3_37 {p m : \u2115} (hp : p.Prime) :\n  IsNilpotent (span ({\u2191p} : Set $ ZMod $ p^m) : Ideal $ ZMod $ p^m) :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+            "log_weight": -0.0014273156640689847
+          }
+        ],
+        "runtime_sec": 2.5552210807800293,
+        "avg_tokens": 75.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": 0.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+            "log_weight": -Infinity
+          }
+        ],
+        "runtime_sec": 139.18686985969543,
+        "avg_tokens": 75.0
+      }
+    },
+    {
+      "index": 5,
+      "id": "Munkres|exercise_33_8",
+      "nl_statement": "Let $X$ be completely regular, let $A$ and $B$ be disjoint closed subsets of $X$. Show that if $A$ is compact, there is a continuous function $f \\colon X \\rightarrow [0, 1]$ such that $f(A) = \\{0\\}$ and $f(B) = \\{1\\}$.",
+      "ground_truth": "theorem exercise_33_8\n  (X : Type*) [TopologicalSpace X] [CompletelyRegularSpace X]\n  (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B)\n  (hAc : IsCompact A) :\n  \u2203 (f : X \u2192 Icc 0 1), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] [CompactSpace X] {A B : Set X}\n  (hA : IsClosed A) (hB : IsClosed B) (hAB : Disjoint A B)\n  (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] [CompactSpace X] {A B : Set X}\n  (hA : IsClosed A) (hB : IsClosed B) (hAB : Disjoint A B)\n  (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] [CompactSpace X] {A B : Set X}\n  (hA : IsClosed A) (hB : IsClosed B) (hAB : Disjoint A B)\n  (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+            "log_weight": -0.0003253614465609181
+          }
+        ],
+        "runtime_sec": 4.171537160873413,
+        "avg_tokens": 124.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] [CompactSpace X] {A B : Set X}\n  (hA : IsClosed A) (hB : IsClosed B) (hAB : Disjoint A B)\n  (hA' : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hA' : IsCompact A) :\n  \u2203 f : X \u2192 \u211d, Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+            "log_weight": -1.924229335997154
+          }
+        ],
+        "runtime_sec": 223.25010418891907,
+        "avg_tokens": 117.0
+      }
+    },
+    {
+      "index": 6,
+      "id": "Munkres|exercise_18_8b",
+      "nl_statement": "Let $Y$ be an ordered set in the order topology. Let $f, g: X \\rightarrow Y$ be continuous. Let $h: X \\rightarrow Y$ be the function $h(x)=\\min \\{f(x), g(x)\\}.$ Show that $h$ is continuous.",
+      "ground_truth": "theorem exercise_18_8b {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry",
+            "log_weight": 0.00049881254407748
+          }
+        ],
+        "runtime_sec": 3.6910386085510254,
+        "avg_tokens": 108.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y} (hf : Continuous f) (hg : Continuous g)\n  (h : X \u2192 Y) (h_def : h = \u03bb x => min (f x) (g x)) : Continuous h := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+            "log_weight": -2.5219365532971776
+          }
+        ],
+        "runtime_sec": 180.37476086616516,
+        "avg_tokens": 96.0
+      }
+    },
+    {
+      "index": 7,
+      "id": "Munkres|exercise_13_6",
+      "nl_statement": "Show that the lower limit topology $\\mathbb{R}_l$ and $K$-topology $\\mathbb{R}_K$ are not comparable.",
+      "ground_truth": "def lower_limit_topology (X : Type) [Preorder X] :=\n  generateFrom {S : Set X | \u2203 a b, a < b \u2227 S = Ico a b}\n\ndef Rl := lower_limit_topology \u211d\n\ndef K : Set \u211d := {r | \u2203 n : \u2115, r = 1 / n}\n\ndef K_topology := generateFrom\n  ({S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b} \u222a {S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b \\ K})\n\ntheorem exercise_13_6 :\n  \u00ac (\u2200 U, Rl.IsOpen U \u2192 K_topology.IsOpen U) \u2227 \u00ac (\u2200 U, K_topology.IsOpen U \u2192 Rl.IsOpen U) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2227 IsOpen (kTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2227 IsOpen (lowerLimitTopology U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2227 IsOpen (kTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2227 IsOpen (lowerLimitTopology U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2227 IsOpen (kTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2227 IsOpen (lowerLimitTopology U)) := by sorry",
+            "log_weight": 0.000752398157750746
+          }
+        ],
+        "runtime_sec": 3.0624818801879883,
+        "avg_tokens": 90.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U) \u2227 IsOpen (kTopology U)) \u2227 \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopology U) \u2227 IsOpen (lowerLimitTopology U)) := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+            "log_weight": -2.7835317653513107
+          }
+        ],
+        "runtime_sec": 315.5384511947632,
+        "avg_tokens": 160.0
+      }
+    },
+    {
+      "index": 8,
+      "id": "Artin|exercise_3_5_6",
+      "nl_statement": "Let $V$ be a vector space which is spanned by a countably infinite set. Prove that every linearly independent subset of $V$ is finite or countably infinite.",
+      "ground_truth": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = \u22a4) {\u03b9 : Type*} (R : \u03b9 \u2192 V)\n  (hR : LinearIndependent K R) : Countable \u03b9 :=",
+      "lean_header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 Finite T \u2228 Countable T := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 Finite T \u2228 Countable T := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 Finite T \u2228 Countable T := by sorry",
+            "log_weight": 0.00035982442919842996
+          }
+        ],
+        "runtime_sec": 4.011741399765015,
+        "avg_tokens": 119.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_8 {V : Type*} [AddCommGroup V] [Module \u211d V]\n    [FiniteDimensional \u211d V] (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S) (hS4 : Set.Finite S) :\n    \u2200 T : Set V, Countable T \u2192 LinearIndependent \u211d T \u2192 Finite T \u2228 Countable T := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_8 (V : Type*) [AddCommGroup V] [Module \u211d V]\n    (S : Set V) (hS : Countable S) (hS1 : Infinite S)\n    (hS2 : Set.Countable S) (hS3 : Set.Infinite S)\n    (hS4 : Set.Nonempty S) (hS5 : Set.PairwiseDisjoint S)\n    (hS6 : Set.PairwiseInter S) (hS7 : Set.PairwiseUnion S)\n    (hS8 : Set.PairwiseSym S) (hS9 : Set.PairwiseAnti S)\n    (hS10 : Set.PairwisePartialOrder S) (hS11 : Set.PairwiseLinearOrder S)\n    (hS12 : Set.PairwiseTopologicalOrder S) (hS13 : Set.PairwiseMetric S)\n    (hS14 : Set.PairwiseNormedAddCommGroup S) (hS15 : Set.PairwiseNormedAddTorsor S)\n    (hS16 : Set.PairwiseNormedAddSub",
+            "log_weight": -0.00011495735777842934
+          }
+        ],
+        "runtime_sec": 543.2516510486603,
+        "avg_tokens": 256.0
+      }
+    }
+  ]
+}

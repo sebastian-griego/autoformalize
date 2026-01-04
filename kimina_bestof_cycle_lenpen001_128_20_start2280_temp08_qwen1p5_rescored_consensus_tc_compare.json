@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start2280_temp08_qwen1p5_rescored.json"
+    ],
+    "dedupe_id": false
+  },
+  "summary": {
+    "count": 19,
+    "all_consensus_f1_avg": 0.8432384544377297,
+    "tc_consensus_f1_avg": 0.8184087801522029,
+    "tc_better_rate": 0.10526315789473684,
+    "diff_vs_tc_rate": 0.5936859407359978,
+    "diff_vs_tc_count": 0.34010200358900355
+  }
+}

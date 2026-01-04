@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_128_20_start2260_temp08_qwen1p5_rescored_cpu.json",
+    "ks": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "score_key": "length_penalized_score"
+  },
+  "summary": {
+    "all": {
+      "k_4": {
+        "count": 18,
+        "f1_avg": 0.7204710615384043,
+        "typecheck_rate": 0.6111111111111112
+      },
+      "k_8": {
+        "count": 18,
+        "f1_avg": 0.7289276657393198,
+        "typecheck_rate": 0.7222222222222222
+      },
+      "k_16": {
+        "count": 18,
+        "f1_avg": 0.78762039828019,
+        "typecheck_rate": 0.8888888888888888
+      },
+      "k_32": {
+        "count": 17,
+        "f1_avg": 0.7930001156536864,
+        "typecheck_rate": 0.8235294117647058
+      },
+      "k_64": {
+        "count": 16,
+        "f1_avg": 0.7892425354686609,
+        "typecheck_rate": 0.9375
+      }
+    },
+    "tc_only": {
+      "k_4": {
+        "count": 18,
+        "f1_avg": 0.7825318238319392,
+        "typecheck_rate": 1.0
+      },
+      "k_8": {
+        "count": 18,
+        "f1_avg": 0.7809327377864489,
+        "typecheck_rate": 1.0
+      },
+      "k_16": {
+        "count": 16,
+        "f1_avg": 0.7848759241089551,
+        "typecheck_rate": 1.0
+      },
+      "k_32": {
+        "count": 15,
+        "f1_avg": 0.7874076138642278,
+        "typecheck_rate": 1.0
+      },
+      "k_64": {
+        "count": 10,
+        "f1_avg": 0.8229532765838379,
+        "typecheck_rate": 1.0
+      }
+    }
+  }
+}

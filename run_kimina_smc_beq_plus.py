@@ -18,12 +18,12 @@ from lean_interact.project import TempRequireProject
 from lean_interact.utils import clean_last_theorem_string
 from examples.beq_plus import beq_plus, DEFAULT_TIMEOUT
 
-N_SAMPLES = 100
+N_SAMPLES = 50
 MODEL_NAME = "AI-MO/Kimina-Autoformalizer-7B"
 BACKWARD_MODEL = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 SEED = 42
-N_PARTICLES = 5
-MAX_TOKENS = 512
+N_PARTICLES = 3
+MAX_TOKENS = 256
 
 back_tokenizer = AutoTokenizer.from_pretrained(BACKWARD_MODEL)
 back_model = AutoModelForCausalLM.from_pretrained(

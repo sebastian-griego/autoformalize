@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2100_rescored_cpu.json"
+    ],
+    "feature": "baseline_len",
+    "direction": "le",
+    "thresholds": [
+      4.0,
+      25.0,
+      31.0,
+      36.0,
+      40.0,
+      50.0,
+      55.0,
+      61.0,
+      72.0,
+      81.0,
+      141.0
+    ]
+  },
+  "summary": [
+    {
+      "threshold": 4.0,
+      "f1_avg": 0.7718872525673315,
+      "typecheck_rate": 0.6380368098159509
+    },
+    {
+      "threshold": 25.0,
+      "f1_avg": 0.7784489739020587,
+      "typecheck_rate": 0.6441717791411042
+    },
+    {
+      "threshold": 31.0,
+      "f1_avg": 0.7876341740073152,
+      "typecheck_rate": 0.6687116564417178
+    },
+    {
+      "threshold": 36.0,
+      "f1_avg": 0.7920203108777171,
+      "typecheck_rate": 0.6871165644171779
+    },
+    {
+      "threshold": 40.0,
+      "f1_avg": 0.7966972851520825,
+      "typecheck_rate": 0.6993865030674846
+    },
+    {
+      "threshold": 50.0,
+      "f1_avg": 0.8038591038191354,
+      "typecheck_rate": 0.7055214723926381
+    },
+    {
+      "threshold": 55.0,
+      "f1_avg": 0.8093809982178156,
+      "typecheck_rate": 0.7361963190184049
+    },
+    {
+      "threshold": 61.0,
+      "f1_avg": 0.8128796783181995,
+      "typecheck_rate": 0.7423312883435583
+    },
+    {
+      "threshold": 72.0,
+      "f1_avg": 0.8208026461532746,
+      "typecheck_rate": 0.754601226993865
+    },
+    {
+      "threshold": 81.0,
+      "f1_avg": 0.8238062460439574,
+      "typecheck_rate": 0.754601226993865
+    },
+    {
+      "threshold": 141.0,
+      "f1_avg": 0.8342580643229547,
+      "typecheck_rate": 0.7852760736196319
+    }
+  ]
+}

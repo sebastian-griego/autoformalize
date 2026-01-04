@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 1,
+    "max_tokens": 64,
+    "smc_mode": "full",
+    "potential_stride": 32,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 1,
+    "shard_id": 0,
+    "n_examples": 1
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.0,
+      "avg_runtime_sec": 2.2307634353637695,
+      "avg_tokens": 64.0
+    },
+    "smc_both": {
+      "expected_correct": 0.0,
+      "avg_runtime_sec": 123.88628649711609,
+      "avg_tokens": 64.0
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n",
+            "log_weight": -0.0004015509721567988
+          }
+        ],
+        "runtime_sec": 2.2307634353637695,
+        "avg_tokens": 64.0
+      },
+      "baseline_candidate": "",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X I : Type*) [TopologicalSpace X] (T : I \u2192 Set (Set X)) (h : \u2200 i, IsTopologicalBasis (T i)) :\n ",
+            "log_weight": 0.002133421912591593
+          }
+        ],
+        "runtime_sec": 123.88628649711609,
+        "avg_tokens": 64.0
+      }
+    }
+  ]
+}

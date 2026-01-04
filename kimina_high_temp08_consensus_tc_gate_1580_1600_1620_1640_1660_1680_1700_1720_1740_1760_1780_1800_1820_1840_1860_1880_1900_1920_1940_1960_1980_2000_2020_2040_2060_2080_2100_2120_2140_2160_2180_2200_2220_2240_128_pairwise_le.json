@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2240_rescored_cpu.json"
+    ],
+    "feature": "pairwise",
+    "direction": "le",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8366424493576269,
+    "tc_consensus_f1_avg": 0.8362946379006857
+  },
+  "summary": {
+    "threshold_0.42080280196176717": {
+      "count": 650,
+      "chosen_f1_avg": 0.8368102815254602,
+      "chosen_typecheck_rate": 0.8246153846153846
+    },
+    "threshold_0.6769808424067127": {
+      "count": 650,
+      "chosen_f1_avg": 0.8394446305701054,
+      "chosen_typecheck_rate": 0.8646153846153846
+    },
+    "threshold_0.7199670057594706": {
+      "count": 650,
+      "chosen_f1_avg": 0.8394422687400052,
+      "chosen_typecheck_rate": 0.8846153846153846
+    },
+    "threshold_0.7473636599326239": {
+      "count": 650,
+      "chosen_f1_avg": 0.8396375385019615,
+      "chosen_typecheck_rate": 0.9030769230769231
+    },
+    "threshold_0.7721563561375648": {
+      "count": 650,
+      "chosen_f1_avg": 0.8397210478173043,
+      "chosen_typecheck_rate": 0.9123076923076923
+    },
+    "threshold_0.791220428338768": {
+      "count": 650,
+      "chosen_f1_avg": 0.8367687657201622,
+      "chosen_typecheck_rate": 0.936923076923077
+    },
+    "threshold_0.8094893445503898": {
+      "count": 650,
+      "chosen_f1_avg": 0.8347855408615273,
+      "chosen_typecheck_rate": 0.9507692307692308
+    },
+    "threshold_0.8362326580520075": {
+      "count": 650,
+      "chosen_f1_avg": 0.8346547793288057,
+      "chosen_typecheck_rate": 0.96
+    },
+    "threshold_0.8520072874662724": {
+      "count": 650,
+      "chosen_f1_avg": 0.8360489785293393,
+      "chosen_typecheck_rate": 0.98
+    },
+    "threshold_0.8747875330818274": {
+      "count": 650,
+      "chosen_f1_avg": 0.8360722698891249,
+      "chosen_typecheck_rate": 0.9907692307692307
+    },
+    "threshold_0.9438914017678607": {
+      "count": 650,
+      "chosen_f1_avg": 0.8362946379006871,
+      "chosen_typecheck_rate": 0.9953846153846154
+    }
+  }
+}

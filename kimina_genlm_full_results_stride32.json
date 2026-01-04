@@ -1,0 +1,356 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 2,
+    "max_tokens": 128,
+    "smc_mode": "full",
+    "potential_stride": 32,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "n_examples": 8
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.375,
+      "avg_runtime_sec": 2.8715150356292725,
+      "avg_tokens": 84.5
+    },
+    "smc_both": {
+      "expected_correct": 0.0,
+      "avg_runtime_sec": 851.6428008377552,
+      "avg_tokens": 128.0
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "id": "Munkres|exercise_13_4b1",
+      "nl_statement": "Let $\\mathcal{T}_\\alpha$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\\mathcal{T}_\\alpha$.",
+      "ground_truth": "def is_topology (X : Type*) (T : Set (Set X)) :=\n  univ \u2208 T \u2227\n  (\u2200 s t, s \u2208 T \u2192 t \u2208 T \u2192 s \u2229 t \u2208 T) \u2227\n  (\u2200s, (\u2200t \u2208 s, t \u2208 T) \u2192 sUnion s \u2208 T)\n\ntheorem exercise_13_4b1 (X I : Type*) (T : I \u2192 Set (Set X)) (h : \u2200 i, is_topology X (T i)) :\n  \u2203! T', is_topology X T' \u2227 (\u2200 i, T i \u2286 T') \u2227\n  \u2200 T'', is_topology X T'' \u2192 (\u2200 i, T i \u2286 T'') \u2192 T' \u2286 T'' :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' :=\nsorry",
+            "log_weight": -5.3537665359601385e-05
+          }
+        ],
+        "runtime_sec": 3.1103389263153076,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_0 (X : Type*) [TopologicalSpace X]\n  (T : \u2115 \u2192 Set (Set X)) (hT : \u2200 n, IsTopologicalBasis (T n)) :\n  \u2203! T', IsLeast {T' | \u2200 n, T' \u2286 T n} T' := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import Mathlib\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 939.8828644752502,
+        "avg_tokens": 128.0
+      }
+    },
+    {
+      "index": 1,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+            "log_weight": 0.0007235690772922275
+          }
+        ],
+        "runtime_sec": 3.1071972846984863,
+        "avg_tokens": 92.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 832.5837500095367,
+        "avg_tokens": 128.0
+      }
+    },
+    {
+      "index": 2,
+      "id": "Rudin|exercise_1_18a",
+      "nl_statement": "If $k \\geq 2$ and $\\mathbf{x} \\in R^{k}$, prove that there exists $\\mathbf{y} \\in R^{k}$ such that $\\mathbf{y} \\neq 0$ but $\\mathbf{x} \\cdot \\mathbf{y}=0$",
+      "ground_truth": "theorem exercise_1_18a\n  (n : \u2115)\n  (h : n > 1)\n  (x : EuclideanSpace \u211d (Fin n)) -- R^n\n  : \u2203 (y : EuclideanSpace \u211d (Fin n)), y \u2260 0 \u2227 (inner x y) = (0 : \u211d) :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+            "log_weight": 0.0006324759987744713
+          }
+        ],
+        "runtime_sec": 2.9898977279663086,
+        "avg_tokens": 88.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_2\n  (k : \u2115)\n  (x : EuclideanSpace \u211d (Fin k))\n  (h\u2080 : 2 \u2264 k) :\n  \u2203 y : EuclideanSpace \u211d (Fin k), y \u2260 0 \u2227 inner x y = 0 := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Math\u6709\u4eba\u7c7b\u5316\u7684\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import\u6709\u4eba\u5728\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 832.0761399269104,
+        "avg_tokens": 128.0
+      }
+    },
+    {
+      "index": 3,
+      "id": "Ireland-Rosen|exercise_3_5",
+      "nl_statement": "Show that the equation $7 x^{3}+2=y^{3}$ has no solution in integers.",
+      "ground_truth": "theorem exercise_3_5 : \u00ac \u2203 x y : \u2124, 7*x^3 + 2 = y^3 :=",
+      "lean_header": "import Mathlib\n\nopen Real\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\ntheorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+            "log_weight": -0.0016909475665974885
+          }
+        ],
+        "runtime_sec": 1.4371638298034668,
+        "avg_tokens": 42.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_3 : \u00ac \u2203 x y : \u2124, 7 * x ^ 3 + 2 = y ^ 3 := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import Mathlib\n\ntheorem\u6709\u4eba\u6709\u4eba auto\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 843.7037861347198,
+        "avg_tokens": 128.0
+      }
+    },
+    {
+      "index": 4,
+      "id": "Dummit-Foote|exercise_7_3_37",
+      "nl_statement": "An ideal $N$ is called nilpotent if $N^{n}$ is the zero ideal for some $n \\geq 1$. Prove that the ideal $p \\mathbb{Z} / p^{m} \\mathbb{Z}$ is a nilpotent ideal in the ring $\\mathbb{Z} / p^{m} \\mathbb{Z}$.",
+      "ground_truth": "theorem exercise_7_3_37 {p m : \u2115} (hp : p.Prime) :\n  IsNilpotent (span ({\u2191p} : Set $ ZMod $ p^m) : Ideal $ ZMod $ p^m) :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n    IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n    IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n    IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+            "log_weight": -0.0016750055294921067
+          }
+        ],
+        "runtime_sec": 2.5727713108062744,
+        "avg_tokens": 75.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n    IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\n\u6709\u4eba\u5df2\u7ecf\u8bc1\u660e\u4e86\uff0c\u6709\u4eba\u5df2\u7ecf\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 830.2195427417755,
+        "avg_tokens": 128.0
+      }
+    },
+    {
+      "index": 5,
+      "id": "Munkres|exercise_33_8",
+      "nl_statement": "Let $X$ be completely regular, let $A$ and $B$ be disjoint closed subsets of $X$. Show that if $A$ is compact, there is a continuous function $f \\colon X \\rightarrow [0, 1]$ such that $f(A) = \\{0\\}$ and $f(B) = \\{1\\}$.",
+      "ground_truth": "theorem exercise_33_8\n  (X : Type*) [TopologicalSpace X] [CompletelyRegularSpace X]\n  (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B)\n  (hAc : IsCompact A) :\n  \u2203 (f : X \u2192 Icc 0 1), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hCompact : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hCompact : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hCompact : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+            "log_weight": 3.324457219299947e-06
+          }
+        ],
+        "runtime_sec": 3.9482498168945312,
+        "avg_tokens": 117.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_5 {X : Type*} [TopologicalSpace X]\n  [RegularSpace X] (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B) (hCompact : IsCompact A) :\n  \u2203 (f : X \u2192 \u211d), Continuous f \u2227 f '' A = {0} \u2227 f '' B = {1} := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen\u6709\u4eba\u6709\u4eba\n\ntheorem\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import Mathlib\n\nopen Filter Set\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 878.1557986736298,
+        "avg_tokens": 128.0
+      }
+    },
+    {
+      "index": 6,
+      "id": "Munkres|exercise_18_8b",
+      "nl_statement": "Let $Y$ be an ordered set in the order topology. Let $f, g: X \\rightarrow Y$ be continuous. Let $h: X \\rightarrow Y$ be the function $h(x)=\\min \\{f(x), g(x)\\}.$ Show that $h$ is continuous.",
+      "ground_truth": "theorem exercise_18_8b {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+            "log_weight": 0.00043065942123077683
+          }
+        ],
+        "runtime_sec": 3.2483632564544678,
+        "avg_tokens": 96.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_6 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X \u2192 Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (\u03bb x => min (f x) (g x)) := by sorry",
+      "baseline_beq": true,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 829.7655005455017,
+        "avg_tokens": 128.0
+      }
+    },
+    {
+      "index": 7,
+      "id": "Munkres|exercise_13_6",
+      "nl_statement": "Show that the lower limit topology $\\mathbb{R}_l$ and $K$-topology $\\mathbb{R}_K$ are not comparable.",
+      "ground_truth": "def lower_limit_topology (X : Type) [Preorder X] :=\n  generateFrom {S : Set X | \u2203 a b, a < b \u2227 S = Ico a b}\n\ndef Rl := lower_limit_topology \u211d\n\ndef K : Set \u211d := {r | \u2203 n : \u2115, r = 1 / n}\n\ndef K_topology := generateFrom\n  ({S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b} \u222a {S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b \\ K})\n\ntheorem exercise_13_6 :\n  \u00ac (\u2200 U, Rl.IsOpen U \u2192 K_topology.IsOpen U) \u2227 \u00ac (\u2200 U, K_topology.IsOpen U \u2192 Rl.IsOpen U) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry",
+            "log_weight": 0.0013340424152051356
+          }
+        ],
+        "runtime_sec": 2.558138132095337,
+        "avg_tokens": 75.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry",
+      "baseline_beq": false,
+      "smc_both": {
+        "posterior": {},
+        "beq_labels": {},
+        "raw_particles": [
+          {
+            "text": "import Math\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          },
+          {
+            "text": "import\u6709\u4eba\u7684\u5730\u65b9\n\nopen\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba\u6709\u4eba",
+            "log_weight": 0.0
+          }
+        ],
+        "runtime_sec": 826.7550241947174,
+        "avg_tokens": 128.0
+      }
+    }
+  ]
+}

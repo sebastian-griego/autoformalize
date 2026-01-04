@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "model": "AI-MO/Kimina-Autoformalizer-7B",
+    "reference_model": "Qwen/Qwen2.5-7B-Instruct",
+    "n_particles": 1,
+    "max_tokens": 256,
+    "smc_mode": "all",
+    "potential_stride": 64,
+    "four_bit": true,
+    "dataset": "PAug/ProofNetVerif",
+    "split": "valid",
+    "start_index": 0,
+    "num_shards": 3,
+    "shard_id": 1,
+    "n_examples": 4
+  },
+  "summary": {
+    "baseline": {
+      "expected_correct": 0.5,
+      "avg_runtime_sec": 2.8348878622055054,
+      "avg_tokens": 81.0
+    },
+    "smc_no_potential": {
+      "expected_correct": 0.5,
+      "avg_runtime_sec": 2.9536370635032654,
+      "avg_tokens": 86.0
+    },
+    "smc_lean_only": {
+      "expected_correct": 0.5,
+      "avg_runtime_sec": 4.209718227386475,
+      "avg_tokens": 102.5
+    },
+    "smc_cycle_only": {
+      "expected_correct": 0.5,
+      "avg_runtime_sec": 207.10010957717896,
+      "avg_tokens": 101.75
+    },
+    "smc_both": {
+      "expected_correct": 0.5,
+      "avg_runtime_sec": 208.1920646429062,
+      "avg_tokens": 101.75
+    }
+  },
+  "records": [
+    {
+      "index": 1,
+      "id": "Rudin|exercise_4_5a",
+      "nl_statement": "If $f$ is a real continuous function defined on a closed set $E \\subset \\mathbb{R}$, prove that there exist continuous real functions $g$ on $\\mathbb{R}$ such that $g(x)=f(x)$ for all $x \\in E$.",
+      "ground_truth": "theorem exercise_4_5a\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+            "log_weight": -0.00017137978173904805
+          }
+        ],
+        "runtime_sec": 3.134030818939209,
+        "avg_tokens": 91.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+      "baseline_beq": true,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 (g : \u211d \u2192 \u211d), Continuous g \u2227 \u2200 x \u2208 E, f x = g x :=\nsorry",
+            "log_weight": -0.0005230190599965496
+          }
+        ],
+        "runtime_sec": 3.0935049057006836,
+        "avg_tokens": 92.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+            "log_weight": -0.0021834466158143755
+          }
+        ],
+        "runtime_sec": 5.269259929656982,
+        "avg_tokens": 92.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E)\n  : \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+            "log_weight": -2.217377771335518
+          }
+        ],
+        "runtime_sec": 180.0169129371643,
+        "avg_tokens": 92.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_1\n  (f : \u211d \u2192 \u211d)\n  (E : Set \u211d)\n  (h\u2081 : IsClosed E)\n  (h\u2082 : ContinuousOn f E) :\n  \u2203 g : \u211d \u2192 \u211d, Continuous g \u2227 \u2200 x \u2208 E, f x = g x := by sorry",
+            "log_weight": -2.2157107617066605
+          }
+        ],
+        "runtime_sec": 179.48453211784363,
+        "avg_tokens": 92.0
+      }
+    },
+    {
+      "index": 4,
+      "id": "Dummit-Foote|exercise_7_3_37",
+      "nl_statement": "An ideal $N$ is called nilpotent if $N^{n}$ is the zero ideal for some $n \\geq 1$. Prove that the ideal $p \\mathbb{Z} / p^{m} \\mathbb{Z}$ is a nilpotent ideal in the ring $\\mathbb{Z} / p^{m} \\mathbb{Z}$.",
+      "ground_truth": "theorem exercise_7_3_37 {p m : \u2115} (hp : p.Prime) :\n  IsNilpotent (span ({\u2191p} : Set $ ZMod $ p^m) : Ideal $ ZMod $ p^m) :=",
+      "lean_header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+            "log_weight": -0.0014273156640689847
+          }
+        ],
+        "runtime_sec": 2.5698211193084717,
+        "avg_tokens": 75.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry",
+      "baseline_beq": false,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+            "log_weight": 0.0019760454574931892
+          }
+        ],
+        "runtime_sec": 2.548170328140259,
+        "avg_tokens": 75.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p ^ m))) :=\nsorry",
+            "log_weight": 0.0019761075527256425
+          }
+        ],
+        "runtime_sec": 2.758237838745117,
+        "avg_tokens": 75.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+            "log_weight": -2.1923909354660536
+          }
+        ],
+        "runtime_sec": 147.9693148136139,
+        "avg_tokens": 75.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_4 {p m : \u2115} (hp : Nat.Prime p) (hm : 0 < m) :\n  IsNilpotent (\u27e8p, m\u27e9 : Ideal (ZMod (p^m))) :=\nsorry",
+            "log_weight": -2.1923909354660536
+          }
+        ],
+        "runtime_sec": 151.99964475631714,
+        "avg_tokens": 75.0
+      }
+    },
+    {
+      "index": 7,
+      "id": "Munkres|exercise_13_6",
+      "nl_statement": "Show that the lower limit topology $\\mathbb{R}_l$ and $K$-topology $\\mathbb{R}_K$ are not comparable.",
+      "ground_truth": "def lower_limit_topology (X : Type) [Preorder X] :=\n  generateFrom {S : Set X | \u2203 a b, a < b \u2227 S = Ico a b}\n\ndef Rl := lower_limit_topology \u211d\n\ndef K : Set \u211d := {r | \u2203 n : \u2115, r = 1 / n}\n\ndef K_topology := generateFrom\n  ({S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b} \u222a {S : Set \u211d | \u2203 a b, a < b \u2227 S = Ioo a b \\ K})\n\ntheorem exercise_13_6 :\n  \u00ac (\u2200 U, Rl.IsOpen U \u2192 K_topology.IsOpen U) \u2227 \u00ac (\u2200 U, K_topology.IsOpen U \u2192 Rl.IsOpen U) :=",
+      "lean_header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry",
+            "log_weight": 0.0013340424152051356
+          }
+        ],
+        "runtime_sec": 2.6601364612579346,
+        "avg_tokens": 75.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (kTopologicalSpace U)) := by sorry",
+      "baseline_beq": false,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+            "log_weight": 0.0013579059444457904
+          }
+        ],
+        "runtime_sec": 3.2692525386810303,
+        "avg_tokens": 94.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+            "log_weight": 0.0017201053436666932
+          }
+        ],
+        "runtime_sec": 5.78881049156189,
+        "avg_tokens": 160.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+            "log_weight": -2.7826563315954873
+          }
+        ],
+        "runtime_sec": 338.8978781700134,
+        "avg_tokens": 160.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry": false
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ntheorem autoformalized_theorem_7 :\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (lowerLimitTopology U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (Rl U)) \u2227\n  \u00ac (\u2200 U : Set \u211d, IsOpen U \u2192 IsOpen (K U)) := by sorry",
+            "log_weight": -2.7826563315954873
+          }
+        ],
+        "runtime_sec": 339.698691368103,
+        "avg_tokens": 160.0
+      }
+    },
+    {
+      "index": 10,
+      "id": "Rudin|exercise_4_8b",
+      "nl_statement": "Let $E$ be a bounded set in $R^{1}$. Prove that there exists a real function $f$ such that $f$ is uniformly continuous and is not bounded on $E$.",
+      "ground_truth": "theorem exercise_4_8b\n  (E : Set \u211d) (h : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) :=",
+      "lean_header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\n",
+      "baseline": {
+        "posterior": {
+          "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+            "log_weight": 0.00041150232168962893
+          }
+        ],
+        "runtime_sec": 2.9755630493164062,
+        "avg_tokens": 83.0
+      },
+      "baseline_candidate": "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+      "baseline_beq": true,
+      "smc_no_potential": {
+        "posterior": {
+          "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+            "log_weight": 3.789929122159269e-05
+          }
+        ],
+        "runtime_sec": 2.903620481491089,
+        "avg_tokens": 83.0
+      },
+      "smc_lean_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10\n  (E : Set \u211d)\n  (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+            "log_weight": 3.789929122159269e-05
+          }
+        ],
+        "runtime_sec": 3.022564649581909,
+        "avg_tokens": 83.0
+      },
+      "smc_cycle_only": {
+        "posterior": {
+          "theorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+            "log_weight": -3.521695019546742
+          }
+        ],
+        "runtime_sec": 161.5163323879242,
+        "avg_tokens": 80.0
+      },
+      "smc_both": {
+        "posterior": {
+          "theorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": 1.0
+        },
+        "beq_labels": {
+          "theorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry": true
+        },
+        "raw_particles": [
+          {
+            "text": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\ntheorem autoformalized_theorem_10 (E : Set \u211d) (hE : Bornology.IsBounded E) :\n  \u2203 f : \u211d \u2192 \u211d, UniformContinuousOn f E \u2227 \u00ac Bornology.IsBounded (Set.image f E) := by sorry",
+            "log_weight": -3.5216951554617557
+          }
+        ],
+        "runtime_sec": 161.58539032936096,
+        "avg_tokens": 80.0
+      }
+    }
+  ]
+}

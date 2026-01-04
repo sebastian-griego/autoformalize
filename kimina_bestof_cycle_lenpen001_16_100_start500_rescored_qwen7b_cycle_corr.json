@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_16_100_start500_rescored_qwen7b.json"
+  },
+  "summary": {
+    "count": 69,
+    "pearson_avg": 0.03301187434867228,
+    "pearson_median": 0.031322042161824264,
+    "spearman_avg": 0.07970571206957987,
+    "spearman_median": 0.0
+  }
+}

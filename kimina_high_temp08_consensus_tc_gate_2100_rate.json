@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start2100_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "feature": "tc_rate",
+    "direction": "ge",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8128496985714517,
+    "tc_consensus_f1_avg": 0.8256979759021218
+  },
+  "summary": {
+    "threshold_0.15748031496062992": {
+      "count": 19,
+      "chosen_f1_avg": 0.8256979759021219,
+      "chosen_typecheck_rate": 1.0
+    },
+    "threshold_0.28": {
+      "count": 19,
+      "chosen_f1_avg": 0.8257320290057212,
+      "chosen_typecheck_rate": 0.8947368421052632
+    },
+    "threshold_0.5859375": {
+      "count": 19,
+      "chosen_f1_avg": 0.8138795268108133,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.6293103448275862": {
+      "count": 19,
+      "chosen_f1_avg": 0.8138795268108133,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.6862745098039216": {
+      "count": 19,
+      "chosen_f1_avg": 0.8138795268108133,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.7476635514018691": {
+      "count": 19,
+      "chosen_f1_avg": 0.812849698571452,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.7857142857142857": {
+      "count": 19,
+      "chosen_f1_avg": 0.812849698571452,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.8494623655913979": {
+      "count": 19,
+      "chosen_f1_avg": 0.812849698571452,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.863013698630137": {
+      "count": 19,
+      "chosen_f1_avg": 0.812849698571452,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_0.9270833333333334": {
+      "count": 19,
+      "chosen_f1_avg": 0.812849698571452,
+      "chosen_typecheck_rate": 0.8421052631578947
+    },
+    "threshold_1.0": {
+      "count": 19,
+      "chosen_f1_avg": 0.812849698571452,
+      "chosen_typecheck_rate": 0.8421052631578947
+    }
+  }
+}

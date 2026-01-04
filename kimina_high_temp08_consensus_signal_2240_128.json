@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start2240_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "dedupe_id": false
+  },
+  "summary": {
+    "count": 20,
+    "baseline_f1_avg": 0.8348849733091533,
+    "consensus_f1_avg": 0.878271278176903,
+    "oracle_f1_avg": 0.9316172987478024,
+    "consensus_improve_rate": 0.45,
+    "correlations": {
+      "improve_vs_count": 0.3543851964550277,
+      "improve_vs_tc_rate": -0.16669745408871764,
+      "improve_vs_pairwise": -0.4568824746572334,
+      "improve_vs_pairwise_tc": -0.36948775699896896,
+      "improve_vs_consensus_margin": 0.41464985780925884,
+      "improve_vs_baseline_f1": -0.6403162187843086,
+      "oracle_improve_vs_count": 0.49334077637868573,
+      "oracle_improve_vs_pairwise": -0.49330102478249643
+    }
+  }
+}

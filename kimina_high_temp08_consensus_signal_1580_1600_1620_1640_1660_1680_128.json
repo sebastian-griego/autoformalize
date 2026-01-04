@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_start1580_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1600_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1620_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1640_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1660_temp08_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_128_20_start1680_temp08_qwen1p5_rescored_cpu.json"
+    ],
+    "dedupe_id": false
+  },
+  "summary": {
+    "count": 115,
+    "baseline_f1_avg": 0.7659821011209534,
+    "consensus_f1_avg": 0.8428098755877821,
+    "oracle_f1_avg": 0.937190202724138,
+    "consensus_improve_rate": 0.6,
+    "correlations": {
+      "improve_vs_count": 0.14808845631982437,
+      "improve_vs_tc_rate": -0.16885808276203754,
+      "improve_vs_pairwise": -0.34454919975022763,
+      "improve_vs_pairwise_tc": -0.2731595493427561,
+      "improve_vs_consensus_margin": 0.02605096953346259,
+      "improve_vs_baseline_f1": -0.7684925639878318,
+      "oracle_improve_vs_count": 0.1356443234158023,
+      "oracle_improve_vs_pairwise": -0.5575895868828876
+    }
+  }
+}

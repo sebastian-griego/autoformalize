@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_temp08_merged_64_128_rescored.json",
+    "folds": 5,
+    "ridge": 0.001,
+    "digit_source": "ground_truth",
+    "no_cycle": true,
+    "no_length": false,
+    "no_consensus": false,
+    "no_typecheck": false,
+    "extra_candidate_features": true,
+    "numeric_features": false
+  },
+  "summary": {
+    "base": {
+      "count": 859,
+      "f1_avg": 0.8406529846193099,
+      "baseline_f1_avg": 0.7740837768437154,
+      "improve_rate": 0.6472642607683353,
+      "digits": {
+        "count": 546,
+        "f1_avg": 0.8391644003050451,
+        "baseline_f1_avg": 0.7758332079817817,
+        "improve_rate": 0.6208791208791209
+      },
+      "nodigits": {
+        "count": 313,
+        "f1_avg": 0.8432496844135218,
+        "baseline_f1_avg": 0.7710320535166119,
+        "improve_rate": 0.6932907348242812
+      }
+    },
+    "nl": {
+      "count": 859,
+      "f1_avg": 0.841036412169324,
+      "baseline_f1_avg": 0.7740837768437154,
+      "improve_rate": 0.6519208381839348,
+      "digits": {
+        "count": 546,
+        "f1_avg": 0.8398238678257698,
+        "baseline_f1_avg": 0.7758332079817817,
+        "improve_rate": 0.6282051282051282
+      },
+      "nodigits": {
+        "count": 313,
+        "f1_avg": 0.8431515853692632,
+        "baseline_f1_avg": 0.7710320535166119,
+        "improve_rate": 0.6932907348242812
+      }
+    },
+    "gate": {
+      "count": 859,
+      "f1_avg": 0.8410721572227037,
+      "baseline_f1_avg": 0.7740837768437154,
+      "improve_rate": 0.6519208381839348,
+      "digits": {
+        "count": 546,
+        "f1_avg": 0.8398238678257698,
+        "baseline_f1_avg": 0.7758332079817817,
+        "improve_rate": 0.6282051282051282
+      },
+      "nodigits": {
+        "count": 313,
+        "f1_avg": 0.8432496844135218,
+        "baseline_f1_avg": 0.7710320535166119,
+        "improve_rate": 0.6932907348242812
+      }
+    },
+    "gate_counts": {
+      "use_nl_count": 546,
+      "use_base_count": 313
+    }
+  }
+}

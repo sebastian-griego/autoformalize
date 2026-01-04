@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2100_rescored_cpu.json"
+    ],
+    "folds": 5,
+    "ridge": 0.001,
+    "features": [
+      "bias",
+      "count",
+      "tc_count",
+      "tc_rate",
+      "pairwise",
+      "pairwise_tc",
+      "consensus_margin",
+      "cycle_max",
+      "cycle_mean",
+      "tc_cycle_max",
+      "tc_cycle_mean",
+      "lenpen_max",
+      "lenpen_mean",
+      "tc_lenpen_max",
+      "tc_lenpen_mean",
+      "len_mean",
+      "tc_len_mean",
+      "best_cycle_is_tc",
+      "best_lenpen_is_tc"
+    ]
+  },
+  "summary": {
+    "count": 163,
+    "gate_f1_avg": 0.8369026252494647,
+    "all_f1_avg": 0.834258064322955,
+    "tc_f1_avg": 0.8388771140827728,
+    "gate_typecheck_rate": 0.8957055214723927,
+    "avg_weights": [
+      0.0,
+      -0.03646847171901649,
+      0.05075478649273892,
+      -0.060405874882185795,
+      -0.01650074642468391,
+      0.01414775959642316,
+      0.0063565439064852125,
+      -0.2012235968348472,
+      0.04815229477140763,
+      0.14152718629463246,
+      -0.023109706543535134,
+      0.10478592081261928,
+      0.047219970014989926,
+      -0.09881697973818174,
+      -0.021217812172865554,
+      0.04007747508329008,
+      -0.05356489412534846,
+      -0.004060568582949463,
+      0.0049820347158205614
+    ],
+    "avg_threshold": -0.011416009015985534
+  }
+}

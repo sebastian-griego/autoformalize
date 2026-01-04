@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2060_rescored_cpu.json"
+    ],
+    "feature": "tc_rate",
+    "direction": "ge",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8366612738066279,
+    "tc_consensus_f1_avg": 0.8398174067385453
+  },
+  "summary": {
+    "threshold_0.0": {
+      "count": 159,
+      "chosen_f1_avg": 0.8398174067385449,
+      "chosen_typecheck_rate": 0.9937106918238994
+    },
+    "threshold_0.1485148514851485": {
+      "count": 159,
+      "chosen_f1_avg": 0.8395429776313442,
+      "chosen_typecheck_rate": 0.9182389937106918
+    },
+    "threshold_0.3671875": {
+      "count": 159,
+      "chosen_f1_avg": 0.8401602177495496,
+      "chosen_typecheck_rate": 0.8616352201257862
+    },
+    "threshold_0.5268817204301075": {
+      "count": 159,
+      "chosen_f1_avg": 0.8383082734746603,
+      "chosen_typecheck_rate": 0.8238993710691824
+    },
+    "threshold_0.627906976744186": {
+      "count": 159,
+      "chosen_f1_avg": 0.8379154117362491,
+      "chosen_typecheck_rate": 0.8176100628930818
+    },
+    "threshold_0.7142857142857143": {
+      "count": 159,
+      "chosen_f1_avg": 0.8380070963173246,
+      "chosen_typecheck_rate": 0.7987421383647799
+    },
+    "threshold_0.7863247863247863": {
+      "count": 159,
+      "chosen_f1_avg": 0.8377616182279538,
+      "chosen_typecheck_rate": 0.7924528301886793
+    },
+    "threshold_0.8571428571428571": {
+      "count": 159,
+      "chosen_f1_avg": 0.8371200197172805,
+      "chosen_typecheck_rate": 0.7861635220125787
+    },
+    "threshold_0.898989898989899": {
+      "count": 159,
+      "chosen_f1_avg": 0.8369672430004522,
+      "chosen_typecheck_rate": 0.7861635220125787
+    },
+    "threshold_0.9553571428571429": {
+      "count": 159,
+      "chosen_f1_avg": 0.8366612738066276,
+      "chosen_typecheck_rate": 0.7861635220125787
+    },
+    "threshold_1.0": {
+      "count": 159,
+      "chosen_f1_avg": 0.8366612738066276,
+      "chosen_typecheck_rate": 0.7861635220125787
+    }
+  }
+}

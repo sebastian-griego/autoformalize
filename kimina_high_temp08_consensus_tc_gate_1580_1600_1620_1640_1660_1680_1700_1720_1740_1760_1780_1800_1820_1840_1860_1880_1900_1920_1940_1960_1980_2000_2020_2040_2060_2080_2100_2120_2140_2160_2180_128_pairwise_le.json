@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2180_rescored_cpu.json"
+    ],
+    "feature": "pairwise",
+    "direction": "le",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8311278560609715,
+    "tc_consensus_f1_avg": 0.8343916360585736
+  },
+  "summary": {
+    "threshold_0.42080280196176717": {
+      "count": 241,
+      "chosen_f1_avg": 0.8315805154347921,
+      "chosen_typecheck_rate": 0.8091286307053942
+    },
+    "threshold_0.6742670070586763": {
+      "count": 241,
+      "chosen_f1_avg": 0.834141458721729,
+      "chosen_typecheck_rate": 0.8381742738589212
+    },
+    "threshold_0.7153628941251197": {
+      "count": 241,
+      "chosen_f1_avg": 0.833197904812668,
+      "chosen_typecheck_rate": 0.8672199170124482
+    },
+    "threshold_0.7416907654087662": {
+      "count": 241,
+      "chosen_f1_avg": 0.8335062154622346,
+      "chosen_typecheck_rate": 0.8879668049792531
+    },
+    "threshold_0.7635449587685335": {
+      "count": 241,
+      "chosen_f1_avg": 0.8349209549582319,
+      "chosen_typecheck_rate": 0.9045643153526971
+    },
+    "threshold_0.7864751613099198": {
+      "count": 241,
+      "chosen_f1_avg": 0.834531278434429,
+      "chosen_typecheck_rate": 0.921161825726141
+    },
+    "threshold_0.8017083213841848": {
+      "count": 241,
+      "chosen_f1_avg": 0.8337263493990317,
+      "chosen_typecheck_rate": 0.950207468879668
+    },
+    "threshold_0.8216158555939785": {
+      "count": 241,
+      "chosen_f1_avg": 0.8324665544492952,
+      "chosen_typecheck_rate": 0.9626556016597511
+    },
+    "threshold_0.846875214935273": {
+      "count": 241,
+      "chosen_f1_avg": 0.8338507425270522,
+      "chosen_typecheck_rate": 0.970954356846473
+    },
+    "threshold_0.8709934566549208": {
+      "count": 241,
+      "chosen_f1_avg": 0.8342105147321932,
+      "chosen_typecheck_rate": 0.983402489626556
+    },
+    "threshold_0.9438914017678607": {
+      "count": 241,
+      "chosen_f1_avg": 0.8343916360585729,
+      "chosen_typecheck_rate": 0.9875518672199171
+    }
+  }
+}

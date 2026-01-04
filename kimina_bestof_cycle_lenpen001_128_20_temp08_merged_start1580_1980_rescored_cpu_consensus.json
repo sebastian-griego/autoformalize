@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_1980_rescored_cpu.json"
+  },
+  "summary": {
+    "count": 151,
+    "baseline_f1_avg": 0.768741333610387,
+    "consensus_f1_avg": 0.8337313236111028,
+    "consensus_tc_f1_avg": 0.8394398672394825,
+    "consensus_typecheck_rate": 0.7947019867549668,
+    "consensus_tc_typecheck_rate": 0.9933774834437086
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_64_20_start1000_temp08_qwen1p5_rescored_cpu.json"
+  },
+  "summary": {
+    "count": 19,
+    "baseline_f1_avg": 0.8307736098312631,
+    "oracle_f1_avg": 0.9545144639433203,
+    "oracle_tc_f1_avg": 0.9527845753119675,
+    "oracle_typecheck_rate": 0.9473684210526315,
+    "oracle_tc_typecheck_rate": 1.0,
+    "oracle_improve_rate": 0.9473684210526315,
+    "oracle_tc_improve_rate": 0.9473684210526315
+  }
+}

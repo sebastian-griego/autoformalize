@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2280_rescored.json"
+    ],
+    "folds": 5,
+    "model": "ridge",
+    "ridge": 0.001,
+    "gbrt_params": {
+      "n_estimators": 200,
+      "learning_rate": 0.05,
+      "max_depth": 3
+    },
+    "features": [
+      "bias",
+      "count",
+      "tc_count",
+      "tc_rate",
+      "pairwise",
+      "pairwise_tc",
+      "consensus_margin",
+      "cycle_max",
+      "cycle_mean",
+      "tc_cycle_max",
+      "tc_cycle_mean",
+      "lenpen_max",
+      "lenpen_mean",
+      "tc_lenpen_max",
+      "tc_lenpen_mean",
+      "len_mean",
+      "tc_len_mean",
+      "best_cycle_is_tc",
+      "best_lenpen_is_tc"
+    ]
+  },
+  "summary": {
+    "count": 687,
+    "gate_f1_avg": 0.8395416217454693,
+    "all_f1_avg": 0.835686414293943,
+    "tc_f1_avg": 0.8349032047447529,
+    "gate_typecheck_rate": 0.9213973799126638,
+    "avg_weights": [
+      0.0,
+      -0.02277554976816414,
+      0.02640748154146274,
+      -0.033402090394580905,
+      -0.02453975604493356,
+      0.0334047080361697,
+      0.004013990114117457,
+      -0.019433907535789486,
+      -0.01628542369963001,
+      0.13419351995429935,
+      0.028285155181738585,
+      -0.02939687444803777,
+      -0.012535581118746992,
+      -0.1055238117911635,
+      0.02491945091663943,
+      -0.10858675907697846,
+      0.10140086851702686,
+      -0.0036526386807575807,
+      0.001505418008805812
+    ],
+    "avg_threshold": -0.00042069386822246314
+  }
+}

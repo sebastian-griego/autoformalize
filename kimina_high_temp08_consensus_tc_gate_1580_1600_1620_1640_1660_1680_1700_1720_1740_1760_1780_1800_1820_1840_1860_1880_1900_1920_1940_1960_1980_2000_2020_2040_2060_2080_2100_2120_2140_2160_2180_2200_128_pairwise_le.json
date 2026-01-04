@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2200_rescored_cpu.json"
+    ],
+    "feature": "pairwise",
+    "direction": "le",
+    "dedupe_id": false,
+    "all_consensus_f1_avg": 0.8318954051605015,
+    "tc_consensus_f1_avg": 0.8339019897801061
+  },
+  "summary": {
+    "threshold_0.42080280196176717": {
+      "count": 261,
+      "chosen_f1_avg": 0.832313377992267,
+      "chosen_typecheck_rate": 0.8084291187739464
+    },
+    "threshold_0.6756097812452493": {
+      "count": 261,
+      "chosen_f1_avg": 0.834801072152232,
+      "chosen_typecheck_rate": 0.8352490421455939
+    },
+    "threshold_0.7123594465230627": {
+      "count": 261,
+      "chosen_f1_avg": 0.8338785648016377,
+      "chosen_typecheck_rate": 0.8620689655172413
+    },
+    "threshold_0.7404844441289455": {
+      "count": 261,
+      "chosen_f1_avg": 0.8333296625954637,
+      "chosen_typecheck_rate": 0.8850574712643678
+    },
+    "threshold_0.7617352518760847": {
+      "count": 261,
+      "chosen_f1_avg": 0.834967557921417,
+      "chosen_typecheck_rate": 0.9003831417624522
+    },
+    "threshold_0.7864751613099198": {
+      "count": 261,
+      "chosen_f1_avg": 0.8345289345295649,
+      "chosen_typecheck_rate": 0.9157088122605364
+    },
+    "threshold_0.8017083213841848": {
+      "count": 261,
+      "chosen_f1_avg": 0.8337856858800219,
+      "chosen_typecheck_rate": 0.9425287356321839
+    },
+    "threshold_0.8216158555939785": {
+      "count": 261,
+      "chosen_f1_avg": 0.8321409401949307,
+      "chosen_typecheck_rate": 0.9540229885057471
+    },
+    "threshold_0.847077962727143": {
+      "count": 261,
+      "chosen_f1_avg": 0.8334190602207523,
+      "chosen_typecheck_rate": 0.9616858237547893
+    },
+    "threshold_0.8709934566549208": {
+      "count": 261,
+      "chosen_f1_avg": 0.833660576058499,
+      "chosen_typecheck_rate": 0.9808429118773946
+    },
+    "threshold_0.9438914017678607": {
+      "count": 261,
+      "chosen_f1_avg": 0.8339019897801054,
+      "chosen_typecheck_rate": 0.9885057471264368
+    }
+  }
+}

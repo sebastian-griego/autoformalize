@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "results_path": "kimina_bestof_cycle_lenpen001_128_20_temp08_merged_start1580_2280_rescored_dedup.json",
+    "train_results": null,
+    "test_results": null,
+    "folds": 5,
+    "model": "ridge",
+    "ridge": 0.001,
+    "gbrt_estimators": 200,
+    "gbrt_learning_rate": 0.05,
+    "gbrt_depth": 3,
+    "baseline_feature": false,
+    "forward_feature": false,
+    "embed_consensus": false,
+    "context_interactions": false,
+    "extra_candidate_features": true,
+    "numeric_features": false,
+    "nl_number_features": true,
+    "nl_number_detail": false,
+    "embed_model_id": null,
+    "embed_batch_size": null,
+    "embed_max_length": null,
+    "embed_device": null
+  },
+  "summary": {
+    "count": 173,
+    "baseline_f1_avg": 0.7666813698291658,
+    "learned_f1_avg": 0.8387422498030566,
+    "learned_tc_f1_avg": 0.8371795014871368,
+    "learned_typecheck_rate": 0.9710982658959537,
+    "learned_tc_typecheck_rate": 0.9884393063583815,
+    "learned_improve_rate": 0.6994219653179191,
+    "learned_tc_improve_rate": 0.6936416184971098,
+    "feature_names": [
+      "bias",
+      "len_z",
+      "cons_z",
+      "typecheck",
+      "lenpen_z",
+      "cycle_rank",
+      "len_rank",
+      "cons_rank",
+      "tc_cons_z",
+      "tc_cons_rank",
+      "nl_num_f1_z"
+    ],
+    "avg_weights": [
+      0.7049236897139479,
+      0.006458002198566336,
+      0.0433754714490545,
+      0.05184808475466805,
+      0.009915401906957406,
+      0.013876955167269407,
+      0.007731213427730236,
+      0.009765091091015287,
+      0.030605512875739066,
+      0.008931715747570018,
+      0.008345784688683402
+    ]
+  }
+}

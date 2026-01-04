@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "results_paths": [
+      "kimina_bestof_cycle_lenpen001_16_50_start600_temp06_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_32_20_start650_temp06_qwen1p5_rescored_cpu.json",
+      "kimina_bestof_cycle_lenpen001_64_20_start700_temp06_qwen1p5_rescored_cpu.json"
+    ],
+    "feature": "pairwise",
+    "direction": "le",
+    "thresholds": [
+      0.5964456629280335,
+      0.7256498264450589,
+      0.761825118461734,
+      0.7884362120591798,
+      0.8173910256275271,
+      0.850036209955634,
+      0.8668560709196749,
+      0.8834409248010715,
+      0.9019910720011413,
+      0.9342105263157894,
+      1.0
+    ]
+  },
+  "summary": [
+    {
+      "threshold": 0.5964456629280335,
+      "f1_avg": 0.7661098753110563,
+      "typecheck_rate": 0.7142857142857143
+    },
+    {
+      "threshold": 0.7256498264450589,
+      "f1_avg": 0.774121602724211,
+      "typecheck_rate": 0.7285714285714285
+    },
+    {
+      "threshold": 0.761825118461734,
+      "f1_avg": 0.7715815902668277,
+      "typecheck_rate": 0.7285714285714285
+    },
+    {
+      "threshold": 0.7884362120591798,
+      "f1_avg": 0.7819057039175553,
+      "typecheck_rate": 0.7571428571428571
+    },
+    {
+      "threshold": 0.8173910256275271,
+      "f1_avg": 0.7904638911831856,
+      "typecheck_rate": 0.7714285714285715
+    },
+    {
+      "threshold": 0.850036209955634,
+      "f1_avg": 0.7959991944451137,
+      "typecheck_rate": 0.7857142857142857
+    },
+    {
+      "threshold": 0.8668560709196749,
+      "f1_avg": 0.8004270829344424,
+      "typecheck_rate": 0.7857142857142857
+    },
+    {
+      "threshold": 0.8834409248010715,
+      "f1_avg": 0.8029850045039482,
+      "typecheck_rate": 0.8142857142857143
+    },
+    {
+      "threshold": 0.9019910720011413,
+      "f1_avg": 0.8057733524982672,
+      "typecheck_rate": 0.8285714285714286
+    },
+    {
+      "threshold": 0.9342105263157894,
+      "f1_avg": 0.8079722391803585,
+      "typecheck_rate": 0.8428571428571429
+    },
+    {
+      "threshold": 1.0,
+      "f1_avg": 0.8079722391803585,
+      "typecheck_rate": 0.8428571428571429
+    }
+  ]
+}
